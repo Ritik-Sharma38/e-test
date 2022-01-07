@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Portal } from "react-portal";
 import some from "lodash/some";
 import { EditorView } from "prosemirror-view";
 import { TextSelection } from "prosemirror-state";
@@ -26,6 +25,8 @@ type Props = {
   dictionary: typeof baseDictionary;
   tooltip: typeof React.Component | React.FC<any>;
   rtl: boolean;
+  commandRef: any;
+  value: any;
   isTemplate: boolean;
   commands: Record<string, any>;
   onOpen: () => void;
@@ -41,15 +42,15 @@ function isVisible(props) {
   const { view } = props;
   const { selection } = view.state;
 
-  if (!selection) return false;
-  if (selection.empty) return false;
+  if (!selection) return true;
+  if (selection.empty) return true;
   if (selection.node && selection.node.type.name === "hr") {
     return true;
   }
   if (selection.node && selection.node.type.name === "image") {
     return true;
   }
-  if (selection.node) return false;
+  if (selection.node) return true;
 
   const slice = selection.content();
   const fragment = slice.content;
@@ -160,7 +161,14 @@ export default class SelectionToolbar extends React.Component<Props> {
   };
 
   render() {
-    const { dictionary, onCreateLink, isTemplate, rtl, ...rest } = this.props;
+    const {
+      dictionary,
+      onCreateLink,
+      isTemplate,
+      commandRef,
+      rtl,
+      ...rest
+    } = this.props;
     const { view } = rest;
     const { state } = view;
     const { selection }: { selection: any } = state;
@@ -168,7 +176,7 @@ export default class SelectionToolbar extends React.Component<Props> {
     const isDividerSelection = isNodeActive(state.schema.nodes.hr)(state);
 
     // toolbar is disabled in code blocks, no bold / italic etc
-    if (isCodeSelection) {
+    if (isCodeSelection && false) {
       return null;
     }
 
@@ -214,12 +222,12 @@ export default class SelectionToolbar extends React.Component<Props> {
       state.selection.to
     ).textContent;
 
-    if (isTextSelection && !selectionText) {
+    if (isTextSelection && !selectionText && false) {
       return null;
     }
 
     return (
-      <Portal>
+      <div style={{ position: "absolute", top: 10 }}>
         <FloatingToolbar
           view={view}
           active={isVisible(this.props)}
@@ -236,10 +244,10 @@ export default class SelectionToolbar extends React.Component<Props> {
               {...rest}
             />
           ) : (
-            <ToolbarMenu items={items} {...rest} />
+            <ToolbarMenu items={items} {...rest} commandRef={commandRef} />
           )}
         </FloatingToolbar>
-      </Portal>
+      </div>
     );
   }
 }

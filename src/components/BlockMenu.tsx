@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React from "react";
 import { findParentNode } from "prosemirror-utils";
 import CommandMenu, { Props } from "./CommandMenu";
@@ -25,9 +26,11 @@ class BlockMenu extends React.Component<BlockMenuProps> {
   };
 
   render() {
+    const { passRef } = this.props;
     return (
       <CommandMenu
         {...this.props}
+        ref={passRef}
         filterable={true}
         onClearSearch={this.clearSearch}
         renderMenuItem={(item, _index, options) => {

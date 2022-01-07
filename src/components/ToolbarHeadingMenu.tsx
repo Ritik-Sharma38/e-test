@@ -3,23 +3,20 @@ import styled from "styled-components";
 type Props = { active?: boolean; disabled?: boolean };
 
 export default styled.button<Props>`
-  display: inline-block;
-  flex: 0;
-  width: 24px;
-  height: 24px;
+  display: flex;
+  width: 120px;
+  height: 40px;
   cursor: pointer;
   margin-left: 30px;
-  border: ${props =>
-    props.active ? "1px solid #BF9B9B" : "1px solid transparent"};
+  border: none;
   border-radius: 3px;
   background: none;
   transition: opacity 100ms ease-in-out;
   padding: 0;
-  opacity: 1;
+  opacity: 0.7;
   outline: none;
   pointer-events: all;
   position: relative;
-  padding-right: 24px;
 
   &:first-child {
     margin-left: 0;

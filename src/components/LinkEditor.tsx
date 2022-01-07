@@ -368,10 +368,11 @@ const Wrapper = styled(Flex)`
   margin-right: -8px;
   min-width: 336px;
   pointer-events: all;
+  background: black;
 `;
 
 const SearchResults = styled.ol`
-  background: ${props => props.theme.toolbarBackground};
+  background: ${props => props.theme.linkToolbarBackground};
   position: absolute;
   top: 100%;
   width: 100%;

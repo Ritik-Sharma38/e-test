@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import * as React from "react";
 import capitalize from "lodash/capitalize";
 import { Portal } from "react-portal";
@@ -47,6 +48,7 @@ export type Props<T extends MenuItem = MenuItem> = {
   filterable?: boolean;
   items: T[];
   id?: string;
+  passRef: any;
 };
 
 type State = {
@@ -458,7 +460,6 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
     const { dictionary, isActive, uploadImage } = this.props;
     const items = this.filtered;
     const { insertItem, ...positioning } = this.state;
-
     return (
       <Portal>
         <Wrapper

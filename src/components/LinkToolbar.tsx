@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import * as React from "react";
 import { EditorView } from "prosemirror-view";
 import LinkEditor, { SearchResult } from "./LinkEditor";

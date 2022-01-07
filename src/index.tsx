@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* global window File Promise */
 import * as React from "react";
 import memoize from "lodash/memoize";
@@ -86,6 +88,7 @@ export const theme = lightTheme;
 
 export type Props = {
   id?: string;
+  passRef?: any;
   value?: string;
   defaultValue: string;
   placeholder: string;
@@ -170,7 +173,13 @@ type Step = {
 };
 
 class RichMarkdownEditor extends React.PureComponent<Props, State> {
+  public myRef;
+  constructor(props: Props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
   static defaultProps = {
+    myRef: React.createRef(),
     defaultValue: "",
     dir: "auto",
     placeholder: "Write something nice…",
@@ -196,6 +205,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
     linkMenuOpen: false,
     blockMenuSearch: "",
     emojiMenuOpen: false,
+    myRef: React.createRef(),
   };
 
   isBlurred: boolean;
@@ -768,6 +778,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   dictionary={dictionary}
                   commands={this.commands}
                   rtl={isRTL}
+                  commandRef={this.myRef}
                   isTemplate={this.props.template === true}
                   onOpen={this.handleOpenSelectionMenu}
                   onClose={this.handleCloseSelectionMenu}
@@ -775,6 +786,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   onClickLink={this.props.onClickLink}
                   onCreateLink={this.props.onCreateLink}
                   tooltip={tooltip}
+                  value={this.value()}
                 />
                 <LinkToolbar
                   view={this.view}
@@ -787,7 +799,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   onClose={this.handleCloseLinkMenu}
                   tooltip={tooltip}
                 />
-                <EmojiMenu
+                {/* <EmojiMenu
                   view={this.view}
                   commands={this.commands}
                   dictionary={dictionary}
@@ -795,12 +807,13 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   isActive={this.state.emojiMenuOpen}
                   search={this.state.blockMenuSearch}
                   onClose={() => this.setState({ emojiMenuOpen: false })}
-                />
+                /> */}
                 <BlockMenu
                   view={this.view}
                   commands={this.commands}
                   dictionary={dictionary}
                   rtl={isRTL}
+                  passRef={this.myRef}
                   isActive={this.state.blockMenuOpen}
                   search={this.state.blockMenuSearch}
                   onClose={this.handleCloseBlockMenu}

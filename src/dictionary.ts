@@ -1,4 +1,5 @@
 export const base = {
+  text: "Text",
   addColumnAfter: "Insert column after",
   addColumnBefore: "Insert column before",
   addRowAfter: "Insert row after",
