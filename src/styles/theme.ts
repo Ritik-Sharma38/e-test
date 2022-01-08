@@ -76,7 +76,7 @@ export const light = {
   linkToolbarBackground: colors.black,
   toolbarHoverBackground: colors.black,
   toolbarInput: colors.white10,
-  toolbarItem: colors.white,
+  toolbarItem: colors.black,
 
   tableDivider: colors.greyMid,
   tableSelected: colors.primary,

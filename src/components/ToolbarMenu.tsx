@@ -313,12 +313,7 @@ class ToolbarMenu extends React.Component<Props> {
             {Icons["image"]}
           </Tooltip>
         </ToolbarButton>
-        <ToolbarButton onClick={() => this.pickImage("link")}>
-          <Tooltip tooltip={"Add a link"} placement="top">
-            {Icons["link"]}
-          </Tooltip>
-        </ToolbarButton>
-        {[items[10], items[11], items[12], items[13], items[14]].map(
+        {[items[9], items[10], items[11], items[12], items[13], items[14]].map(
           (item, index) => {
             if (!item) return;
             if (item?.name === "separator" && item?.visible !== false) {
