@@ -140,9 +140,7 @@ class ToolbarMenu extends React.Component {
             }),
             React.createElement(ToolbarButton_1.default, { onClick: () => this.pickImage("image") },
                 React.createElement(Tooltip, { tooltip: "Add a image", placement: "top" }, Icons["image"])),
-            React.createElement(ToolbarButton_1.default, { onClick: () => this.pickImage("link") },
-                React.createElement(Tooltip, { tooltip: "Add a link", placement: "top" }, Icons["link"])),
-            [items[10], items[11], items[12], items[13], items[14]].map((item, index) => {
+            [items[9], items[10], items[11], items[12], items[13], items[14]].map((item, index) => {
                 if (!item)
                     return;
                 if ((item === null || item === void 0 ? void 0 : item.name) === "separator" && (item === null || item === void 0 ? void 0 : item.visible) !== false) {

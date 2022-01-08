@@ -137,11 +137,11 @@ class LinkEditor extends React.Component {
         };
         this.handleChange = async (event) => {
             const value = event.target.value;
+            const trimmedValue = value.trim();
             this.setState({
-                value,
+                value: trimmedValue,
                 selectedIndex: -1,
             });
-            const trimmedValue = value.trim();
             if (trimmedValue && this.props.onSearchLink) {
                 try {
                     const results = await this.props.onSearchLink(trimmedValue);
@@ -244,7 +244,10 @@ const Wrapper = styled_components_1.default(Flex_1.default) `
   margin-right: -8px;
   min-width: 336px;
   pointer-events: all;
-  background: black;
+  background: transparent;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
 `;
 const SearchResults = styled_components_1.default.ol `
   background: ${props => props.theme.linkToolbarBackground};
