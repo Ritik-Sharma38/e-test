@@ -47,7 +47,7 @@ export default function Example(props) {
     body.style.backgroundColor = props.dark
       ? dark.background
       : light.background;
-
+  
   return (
     <div style={{ padding: "1em 2em" }}>
       <Editor

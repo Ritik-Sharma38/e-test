@@ -128,6 +128,9 @@ class LinkEditor extends React.Component<Props, State> {
       case "Enter": {
         event.preventDefault();
         const { selectedIndex, value } = this.state;
+        if (!value.trim()) {
+          this.handleRemoveLink();
+        }
         const results = this.state.results[value] || [];
         const { onCreateLink } = this.props;
 

@@ -47,7 +47,7 @@ const Icons = {
         React.createElement("path", { d: "M2 17H4V17.5H3V18.5H4V19H2V20H5V16H2V17ZM3 8H4C4.11539 6.44017 4.05894 5.56051 4 4H2V5H3V8ZM2 11H3.8L2 13.1V14H5V13H3.2L5 10.9V10H2V11ZM7 5V7H21V5H7ZM7 19H21V17H7V19ZM7 13H21V11H7V13Z", fill: "#929292" }))),
     bullet_list: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
         React.createElement("path", { d: "M4 10.5C3.17 10.5 2.5 11.17 2.5 12C2.5 12.83 3.17 13.5 4 13.5C4.83 13.5 5.5 12.83 5.5 12C5.5 11.17 4.83 10.5 4 10.5ZM4 4.5C3.17 4.5 2.5 5.17 2.5 6C2.5 6.83 3.17 7.5 4 7.5C4.83 7.5 5.5 6.83 5.5 6C5.5 5.17 4.83 4.5 4 4.5ZM4 16.5C3.17 16.5 2.5 17.18 2.5 18C2.5 18.82 3.18 19.5 4 19.5C4.82 19.5 5.5 18.82 5.5 18C5.5 17.18 4.83 16.5 4 16.5ZM7 19H21V17H7V19ZM7 13H21V11H7V13ZM7 5V7H21V5H7Z", fill: "#929292" }))),
-    checkbox_list: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+    checkbox_list: (React.createElement("svg", { width: "24", height: "22", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
         React.createElement("path", { d: "M19 5V19H5V5H19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z", fill: "#929292" }),
         React.createElement("path", { d: "M9.92259 14.4241L6.99644 11.498L6 12.4874L9.92259 16.41L18.3432 7.98942L17.3538 7L9.92259 14.4241Z", fill: "#929292" }))),
     code_inline: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
@@ -91,9 +91,7 @@ class ToolbarMenu extends React.Component {
             option: provided => (Object.assign({}, provided)),
             menuPortal: provided => (Object.assign(Object.assign({}, provided), { margintTop: 0 })),
             menuList: provided => (Object.assign(Object.assign({}, provided), { margintTop: 0 })),
-            singleValue: provided => {
-                return Object.assign({}, provided);
-            },
+            singleValue: provided => (Object.assign(Object.assign({}, provided), { overflow: "unset" })),
         };
         const IndicatorSeparator = () => null;
         const active_heading = [
