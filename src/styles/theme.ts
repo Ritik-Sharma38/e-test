@@ -11,6 +11,7 @@ const colors = {
   grey: "#E8EBED",
   greyMid: "#C5CCD3",
   greyDark: "#DAE1E9",
+  f0f0f0: "#F0F0F0",
 };
 
 export const base = {
@@ -73,6 +74,7 @@ export const light = {
   divider: colors.greyMid,
 
   toolbarBackground: colors.white,
+  toolbarBackgroundT: colors.white10,
   linkToolbarBackground: colors.black,
   toolbarHoverBackground: colors.black,
   toolbarInput: colors.white10,
@@ -90,6 +92,8 @@ export const light = {
 
   scrollbarBackground: colors.greyLight,
   scrollbarThumb: colors.greyMid,
+
+  inputBorder: colors.f0f0f0,
 };
 
 export const dark = {
@@ -102,6 +106,7 @@ export const dark = {
   placeholder: "#52657A",
 
   toolbarBackground: colors.greyDark,
+  toolbarBackgroundT: colors.greyMid,
   linkToolbarBackground: colors.white,
   toolbarHoverBackground: colors.greyMid,
   toolbarInput: colors.black10,
@@ -120,6 +125,8 @@ export const dark = {
 
   scrollbarBackground: colors.black,
   scrollbarThumb: colors.lightBlack,
+
+  inputBorder: colors.f0f0f0,
 };
 
 export default light;

@@ -73,7 +73,7 @@ class CommandMenu extends React.Component {
                 event.stopPropagation();
                 const item = this.filtered[this.state.selectedIndex];
                 if (item) {
-                    this.insertItem(item);
+                    this.insertItem(item, "");
                 }
                 else {
                     this.props.onClose();
@@ -116,7 +116,7 @@ class CommandMenu extends React.Component {
                 this.close();
             }
         };
-        this.insertItem = item => {
+        this.insertItem = (item, type) => {
             var _a, _b;
             switch (item.name) {
                 case "image":
@@ -124,7 +124,7 @@ class CommandMenu extends React.Component {
                 case "embed":
                     return this.triggerLinkInput(item);
                 case "link": {
-                    this.clearSearch();
+                    this.clearSearch(type);
                     this.props.onClose();
                     (_b = (_a = this.props).onLinkToolbarOpen) === null || _b === void 0 ? void 0 : _b.call(_a);
                     return;
@@ -194,7 +194,7 @@ class CommandMenu extends React.Component {
             const { view, uploadImage, onImageUploadStart, onImageUploadStop, onShowToast, } = this.props;
             const { state } = view;
             const parent = prosemirror_utils_1.findParentNode(node => !!node)(state.selection);
-            this.clearSearch();
+            this.clearSearch("");
             if (!uploadImage) {
                 throw new Error("uploadImage prop is required to replace images");
             }
@@ -212,8 +212,8 @@ class CommandMenu extends React.Component {
             }
             this.props.onClose();
         };
-        this.clearSearch = () => {
-            this.props.onClearSearch();
+        this.clearSearch = (type) => {
+            this.props.onClearSearch(type);
         };
     }
     componentDidMount() {
@@ -241,7 +241,7 @@ class CommandMenu extends React.Component {
         }
     }
     insertBlock(item) {
-        this.clearSearch();
+        this.clearSearch("");
         const command = this.props.commands[item.name];
         if (command) {
             command(item.attrs);
@@ -360,6 +360,7 @@ class CommandMenu extends React.Component {
         const { dictionary, isActive, uploadImage } = this.props;
         const items = this.filtered;
         const _a = this.state, { insertItem } = _a, positioning = __rest(_a, ["insertItem"]);
+        console.log(insertItem);
         return (React.createElement(react_portal_1.Portal, null,
             React.createElement(exports.Wrapper, Object.assign({ id: this.props.id || "block-menu-container", active: isActive, ref: this.menuRef }, positioning),
                 insertItem ? (React.createElement(LinkInputWrapper, null,
@@ -377,7 +378,7 @@ class CommandMenu extends React.Component {
                         }
                         return (React.createElement(ListItem, { key: index }, this.props.renderMenuItem(item, index, {
                             selected,
-                            onClick: () => this.insertItem(item),
+                            onClick: () => this.insertItem(item, ""),
                         })));
                     }),
                     items.length === 0 && (React.createElement(ListItem, null,

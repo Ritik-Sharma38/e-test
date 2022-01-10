@@ -196,18 +196,27 @@ const Icons = {
 };
 
 class ToolbarMenu extends React.Component<Props> {
-  pickImage = (action: string) => {
+  pickImage = (action: string, type: string) => {
     const { commandRef } = this.props;
-    commandRef.current.insertItem({ name: action });
+    commandRef.current.insertItem({ name: action }, type);
   };
 
   call = (item: any) => {
     if (item.name) {
-      this.props.commands[item.name](item.attrs);
-    } else if (item.name) {
-      if (item.name) {
-        this.props.commands[item.name](item.attrs);
+      if (item.name === "link") {
+        const { view } = this.props;
+        const { state } = view;
+
+        const selectionText = state.doc.cut(
+          state.selection.from,
+          state.selection.to
+        ).textContent;
+
+        if (!selectionText) {
+          this.pickImage("link", "middle");
+        }
       }
+      this.props.commands[item.name](item.attrs);
     }
   };
 
@@ -309,7 +318,7 @@ class ToolbarMenu extends React.Component<Props> {
             </ToolbarButton>
           );
         })}
-        <ToolbarButton onClick={() => this.pickImage("image")}>
+        <ToolbarButton onClick={() => this.pickImage("image", "")}>
           <Tooltip tooltip={"Add a image"} placement="top">
             {Icons["image"]}
           </Tooltip>

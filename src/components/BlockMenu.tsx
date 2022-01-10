@@ -16,11 +16,17 @@ class BlockMenu extends React.Component<BlockMenuProps> {
     return getMenuItems(this.props.dictionary);
   }
 
-  clearSearch = () => {
+  clearSearch = (type: string) => {
     const { state, dispatch } = this.props.view;
     const parent = findParentNode(node => !!node)(state.selection);
     if (parent) {
-      dispatch(state.tr.insertText("", parent.pos, state.selection.to));
+      dispatch(
+        state.tr.insertText(
+          "",
+          type === "middle" ? state.selection.from : parent.pos,
+          state.selection.to
+        )
+      );
     }
   };
 

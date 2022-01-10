@@ -11,7 +11,7 @@ declare type Props = {
     items: MenuItem[];
 };
 declare class ToolbarMenu extends React.Component<Props> {
-    pickImage: (action: string) => void;
+    pickImage: (action: string, type: string) => void;
     call: (item: any) => void;
     render(): JSX.Element;
 }

@@ -62,18 +62,21 @@ const Icons = {
 class ToolbarMenu extends React.Component {
     constructor() {
         super(...arguments);
-        this.pickImage = (action) => {
+        this.pickImage = (action, type) => {
             const { commandRef } = this.props;
-            commandRef.current.insertItem({ name: action });
+            commandRef.current.insertItem({ name: action }, type);
         };
         this.call = (item) => {
             if (item.name) {
-                this.props.commands[item.name](item.attrs);
-            }
-            else if (item.name) {
-                if (item.name) {
-                    this.props.commands[item.name](item.attrs);
+                if (item.name === "link") {
+                    const { view } = this.props;
+                    const { state } = view;
+                    const selectionText = state.doc.cut(state.selection.from, state.selection.to).textContent;
+                    if (!selectionText) {
+                        this.pickImage("link", "middle");
+                    }
                 }
+                this.props.commands[item.name](item.attrs);
             }
         };
     }
@@ -136,7 +139,7 @@ class ToolbarMenu extends React.Component {
                 return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item), active: isActive },
                     React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item.name : "none"])));
             }),
-            React.createElement(ToolbarButton_1.default, { onClick: () => this.pickImage("image") },
+            React.createElement(ToolbarButton_1.default, { onClick: () => this.pickImage("image", "") },
                 React.createElement(Tooltip, { tooltip: "Add a image", placement: "top" }, Icons["image"])),
             [items[9], items[10], items[11], items[12], items[13], items[14]].map((item, index) => {
                 if (!item)

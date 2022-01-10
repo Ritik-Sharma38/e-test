@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import * as React from "react";
 import capitalize from "lodash/capitalize";
@@ -35,7 +36,7 @@ export type Props<T extends MenuItem = MenuItem> = {
   onShowToast?: (message: string, id: string) => void;
   onLinkToolbarOpen?: () => void;
   onClose: () => void;
-  onClearSearch: () => void;
+  onClearSearch: (type: string) => void;
   embeds?: EmbedDescriptor[];
   renderMenuItem: (
     item: T,
@@ -117,7 +118,7 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
       const item = this.filtered[this.state.selectedIndex];
 
       if (item) {
-        this.insertItem(item);
+        this.insertItem(item, "");
       } else {
         this.props.onClose();
       }
@@ -175,14 +176,14 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
     }
   };
 
-  insertItem = item => {
+  insertItem = (item, type) => {
     switch (item.name) {
       case "image":
         return this.triggerImagePick();
       case "embed":
         return this.triggerLinkInput(item);
       case "link": {
-        this.clearSearch();
+        this.clearSearch(type);
         this.props.onClose();
         this.props.onLinkToolbarOpen?.();
         return;
@@ -273,7 +274,7 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
     const { state } = view;
     const parent = findParentNode(node => !!node)(state.selection);
 
-    this.clearSearch();
+    this.clearSearch("");
 
     if (!uploadImage) {
       throw new Error("uploadImage prop is required to replace images");
@@ -296,12 +297,12 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
     this.props.onClose();
   };
 
-  clearSearch = () => {
-    this.props.onClearSearch();
+  clearSearch = (type: string) => {
+    this.props.onClearSearch(type);
   };
 
   insertBlock(item) {
-    this.clearSearch();
+    this.clearSearch("");
 
     const command = this.props.commands[item.name];
 
@@ -460,6 +461,7 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
     const { dictionary, isActive, uploadImage } = this.props;
     const items = this.filtered;
     const { insertItem, ...positioning } = this.state;
+    console.log(insertItem);
     return (
       <Portal>
         <Wrapper
@@ -502,7 +504,7 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
                   <ListItem key={index}>
                     {this.props.renderMenuItem(item as any, index, {
                       selected,
-                      onClick: () => this.insertItem(item),
+                      onClick: () => this.insertItem(item, ""),
                     })}
                   </ListItem>
                 );

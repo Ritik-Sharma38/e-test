@@ -20,6 +20,7 @@ import getRowIndex from "../queries/getRowIndex";
 import createAndInsertLink from "../commands/createAndInsertLink";
 import { MenuItem } from "../types";
 import baseDictionary from "../dictionary";
+import FloatingToolbarTemp from "./FloatingToolbarTemp";
 
 type Props = {
   dictionary: typeof baseDictionary;
@@ -227,13 +228,14 @@ export default class SelectionToolbar extends React.Component<Props> {
     }
 
     return (
-      <div style={{ position: "absolute", top: 10 }}>
-        <FloatingToolbar
-          view={view}
-          active={isVisible(this.props)}
-          ref={this.menuRef}
-        >
-          {link && range ? (
+      <div>
+        {link && range ? (
+          <FloatingToolbarTemp
+            view={view}
+            active={isVisible(this.props)}
+            ref={this.menuRef}
+            fromCommandMenu={false}
+          >
             <LinkEditor
               dictionary={dictionary}
               mark={range.mark}
@@ -243,10 +245,16 @@ export default class SelectionToolbar extends React.Component<Props> {
               onSelectLink={this.handleOnSelectLink}
               {...rest}
             />
-          ) : (
+          </FloatingToolbarTemp>
+        ) : (
+          <FloatingToolbar
+            view={view}
+            active={isVisible(this.props)}
+            ref={this.menuRef}
+          >
             <ToolbarMenu items={items} {...rest} commandRef={commandRef} />
-          )}
-        </FloatingToolbar>
+          </FloatingToolbar>
+        )}
       </div>
     );
   }

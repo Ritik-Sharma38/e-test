@@ -52,6 +52,7 @@ const isNodeActive_1 = __importDefault(require("../queries/isNodeActive"));
 const getColumnIndex_1 = __importDefault(require("../queries/getColumnIndex"));
 const getRowIndex_1 = __importDefault(require("../queries/getRowIndex"));
 const createAndInsertLink_1 = __importDefault(require("../commands/createAndInsertLink"));
+const FloatingToolbarTemp_1 = __importDefault(require("./FloatingToolbarTemp"));
 function isVisible(props) {
     const { view } = props;
     const { selection } = view.state;
@@ -192,8 +193,9 @@ class SelectionToolbar extends React.Component {
         if (isTextSelection && !selectionText && false) {
             return null;
         }
-        return (React.createElement("div", { style: { position: "absolute", top: 10 } },
-            React.createElement(FloatingToolbar_1.default, { view: view, active: isVisible(this.props), ref: this.menuRef }, link && range ? (React.createElement(LinkEditor_1.default, Object.assign({ dictionary: dictionary, mark: range.mark, from: range.from, to: range.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink }, rest))) : (React.createElement(ToolbarMenu_1.default, Object.assign({ items: items }, rest, { commandRef: commandRef }))))));
+        return (React.createElement("div", null, link && range ? (React.createElement(FloatingToolbarTemp_1.default, { view: view, active: isVisible(this.props), ref: this.menuRef, fromCommandMenu: false },
+            React.createElement(LinkEditor_1.default, Object.assign({ dictionary: dictionary, mark: range.mark, from: range.from, to: range.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink }, rest)))) : (React.createElement(FloatingToolbar_1.default, { view: view, active: isVisible(this.props), ref: this.menuRef },
+            React.createElement(ToolbarMenu_1.default, Object.assign({ items: items }, rest, { commandRef: commandRef }))))));
     }
 }
 exports.default = SelectionToolbar;

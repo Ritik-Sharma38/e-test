@@ -23,7 +23,7 @@ export default class LinkToolbar extends React.Component<Props> {
     componentWillUnmount(): void;
     handleClickOutside: (ev: any) => void;
     handleOnCreateLink: (title: string) => Promise<void>;
-    handleOnSelectLink: ({ href, title, }: {
+    handleOnSelectLink: ({ href, title, from, to, }: {
         href: string;
         title: string;
         from: number;

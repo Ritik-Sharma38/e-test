@@ -43,6 +43,7 @@ type Props = {
   onShowToast?: (message: string, code: string) => void;
   view: EditorView;
   theme: typeof theme;
+  fromCommandMenu: boolean;
 };
 
 type State = {
@@ -50,6 +51,7 @@ type State = {
     [keyword: string]: SearchResult[];
   };
   value: string;
+  title: string;
   previousValue: string;
   selectedIndex: number;
 };
@@ -58,12 +60,26 @@ class LinkEditor extends React.Component<Props, State> {
   discardInputValue = false;
   initialValue = this.href;
   initialSelectionLength = this.props.to - this.props.from;
+  wrapperRef: any;
+  setWrapperRef: any;
+  inputSubmit: any;
+  from: number;
+  to: number;
+
+  constructor(props) {
+    super(props);
+    this.wrapperRef = React.createRef();
+    this.inputSubmit = React.createRef();
+    this.from = 0;
+    this.to = 0;
+  }
 
   state: State = {
     selectedIndex: -1,
     value: this.href,
     previousValue: "",
     results: {},
+    title: "",
   };
 
   get href(): string {
@@ -79,6 +95,10 @@ class LinkEditor extends React.Component<Props, State> {
     ).textContent;
 
     return value.trim() || selectionText.trim();
+  }
+
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
   }
 
   componentWillUnmount = () => {
@@ -99,6 +119,17 @@ class LinkEditor extends React.Component<Props, State> {
     }
 
     this.save(href, href);
+
+    document.removeEventListener("mousedown", this.handleClickOutside);
+  };
+
+  handleClickOutside = event => {
+    if (this.wrapperRef && !this.wrapperRef?.current?.contains(event.target)) {
+      const { value } = this.state;
+      if (!value.trim()) {
+        this.handleRemoveLink();
+      }
+    }
   };
 
   save = (href: string, title?: string): void => {
@@ -120,37 +151,19 @@ class LinkEditor extends React.Component<Props, State> {
       href = `https://${href}`;
     }
 
-    this.props.onSelectLink({ href, title, from, to });
+    this.props.onSelectLink({
+      href,
+      title,
+      from: from ? from : this.from,
+      to: to ? to : this.to,
+    });
   };
 
   handleKeyDown = (event: React.KeyboardEvent): void => {
     switch (event.key) {
       case "Enter": {
         event.preventDefault();
-        const { selectedIndex, value } = this.state;
-        if (!value.trim()) {
-          this.handleRemoveLink();
-        }
-        const results = this.state.results[value] || [];
-        const { onCreateLink } = this.props;
-
-        if (selectedIndex >= 0) {
-          const result = results[selectedIndex];
-          if (result) {
-            this.save(result.url, result.title);
-          } else if (onCreateLink && selectedIndex === results.length) {
-            this.handleCreateLink(this.suggestedLinkTitle);
-          }
-        } else {
-          // saves the raw input as href
-          this.save(value, value);
-        }
-
-        if (this.initialSelectionLength) {
-          this.moveSelectionToEnd();
-        }
-
-        return;
+        this.handleEnterKey();
       }
 
       case "Escape": {
@@ -192,6 +205,34 @@ class LinkEditor extends React.Component<Props, State> {
         return;
       }
     }
+  };
+
+  handleEnterKey = () => {
+    const { selectedIndex, value, title } = this.state;
+    if (!value.trim()) {
+      this.handleRemoveLink();
+    }
+    const results = this.state.results[value] || [];
+    const { onCreateLink } = this.props;
+
+    if (selectedIndex >= 0) {
+      const result = results[selectedIndex];
+      if (result) {
+        this.save(result.url, result.title);
+      } else if (onCreateLink && selectedIndex === results.length) {
+        this.handleCreateLink(this.suggestedLinkTitle);
+      }
+    } else {
+      // saves the raw input as href
+      if (title) this.save(value, title);
+      else this.save(value, title);
+    }
+
+    if (this.initialSelectionLength) {
+      this.moveSelectionToEnd();
+    }
+
+    return;
   };
 
   handleFocusLink = (selectedIndex: number) => {
@@ -277,8 +318,8 @@ class LinkEditor extends React.Component<Props, State> {
   };
 
   render() {
-    const { dictionary, theme } = this.props;
-    const { value, selectedIndex } = this.state;
+    const { dictionary, theme, fromCommandMenu, from, to } = this.props;
+    const { value, selectedIndex, title } = this.state;
     const results =
       this.state.results[value.trim()] ||
       this.state.results[this.state.previousValue] ||
@@ -298,68 +339,148 @@ class LinkEditor extends React.Component<Props, State> {
     const showResults =
       !!suggestedLinkTitle && (showCreateLink || results.length > 0);
 
+    if (from > 0 && to > 0) {
+      this.from = from;
+      this.to = to;
+    }
+
     return (
-      <Wrapper>
-        <Input
-          value={value}
-          placeholder={
-            showCreateLink
-              ? dictionary.findOrCreateDoc
-              : dictionary.searchOrPasteLink
-          }
-          onKeyDown={this.handleKeyDown}
-          onPaste={this.handlePaste}
-          onChange={this.handleChange}
-          autoFocus={this.href === ""}
-        />
-
-        <ToolbarButton onClick={this.handleOpenLink} disabled={!value}>
-          <Tooltip tooltip={dictionary.openLink} placement="top">
-            <OpenIcon color={theme.toolbarItem} />
-          </Tooltip>
-        </ToolbarButton>
-        <ToolbarButton onClick={this.handleRemoveLink}>
-          <Tooltip tooltip={dictionary.removeLink} placement="top">
-            {this.initialValue ? (
-              <TrashIcon color={theme.toolbarItem} />
-            ) : (
-              <CloseIcon color={theme.toolbarItem} />
-            )}
-          </Tooltip>
-        </ToolbarButton>
-
-        {showResults && (
-          <SearchResults id="link-search-results">
-            {results.map((result, index) => (
-              <LinkSearchResult
-                key={result.url}
-                title={result.title}
-                subtitle={result.subtitle}
-                icon={<DocumentIcon color={theme.toolbarItem} />}
-                onMouseOver={() => this.handleFocusLink(index)}
-                onClick={this.handleSelectLink(result.url, result.title)}
-                selected={index === selectedIndex}
-              />
-            ))}
-
-            {showCreateLink && (
-              <LinkSearchResult
-                key="create"
-                title={suggestedLinkTitle}
-                subtitle={dictionary.createNewDoc}
-                icon={<PlusIcon color={theme.toolbarItem} />}
-                onMouseOver={() => this.handleFocusLink(results.length)}
-                onClick={() => {
-                  this.handleCreateLink(suggestedLinkTitle);
-
-                  if (this.initialSelectionLength) {
-                    this.moveSelectionToEnd();
-                  }
+      <Wrapper
+        style={
+          fromCommandMenu
+            ? {
+                padding: "29px 20px",
+                borderRadius: "20px",
+              }
+            : {}
+        }
+      >
+        {fromCommandMenu ? (
+          <div
+            ref={this.wrapperRef}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "100%",
+            }}
+          >
+            <Input
+              value={title}
+              placeholder="Title"
+              onChange={e => this.setState({ title: e.target.value })}
+              autoFocus={this.href === ""}
+            />
+            <div style={{ marginTop: "16px" }} />
+            <Input
+              ref={this.inputSubmit}
+              value={value}
+              placeholder={
+                showCreateLink
+                  ? dictionary.findOrCreateDoc
+                  : dictionary.searchOrPasteLink
+              }
+              onKeyDown={this.handleKeyDown}
+              onPaste={this.handlePaste}
+              onChange={this.handleChange}
+            />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: "21px",
+              }}
+            >
+              <button
+                style={{
+                  padding: "5px 10px",
+                  backgroundColor: "transparent",
+                  borderRadius: "5px",
+                  outline: "none",
+                  border: "none",
                 }}
-                selected={results.length === selectedIndex}
-              />
+              >
+                Cancel
+              </button>
+              <button
+                onClick={e => {
+                  this.handleEnterKey();
+                }}
+                style={{
+                  padding: "5px 10px",
+                  backgroundColor: "transparent",
+                  borderRadius: "5px",
+                  outline: "none",
+                  border: "none",
+                }}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div style={{ display: "flex" }} ref={this.wrapperRef}>
+            <Input
+              value={value}
+              placeholder={
+                showCreateLink
+                  ? dictionary.findOrCreateDoc
+                  : dictionary.searchOrPasteLink
+              }
+              onKeyDown={this.handleKeyDown}
+              onPaste={this.handlePaste}
+              onChange={this.handleChange}
+              autoFocus={this.href === ""}
+            />
+
+            <ToolbarButton onClick={this.handleOpenLink} disabled={!value}>
+              <Tooltip tooltip={dictionary.openLink} placement="top">
+                <OpenIcon color={theme.toolbarItem} />
+              </Tooltip>
+            </ToolbarButton>
+            <ToolbarButton onClick={this.handleRemoveLink}>
+              <Tooltip tooltip={dictionary.removeLink} placement="top">
+                {this.initialValue ? (
+                  <TrashIcon color={theme.toolbarItem} />
+                ) : (
+                  <CloseIcon color={theme.toolbarItem} />
+                )}
+              </Tooltip>
+            </ToolbarButton>
+
+            {showResults && (
+              <SearchResults id="link-search-results">
+                {results.map((result, index) => (
+                  <LinkSearchResult
+                    key={result.url}
+                    title={result.title}
+                    subtitle={result.subtitle}
+                    icon={<DocumentIcon color={theme.toolbarItem} />}
+                    onMouseOver={() => this.handleFocusLink(index)}
+                    onClick={this.handleSelectLink(result.url, result.title)}
+                    selected={index === selectedIndex}
+                  />
+                ))}
+
+                {showCreateLink && (
+                  <LinkSearchResult
+                    key="create"
+                    title={suggestedLinkTitle}
+                    subtitle={dictionary.createNewDoc}
+                    icon={<PlusIcon color={theme.toolbarItem} />}
+                    onMouseOver={() => this.handleFocusLink(results.length)}
+                    onClick={() => {
+                      this.handleCreateLink(suggestedLinkTitle);
+
+                      if (this.initialSelectionLength) {
+                        this.moveSelectionToEnd();
+                      }
+                    }}
+                    selected={results.length === selectedIndex}
+                  />
+                )}
+              </SearchResults>
             )}
-          </SearchResults>
+          </div>
         )}
       </Wrapper>
     );
@@ -371,10 +492,10 @@ const Wrapper = styled(Flex)`
   margin-right: -8px;
   min-width: 336px;
   pointer-events: all;
-  background: transparent;
+  background: ${props => props.theme.toolbarBackground};
   padding: 10px 20px;
   border-radius: 10px;
-  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 `;
 
 const SearchResults = styled.ol`

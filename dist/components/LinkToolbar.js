@@ -35,8 +35,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __importStar(require("react"));
 const LinkEditor_1 = __importDefault(require("./LinkEditor"));
-const FloatingToolbar_1 = __importDefault(require("./FloatingToolbar"));
 const createAndInsertLink_1 = __importDefault(require("../commands/createAndInsertLink"));
+const FloatingToolbarTemp_1 = __importDefault(require("./FloatingToolbarTemp"));
 function isActive(props) {
     const { view } = props;
     const { selection } = view.state;
@@ -86,12 +86,11 @@ class LinkToolbar extends React.Component {
                 dictionary,
             });
         };
-        this.handleOnSelectLink = ({ href, title, }) => {
+        this.handleOnSelectLink = ({ href, title, from, to, }) => {
             const { view, onClose } = this.props;
             onClose();
             this.props.view.focus();
             const { dispatch, state } = view;
-            const { from, to } = state.selection;
             if (from !== to) {
                 return;
             }
@@ -107,10 +106,10 @@ class LinkToolbar extends React.Component {
         window.removeEventListener("mousedown", this.handleClickOutside);
     }
     render() {
-        const _a = this.props, { onCreateLink, onClose } = _a, rest = __rest(_a, ["onCreateLink", "onClose"]);
+        const _a = this.props, { onCreateLink, onClose, view } = _a, rest = __rest(_a, ["onCreateLink", "onClose", "view"]);
         const { selection } = this.props.view.state;
         const active = isActive(this.props);
-        return (React.createElement(FloatingToolbar_1.default, Object.assign({ ref: this.menuRef, active: active }, rest), active && (React.createElement(LinkEditor_1.default, Object.assign({ from: selection.from, to: selection.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink, onRemoveLink: onClose }, rest)))));
+        return (React.createElement(FloatingToolbarTemp_1.default, Object.assign({ view: view, ref: this.menuRef, active: active }, rest, { fromCommandMenu: active }), active && (React.createElement(LinkEditor_1.default, Object.assign({ view: view, from: selection.from, to: selection.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink, onRemoveLink: onClose, fromCommandMenu: true }, rest)))));
     }
 }
 exports.default = LinkToolbar;

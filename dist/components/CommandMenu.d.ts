@@ -15,7 +15,7 @@ export declare type Props<T extends MenuItem = MenuItem> = {
     onShowToast?: (message: string, id: string) => void;
     onLinkToolbarOpen?: () => void;
     onClose: () => void;
-    onClearSearch: () => void;
+    onClearSearch: (type: string) => void;
     embeds?: EmbedDescriptor[];
     renderMenuItem: (item: T, index: number, options: {
         selected: boolean;
@@ -43,14 +43,14 @@ declare class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State>
     componentDidUpdate(prevProps: any): void;
     componentWillUnmount(): void;
     handleKeyDown: (event: KeyboardEvent) => void;
-    insertItem: (item: any) => void;
+    insertItem: (item: any, type: any) => void;
     close: () => void;
     handleLinkInputKeydown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     handleLinkInputPaste: (event: React.ClipboardEvent<HTMLInputElement>) => void;
     triggerImagePick: () => void;
     triggerLinkInput: (item: any) => void;
     handleImagePicked: (event: any) => void;
-    clearSearch: () => void;
+    clearSearch: (type: string) => void;
     insertBlock(item: any): void;
     get caretPosition(): {
         top: number;

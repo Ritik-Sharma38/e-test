@@ -27,12 +27,14 @@ declare type Props = {
     onShowToast?: (message: string, code: string) => void;
     view: EditorView;
     theme: typeof theme;
+    fromCommandMenu: boolean;
 };
 declare type State = {
     results: {
         [keyword: string]: SearchResult[];
     };
     value: string;
+    title: string;
     previousValue: string;
     selectedIndex: number;
 };
@@ -40,12 +42,21 @@ declare class LinkEditor extends React.Component<Props, State> {
     discardInputValue: boolean;
     initialValue: string;
     initialSelectionLength: number;
+    wrapperRef: any;
+    setWrapperRef: any;
+    inputSubmit: any;
+    from: number;
+    to: number;
+    constructor(props: any);
     state: State;
     get href(): string;
     get suggestedLinkTitle(): string;
+    componentDidMount(): void;
     componentWillUnmount: () => void;
+    handleClickOutside: (event: any) => void;
     save: (href: string, title?: string | undefined) => void;
     handleKeyDown: (event: React.KeyboardEvent) => void;
+    handleEnterKey: () => void;
     handleFocusLink: (selectedIndex: number) => void;
     handleChange: (event: any) => Promise<void>;
     handlePaste: () => void;
@@ -56,7 +67,7 @@ declare class LinkEditor extends React.Component<Props, State> {
     moveSelectionToEnd: () => void;
     render(): JSX.Element;
 }
-declare const _default: React.ForwardRefExoticComponent<Pick<Props & React.RefAttributes<LinkEditor>, "mark" | "view" | "tooltip" | "ref" | "key" | "from" | "to" | "dictionary" | "onRemoveLink" | "onCreateLink" | "onSearchLink" | "onSelectLink" | "onClickLink" | "onShowToast"> & {
+declare const _default: React.ForwardRefExoticComponent<Pick<Pick<any, string | number | symbol> & React.RefAttributes<LinkEditor>, string | number | symbol> & {
     theme?: any;
 }>;
 export default _default;

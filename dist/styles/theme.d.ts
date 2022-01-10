@@ -54,6 +54,7 @@ export declare const base: {
     grey: string;
     greyMid: string;
     greyDark: string;
+    f0f0f0: string;
 };
 export declare const light: {
     background: string;
@@ -62,6 +63,7 @@ export declare const light: {
     cursor: string;
     divider: string;
     toolbarBackground: string;
+    toolbarBackgroundT: string;
     linkToolbarBackground: string;
     toolbarHoverBackground: string;
     toolbarInput: string;
@@ -76,6 +78,7 @@ export declare const light: {
     imageErrorBackground: string;
     scrollbarBackground: string;
     scrollbarThumb: string;
+    inputBorder: string;
     fontFamily: string;
     fontFamilyMono: string;
     fontWeight: number;
@@ -131,6 +134,7 @@ export declare const light: {
     grey: string;
     greyMid: string;
     greyDark: string;
+    f0f0f0: string;
 };
 export declare const dark: {
     background: string;
@@ -140,6 +144,7 @@ export declare const dark: {
     divider: string;
     placeholder: string;
     toolbarBackground: string;
+    toolbarBackgroundT: string;
     linkToolbarBackground: string;
     toolbarHoverBackground: string;
     toolbarInput: string;
@@ -155,6 +160,7 @@ export declare const dark: {
     imageErrorBackground: string;
     scrollbarBackground: string;
     scrollbarThumb: string;
+    inputBorder: string;
     fontFamily: string;
     fontFamilyMono: string;
     fontWeight: number;
@@ -208,6 +214,7 @@ export declare const dark: {
     grey: string;
     greyMid: string;
     greyDark: string;
+    f0f0f0: string;
 };
 export default light;
 //# sourceMappingURL=theme.d.ts.map

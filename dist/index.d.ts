@@ -21,6 +21,7 @@ export declare const theme: {
     cursor: string;
     divider: string;
     toolbarBackground: string;
+    toolbarBackgroundT: string;
     linkToolbarBackground: string;
     toolbarHoverBackground: string;
     toolbarInput: string;
@@ -35,6 +36,7 @@ export declare const theme: {
     imageErrorBackground: string;
     scrollbarBackground: string;
     scrollbarThumb: string;
+    inputBorder: string;
     fontFamily: string;
     fontFamilyMono: string;
     fontWeight: number;
@@ -90,6 +92,7 @@ export declare const theme: {
     grey: string;
     greyMid: string;
     greyDark: string;
+    f0f0f0: string;
 };
 export declare type Props = {
     id?: string;
@@ -241,6 +244,7 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
         cursor: string;
         divider: string;
         toolbarBackground: string;
+        toolbarBackgroundT: string;
         linkToolbarBackground: string;
         toolbarHoverBackground: string;
         toolbarInput: string;
@@ -255,6 +259,7 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
         imageErrorBackground: string;
         scrollbarBackground: string;
         scrollbarThumb: string;
+        inputBorder: string;
         fontFamily: string;
         fontFamilyMono: string;
         fontWeight: number;
@@ -310,6 +315,7 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
         grey: string;
         greyMid: string;
         greyDark: string;
+        f0f0f0: string;
     };
     dictionary: ((providedDictionary?: Partial<{
         text: string;

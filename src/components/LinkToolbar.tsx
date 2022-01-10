@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import * as React from "react";
 import { EditorView } from "prosemirror-view";
 import LinkEditor, { SearchResult } from "./LinkEditor";
-import FloatingToolbar from "./FloatingToolbar";
 import createAndInsertLink from "../commands/createAndInsertLink";
 import baseDictionary from "../dictionary";
+import FloatingToolbarTemp from "./FloatingToolbarTemp";
+import { EditorState, Selection, Plugin } from "prosemirror-state";
 
 type Props = {
   isActive: boolean;
@@ -98,6 +100,8 @@ export default class LinkToolbar extends React.Component<Props> {
   handleOnSelectLink = ({
     href,
     title,
+    from,
+    to,
   }: {
     href: string;
     title: string;
@@ -110,7 +114,6 @@ export default class LinkToolbar extends React.Component<Props> {
     this.props.view.focus();
 
     const { dispatch, state } = view;
-    const { from, to } = state.selection;
     if (from !== to) {
       // selection must be collapsed
       return;
@@ -125,26 +128,58 @@ export default class LinkToolbar extends React.Component<Props> {
           state.schema.marks.link.create({ href })
         )
     );
+
+    /* setTimeout(
+      props => {
+        const selection = Selection.atEnd(props.view.state.doc);
+        const anchor = selection.$anchor;
+        anchor.pos = from + title.length;
+        const head = selection.$head;
+        head.pos = from + title.length;
+       
+        const modifiedSelection = new Selection(anchor, head);
+
+        console.log(selection, modifiedSelection.content())
+        console.log(modifiedSelection.from);
+
+        const transaction = props.view.state.tr?.setSelection(
+          modifiedSelection
+        );
+        console.log(modifiedSelection.to, transaction);
+        props.view.dispatch(transaction);
+        props.view.focus();
+      },
+      1000,
+      this.props
+    ); */
   };
 
   render() {
-    const { onCreateLink, onClose, ...rest } = this.props;
+    const { onCreateLink, onClose, view, ...rest } = this.props;
     const { selection } = this.props.view.state;
     const active = isActive(this.props);
 
     return (
-      <FloatingToolbar ref={this.menuRef} active={active} {...rest}>
+      <FloatingToolbarTemp
+        view={view}
+        ref={this.menuRef}
+        active={active}
+        {...rest}
+        fromCommandMenu={active}
+      >
         {active && (
           <LinkEditor
+            view={view}
             from={selection.from}
             to={selection.to}
             onCreateLink={onCreateLink ? this.handleOnCreateLink : undefined}
             onSelectLink={this.handleOnSelectLink}
             onRemoveLink={onClose}
+            fromCommandMenu={true}
             {...rest}
           />
         )}
-      </FloatingToolbar>
+      </FloatingToolbarTemp>
     );
   }
 }

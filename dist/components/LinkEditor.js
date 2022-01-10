@@ -32,8 +32,8 @@ const Input_1 = __importDefault(require("./Input"));
 const ToolbarButton_1 = __importDefault(require("./ToolbarButton"));
 const LinkSearchResult_1 = __importDefault(require("./LinkSearchResult"));
 class LinkEditor extends React.Component {
-    constructor() {
-        super(...arguments);
+    constructor(props) {
+        super(props);
         this.discardInputValue = false;
         this.initialValue = this.href;
         this.initialSelectionLength = this.props.to - this.props.from;
@@ -42,6 +42,7 @@ class LinkEditor extends React.Component {
             value: this.href,
             previousValue: "",
             results: {},
+            title: "",
         };
         this.componentWillUnmount = () => {
             if (this.discardInputValue) {
@@ -55,6 +56,16 @@ class LinkEditor extends React.Component {
                 return this.handleRemoveLink();
             }
             this.save(href, href);
+            document.removeEventListener("mousedown", this.handleClickOutside);
+        };
+        this.handleClickOutside = event => {
+            var _a, _b;
+            if (this.wrapperRef && !((_b = (_a = this.wrapperRef) === null || _a === void 0 ? void 0 : _a.current) === null || _b === void 0 ? void 0 : _b.contains(event.target))) {
+                const { value } = this.state;
+                if (!value.trim()) {
+                    this.handleRemoveLink();
+                }
+            }
         };
         this.save = (href, title) => {
             href = href.trim();
@@ -68,34 +79,18 @@ class LinkEditor extends React.Component {
                 !href.startsWith("mailto:")) {
                 href = `https://${href}`;
             }
-            this.props.onSelectLink({ href, title, from, to });
+            this.props.onSelectLink({
+                href,
+                title,
+                from: from ? from : this.from,
+                to: to ? to : this.to,
+            });
         };
         this.handleKeyDown = (event) => {
             switch (event.key) {
                 case "Enter": {
                     event.preventDefault();
-                    const { selectedIndex, value } = this.state;
-                    if (!value.trim()) {
-                        this.handleRemoveLink();
-                    }
-                    const results = this.state.results[value] || [];
-                    const { onCreateLink } = this.props;
-                    if (selectedIndex >= 0) {
-                        const result = results[selectedIndex];
-                        if (result) {
-                            this.save(result.url, result.title);
-                        }
-                        else if (onCreateLink && selectedIndex === results.length) {
-                            this.handleCreateLink(this.suggestedLinkTitle);
-                        }
-                    }
-                    else {
-                        this.save(value, value);
-                    }
-                    if (this.initialSelectionLength) {
-                        this.moveSelectionToEnd();
-                    }
-                    return;
+                    this.handleEnterKey();
                 }
                 case "Escape": {
                     event.preventDefault();
@@ -134,6 +129,33 @@ class LinkEditor extends React.Component {
                     return;
                 }
             }
+        };
+        this.handleEnterKey = () => {
+            const { selectedIndex, value, title } = this.state;
+            if (!value.trim()) {
+                this.handleRemoveLink();
+            }
+            const results = this.state.results[value] || [];
+            const { onCreateLink } = this.props;
+            if (selectedIndex >= 0) {
+                const result = results[selectedIndex];
+                if (result) {
+                    this.save(result.url, result.title);
+                }
+                else if (onCreateLink && selectedIndex === results.length) {
+                    this.handleCreateLink(this.suggestedLinkTitle);
+                }
+            }
+            else {
+                if (title)
+                    this.save(value, title);
+                else
+                    this.save(value, title);
+            }
+            if (this.initialSelectionLength) {
+                this.moveSelectionToEnd();
+            }
+            return;
         };
         this.handleFocusLink = (selectedIndex) => {
             this.setState({ selectedIndex });
@@ -199,6 +221,10 @@ class LinkEditor extends React.Component {
             dispatch(prosemirror_utils_1.setTextSelection(to)(state.tr));
             view.focus();
         };
+        this.wrapperRef = React.createRef();
+        this.inputSubmit = React.createRef();
+        this.from = 0;
+        this.to = 0;
     }
     get href() {
         return this.props.mark ? this.props.mark.attrs.href : "";
@@ -209,9 +235,12 @@ class LinkEditor extends React.Component {
         const selectionText = state.doc.cut(state.selection.from, state.selection.to).textContent;
         return value.trim() || selectionText.trim();
     }
+    componentDidMount() {
+        document.addEventListener("mousedown", this.handleClickOutside);
+    }
     render() {
-        const { dictionary, theme } = this.props;
-        const { value, selectedIndex } = this.state;
+        const { dictionary, theme, fromCommandMenu, from, to } = this.props;
+        const { value, selectedIndex, title } = this.state;
         const results = this.state.results[value.trim()] ||
             this.state.results[this.state.previousValue] ||
             [];
@@ -223,7 +252,46 @@ class LinkEditor extends React.Component {
             suggestedLinkTitle.length > 0 &&
             !looksLikeUrl;
         const showResults = !!suggestedLinkTitle && (showCreateLink || results.length > 0);
-        return (React.createElement(Wrapper, null,
+        if (from > 0 && to > 0) {
+            this.from = from;
+            this.to = to;
+        }
+        return (React.createElement(Wrapper, { style: fromCommandMenu
+                ? {
+                    padding: "29px 20px",
+                    borderRadius: "20px",
+                }
+                : {} }, fromCommandMenu ? (React.createElement("div", { ref: this.wrapperRef, style: {
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+            } },
+            React.createElement(Input_1.default, { value: title, placeholder: "Title", onChange: e => this.setState({ title: e.target.value }), autoFocus: this.href === "" }),
+            React.createElement("div", { style: { marginTop: "16px" } }),
+            React.createElement(Input_1.default, { ref: this.inputSubmit, value: value, placeholder: showCreateLink
+                    ? dictionary.findOrCreateDoc
+                    : dictionary.searchOrPasteLink, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste, onChange: this.handleChange }),
+            React.createElement("div", { style: {
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: "21px",
+                } },
+                React.createElement("button", { style: {
+                        padding: "5px 10px",
+                        backgroundColor: "transparent",
+                        borderRadius: "5px",
+                        outline: "none",
+                        border: "none",
+                    } }, "Cancel"),
+                React.createElement("button", { onClick: e => {
+                        this.handleEnterKey();
+                    }, style: {
+                        padding: "5px 10px",
+                        backgroundColor: "transparent",
+                        borderRadius: "5px",
+                        outline: "none",
+                        border: "none",
+                    } }, "Save")))) : (React.createElement("div", { style: { display: "flex" }, ref: this.wrapperRef },
             React.createElement(Input_1.default, { value: value, placeholder: showCreateLink
                     ? dictionary.findOrCreateDoc
                     : dictionary.searchOrPasteLink, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste, onChange: this.handleChange, autoFocus: this.href === "" }),
@@ -239,7 +307,7 @@ class LinkEditor extends React.Component {
                         if (this.initialSelectionLength) {
                             this.moveSelectionToEnd();
                         }
-                    }, selected: results.length === selectedIndex }))))));
+                    }, selected: results.length === selectedIndex }))))))));
     }
 }
 const Wrapper = styled_components_1.default(Flex_1.default) `
@@ -247,10 +315,10 @@ const Wrapper = styled_components_1.default(Flex_1.default) `
   margin-right: -8px;
   min-width: 336px;
   pointer-events: all;
-  background: transparent;
+  background: ${props => props.theme.toolbarBackground};
   padding: 10px 20px;
   border-radius: 10px;
-  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 `;
 const SearchResults = styled_components_1.default.ol `
   background: ${props => props.theme.linkToolbarBackground};

@@ -11,11 +11,11 @@ const block_1 = __importDefault(require("../menus/block"));
 class BlockMenu extends react_1.default.Component {
     constructor() {
         super(...arguments);
-        this.clearSearch = () => {
+        this.clearSearch = (type) => {
             const { state, dispatch } = this.props.view;
             const parent = prosemirror_utils_1.findParentNode(node => !!node)(state.selection);
             if (parent) {
-                dispatch(state.tr.insertText("", parent.pos, state.selection.to));
+                dispatch(state.tr.insertText("", type === "middle" ? state.selection.from : parent.pos, state.selection.to));
             }
         };
     }
