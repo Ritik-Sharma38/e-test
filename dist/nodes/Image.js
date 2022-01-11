@@ -160,7 +160,7 @@ class Image extends Node_1.default {
             const { theme, isSelected } = props;
             const { alt, src, title, layoutClass } = props.node.attrs;
             const className = layoutClass ? `image image-${layoutClass}` : "image";
-            return (React.createElement("div", { contentEditable: false, className: className },
+            return (React.createElement("div", { contentEditable: false, className: "image image-left-50" },
                 React.createElement(ImageWrapper, { className: isSelected ? "ProseMirror-selectednode" : "", onClick: this.handleSelect(props) },
                     React.createElement(Button, null,
                         React.createElement(outline_icons_1.DownloadIcon, { color: "currentColor", onClick: this.handleDownload(props) })),

@@ -58,6 +58,18 @@ const Icons = {
         React.createElement("path", { d: "M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z", fill: "#929292" }))),
     text: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
         React.createElement("path", { d: "M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z", fill: "#929292" }))),
+    alignLeft: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+        React.createElement("path", { d: "M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z", fill: "#929292" }))),
+    alignCenter: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+        React.createElement("path", { d: "M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z", fill: "#929292" }))),
+    alignRight: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+        React.createElement("path", { d: "M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z", fill: "#929292" }))),
+    downloadImage: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+        React.createElement("path", { d: "M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z", fill: "#929292" }))),
+    replaceImage: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+        React.createElement("path", { d: "M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z", fill: "#929292" }))),
+    deleteImage: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+        React.createElement("path", { d: "M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z", fill: "#929292" }))),
 };
 class ToolbarMenu extends React.Component {
     constructor() {
@@ -82,7 +94,7 @@ class ToolbarMenu extends React.Component {
     }
     render() {
         var _a;
-        const { view, items } = this.props;
+        const { view, items, isImageSelection } = this.props;
         const { state } = view;
         const Tooltip = this.props.tooltip;
         const customStyles = {
@@ -111,7 +123,20 @@ class ToolbarMenu extends React.Component {
             else
                 return false;
         });
-        return (React.createElement(FlexibleWrapper, null,
+        console.log(items);
+        return (React.createElement(FlexibleWrapper, null, isImageSelection ? (React.createElement(React.Fragment, null, items.map((item, index) => {
+            if (!item)
+                return;
+            if ((item === null || item === void 0 ? void 0 : item.name) === "separator" && item.visible !== false) {
+                return React.createElement(ToolbarSeparator_1.default, { key: index });
+            }
+            if ((item === null || item === void 0 ? void 0 : item.visible) === false || !(item === null || item === void 0 ? void 0 : item.icon)) {
+                return null;
+            }
+            const isActive = (item === null || item === void 0 ? void 0 : item.active) ? item.active(state) : false;
+            return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item), active: isActive },
+                React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item.name : "none"])));
+        }))) : (React.createElement(React.Fragment, null,
             React.createElement(ToolbarHeadingMenu_1.default, null,
                 React.createElement(react_select_1.default, { options: [
                         { value: items[0], label: "Heading 1" },
@@ -141,7 +166,14 @@ class ToolbarMenu extends React.Component {
             }),
             React.createElement(ToolbarButton_1.default, { onClick: () => this.pickImage("image", "") },
                 React.createElement(Tooltip, { tooltip: "Add a image", placement: "top" }, Icons["image"])),
-            [items[9], items[10], items[11], items[12], items[13], items[14]].map((item, index) => {
+            [
+                items[9],
+                items[10],
+                items[11],
+                items[12],
+                items[13],
+                items[14],
+            ].map((item, index) => {
                 if (!item)
                     return;
                 if ((item === null || item === void 0 ? void 0 : item.name) === "separator" && (item === null || item === void 0 ? void 0 : item.visible) !== false) {
@@ -153,7 +185,7 @@ class ToolbarMenu extends React.Component {
                 const isActive = (item === null || item === void 0 ? void 0 : item.active) ? item.active(state) : false;
                 return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item), active: isActive },
                     React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item === null || item === void 0 ? void 0 : item.name : "none"])));
-            })));
+            })))));
     }
 }
 exports.default = styled_components_1.withTheme(ToolbarMenu);

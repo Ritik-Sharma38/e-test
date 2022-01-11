@@ -131,11 +131,13 @@ function FloatingToolbar(props) {
             window.removeEventListener("mouseup", handleMouseUp);
         };
     }, [props.active]);
+    console.log(props.active, position.visible);
     return (React.createElement(react_portal_1.Portal, null,
         React.createElement(Wrapper, { active: props.active && position.visible, ref: menuRef, offset: position.offset, style: props.fromCommandMenu
                 ? {
                     position: "fixed",
-                    top: "40%",
+                    minHeight: "250px",
+                    top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
                 }

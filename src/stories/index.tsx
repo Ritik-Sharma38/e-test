@@ -59,6 +59,7 @@ export default function Example(props) {
             setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
           });
         }}
+        onChange={(e) => console.log(e())}
         defaultValue="# Welcome
         Just an easy to use **Markdown** editor with \`slash commands\`"
         embeds={embeds}

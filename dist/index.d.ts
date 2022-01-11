@@ -37,6 +37,7 @@ export declare const theme: {
     scrollbarBackground: string;
     scrollbarThumb: string;
     inputBorder: string;
+    iconDefault: string;
     fontFamily: string;
     fontFamilyMono: string;
     fontWeight: number;
@@ -260,6 +261,7 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
         scrollbarBackground: string;
         scrollbarThumb: string;
         inputBorder: string;
+        iconDefault: string;
         fontFamily: string;
         fontFamilyMono: string;
         fontWeight: number;

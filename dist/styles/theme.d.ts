@@ -55,6 +55,7 @@ export declare const base: {
     greyMid: string;
     greyDark: string;
     f0f0f0: string;
+    iconDefault: string;
 };
 export declare const light: {
     background: string;
@@ -79,6 +80,7 @@ export declare const light: {
     scrollbarBackground: string;
     scrollbarThumb: string;
     inputBorder: string;
+    iconDefault: string;
     fontFamily: string;
     fontFamilyMono: string;
     fontWeight: number;
@@ -161,6 +163,7 @@ export declare const dark: {
     scrollbarBackground: string;
     scrollbarThumb: string;
     inputBorder: string;
+    iconDefault: string;
     fontFamily: string;
     fontFamilyMono: string;
     fontWeight: number;

@@ -9,13 +9,14 @@ declare type Props = {
     view: EditorView;
     theme: typeof theme;
     items: MenuItem[];
+    isImageSelection: any;
 };
 declare class ToolbarMenu extends React.Component<Props> {
     pickImage: (action: string, type: string) => void;
     call: (item: any) => void;
     render(): JSX.Element;
 }
-declare const _default: React.ForwardRefExoticComponent<Pick<Props & React.RefAttributes<ToolbarMenu>, "view" | "tooltip" | "ref" | "key" | "commands" | "commandRef" | "items"> & {
+declare const _default: React.ForwardRefExoticComponent<Pick<Props & React.RefAttributes<ToolbarMenu>, "view" | "tooltip" | "ref" | "key" | "commands" | "commandRef" | "items" | "isImageSelection"> & {
     theme?: any;
 }>;
 export default _default;

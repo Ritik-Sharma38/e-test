@@ -295,7 +295,7 @@ class LinkEditor extends React.Component<Props, State> {
     }
 
     if (onRemoveLink) {
-      onRemoveLink();
+      //onRemoveLink();
     }
 
     view.focus();
@@ -398,6 +398,9 @@ class LinkEditor extends React.Component<Props, State> {
                   outline: "none",
                   border: "none",
                 }}
+                onClick={() =>
+                  this.props.onRemoveLink && this.props.onRemoveLink()
+                }
               >
                 Cancel
               </button>
@@ -418,7 +421,10 @@ class LinkEditor extends React.Component<Props, State> {
             </div>
           </div>
         ) : (
-          <div style={{ display: "flex" }} ref={this.wrapperRef}>
+          <div
+            style={{ display: "flex", alignItems: "center" }}
+            ref={this.wrapperRef}
+          >
             <Input
               value={value}
               placeholder={
@@ -432,17 +438,33 @@ class LinkEditor extends React.Component<Props, State> {
               autoFocus={this.href === ""}
             />
 
+            <ToolbarButton onClick={this.handleEnterKey} disabled={!value}>
+              <Tooltip tooltip={dictionary.openLink} placement="top">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 7V11H18.17L14.59 7.41L16 6L22 12L16 18L14.59 16.59L18.17 13H3V7H5Z"
+                    fill="#733D47"
+                  />
+                </svg>
+              </Tooltip>
+            </ToolbarButton>
             <ToolbarButton onClick={this.handleOpenLink} disabled={!value}>
               <Tooltip tooltip={dictionary.openLink} placement="top">
-                <OpenIcon color={theme.toolbarItem} />
+                <OpenIcon color={theme.iconDefault} />
               </Tooltip>
             </ToolbarButton>
             <ToolbarButton onClick={this.handleRemoveLink}>
               <Tooltip tooltip={dictionary.removeLink} placement="top">
                 {this.initialValue ? (
-                  <TrashIcon color={theme.toolbarItem} />
+                  <TrashIcon color={theme.iconDefault} />
                 ) : (
-                  <CloseIcon color={theme.toolbarItem} />
+                  <CloseIcon color={theme.iconDefault} />
                 )}
               </Tooltip>
             </ToolbarButton>

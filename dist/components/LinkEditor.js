@@ -204,7 +204,6 @@ class LinkEditor extends React.Component {
                 dispatch(state.tr.removeMark(from, to, mark));
             }
             if (onRemoveLink) {
-                onRemoveLink();
             }
             view.focus();
         };
@@ -282,7 +281,7 @@ class LinkEditor extends React.Component {
                         borderRadius: "5px",
                         outline: "none",
                         border: "none",
-                    } }, "Cancel"),
+                    }, onClick: () => this.props.onRemoveLink && this.props.onRemoveLink() }, "Cancel"),
                 React.createElement("button", { onClick: e => {
                         this.handleEnterKey();
                     }, style: {
@@ -291,15 +290,19 @@ class LinkEditor extends React.Component {
                         borderRadius: "5px",
                         outline: "none",
                         border: "none",
-                    } }, "Save")))) : (React.createElement("div", { style: { display: "flex" }, ref: this.wrapperRef },
+                    } }, "Save")))) : (React.createElement("div", { style: { display: "flex", alignItems: "center" }, ref: this.wrapperRef },
             React.createElement(Input_1.default, { value: value, placeholder: showCreateLink
                     ? dictionary.findOrCreateDoc
                     : dictionary.searchOrPasteLink, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste, onChange: this.handleChange, autoFocus: this.href === "" }),
+            React.createElement(ToolbarButton_1.default, { onClick: this.handleEnterKey, disabled: !value },
+                React.createElement(Tooltip, { tooltip: dictionary.openLink, placement: "top" },
+                    React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+                        React.createElement("path", { d: "M5 7V11H18.17L14.59 7.41L16 6L22 12L16 18L14.59 16.59L18.17 13H3V7H5Z", fill: "#733D47" })))),
             React.createElement(ToolbarButton_1.default, { onClick: this.handleOpenLink, disabled: !value },
                 React.createElement(Tooltip, { tooltip: dictionary.openLink, placement: "top" },
-                    React.createElement(outline_icons_1.OpenIcon, { color: theme.toolbarItem }))),
+                    React.createElement(outline_icons_1.OpenIcon, { color: theme.iconDefault }))),
             React.createElement(ToolbarButton_1.default, { onClick: this.handleRemoveLink },
-                React.createElement(Tooltip, { tooltip: dictionary.removeLink, placement: "top" }, this.initialValue ? (React.createElement(outline_icons_1.TrashIcon, { color: theme.toolbarItem })) : (React.createElement(outline_icons_1.CloseIcon, { color: theme.toolbarItem })))),
+                React.createElement(Tooltip, { tooltip: dictionary.removeLink, placement: "top" }, this.initialValue ? (React.createElement(outline_icons_1.TrashIcon, { color: theme.iconDefault })) : (React.createElement(outline_icons_1.CloseIcon, { color: theme.iconDefault })))),
             showResults && (React.createElement(SearchResults, { id: "link-search-results" },
                 results.map((result, index) => (React.createElement(LinkSearchResult_1.default, { key: result.url, title: result.title, subtitle: result.subtitle, icon: React.createElement(outline_icons_1.DocumentIcon, { color: theme.toolbarItem }), onMouseOver: () => this.handleFocusLink(index), onClick: this.handleSelectLink(result.url, result.title), selected: index === selectedIndex }))),
                 showCreateLink && (React.createElement(LinkSearchResult_1.default, { key: "create", title: suggestedLinkTitle, subtitle: dictionary.createNewDoc, icon: React.createElement(outline_icons_1.PlusIcon, { color: theme.toolbarItem }), onMouseOver: () => this.handleFocusLink(results.length), onClick: () => {

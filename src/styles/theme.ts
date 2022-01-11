@@ -12,6 +12,7 @@ const colors = {
   greyMid: "#C5CCD3",
   greyDark: "#DAE1E9",
   f0f0f0: "#F0F0F0",
+  iconDefault: "#733D47",
 };
 
 export const base = {
@@ -94,6 +95,7 @@ export const light = {
   scrollbarThumb: colors.greyMid,
 
   inputBorder: colors.f0f0f0,
+  iconDefault: colors.iconDefault,
 };
 
 export const dark = {
@@ -127,6 +129,7 @@ export const dark = {
   scrollbarThumb: colors.lightBlack,
 
   inputBorder: colors.f0f0f0,
+  iconDefault: colors.iconDefault,
 };
 
 export default light;

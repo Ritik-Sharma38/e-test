@@ -520,6 +520,7 @@ class RichMarkdownEditor extends React.PureComponent {
         const { dir, readOnly, readOnlyWriteCheckboxes, style, tooltip, className, onKeyDown, } = this.props;
         const { isRTL } = this.state;
         const dictionary = this.dictionary(this.props.dictionary);
+        console.log(this.state.linkMenuOpen, 'link');
         return (React.createElement(Flex_1.default, { onKeyDown: onKeyDown, style: style, className: className, align: "flex-start", justify: "center", dir: dir, column: true },
             React.createElement(styled_components_1.ThemeProvider, { theme: this.theme() },
                 React.createElement(React.Fragment, null,

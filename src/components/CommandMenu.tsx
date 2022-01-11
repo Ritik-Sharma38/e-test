@@ -461,7 +461,6 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
     const { dictionary, isActive, uploadImage } = this.props;
     const items = this.filtered;
     const { insertItem, ...positioning } = this.state;
-    console.log(insertItem);
     return (
       <Portal>
         <Wrapper
@@ -523,6 +522,7 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
                 ref={this.inputRef}
                 onChange={this.handleImagePicked}
                 accept="image/*"
+                width="200px"
               />
             </VisuallyHidden>
           )}

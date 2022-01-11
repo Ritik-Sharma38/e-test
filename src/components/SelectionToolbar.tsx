@@ -252,7 +252,12 @@ export default class SelectionToolbar extends React.Component<Props> {
             active={isVisible(this.props)}
             ref={this.menuRef}
           >
-            <ToolbarMenu items={items} {...rest} commandRef={commandRef} />
+            <ToolbarMenu
+              items={items}
+              {...rest}
+              commandRef={commandRef}
+              isImageSelection={isImageSelection}
+            />
           </FloatingToolbar>
         )}
       </div>

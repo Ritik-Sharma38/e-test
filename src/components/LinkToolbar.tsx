@@ -169,6 +169,7 @@ export default class LinkToolbar extends React.Component<Props> {
       >
         {active && (
           <LinkEditor
+            ref={this.menuRef}
             view={view}
             from={selection.from}
             to={selection.to}

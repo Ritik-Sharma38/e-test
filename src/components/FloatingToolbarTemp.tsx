@@ -163,6 +163,7 @@ function FloatingToolbar(props) {
   // only render children when state is updated to visible
   // to prevent gaining input focus before calculatePosition runs
 
+  console.log(props.active, position.visible)
   return (
     <Portal>
       <Wrapper
@@ -173,7 +174,8 @@ function FloatingToolbar(props) {
           props.fromCommandMenu
             ? {
                 position: "fixed",
-                top: "40%",
+                minHeight: "250px",
+                top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
               }

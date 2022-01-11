@@ -15,6 +15,7 @@ type Props = {
   view: EditorView;
   theme: typeof theme;
   items: MenuItem[];
+  isImageSelection: any;
 };
 
 const FlexibleWrapper = styled.div`
@@ -193,6 +194,90 @@ const Icons = {
       />
     </svg>
   ),
+  alignLeft: (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z"
+        fill="#929292"
+      />
+    </svg>
+  ),
+  alignCenter: (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z"
+        fill="#929292"
+      />
+    </svg>
+  ),
+  alignRight: (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z"
+        fill="#929292"
+      />
+    </svg>
+  ),
+  downloadImage: (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z"
+        fill="#929292"
+      />
+    </svg>
+  ),
+  replaceImage: (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z"
+        fill="#929292"
+      />
+    </svg>
+  ),
+  deleteImage: (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z"
+        fill="#929292"
+      />
+    </svg>
+  ),
 };
 
 class ToolbarMenu extends React.Component<Props> {
@@ -221,7 +306,7 @@ class ToolbarMenu extends React.Component<Props> {
   };
 
   render() {
-    const { view, items } = this.props;
+    const { view, items, isImageSelection } = this.props;
     const { state } = view;
     const Tooltip = this.props.tooltip;
 
@@ -270,82 +355,117 @@ class ToolbarMenu extends React.Component<Props> {
       } else return false;
     });
 
+    console.log(items);
     return (
       <FlexibleWrapper>
-        <ToolbarHeadingMenu>
-          <Select
-            options={[
-              { value: items[0], label: "Heading 1" },
-              { value: items[1], label: "Heading 2" },
-              { value: items[2], label: "Heading 3" },
-              { value: items[3], label: "Heading 4" },
-              { value: items[4], label: "Heading 5" },
-              { value: items[5], label: "Heading 6" },
-            ]}
-            styles={customStyles}
-            components={{ IndicatorSeparator }}
-            value={
-              active_heading
-                ? {
-                    value: active_heading,
-                    label: `Heading ${active_heading?.attrs?.level}`,
-                  }
-                : { value: "text", label: "text" }
-            }
-            onChange={v => this.call(v?.value)}
-          />
-        </ToolbarHeadingMenu>
-        {[items[6], items[7], items[8]].map((item, index) => {
-          if (!item) return;
-          if (item?.name === "separator" && item.visible !== false) {
-            return <ToolbarSeparator key={index} />;
-          }
-          if (item?.visible === false || !item?.icon) {
-            return null;
-          }
+        {isImageSelection ? (
+          <>
+            {items.map((item, index) => {
+              if (!item) return;
+              if (item?.name === "separator" && item.visible !== false) {
+                return <ToolbarSeparator key={index} />;
+              }
+              if (item?.visible === false || !item?.icon) {
+                return null;
+              }
 
-          const isActive = item?.active ? item.active(state) : false;
+              const isActive = item?.active ? item.active(state) : false;
+              return (
+                <ToolbarButton
+                  key={index}
+                  onClick={() => this.call(item)}
+                  active={isActive}
+                >
+                  <Tooltip tooltip={item.tooltip} placement="top">
+                    {Icons[item?.name ? item.name : "none"]}
+                  </Tooltip>
+                </ToolbarButton>
+              );
+            })}
+          </>
+        ) : (
+          <>
+            <ToolbarHeadingMenu>
+              <Select
+                options={[
+                  { value: items[0], label: "Heading 1" },
+                  { value: items[1], label: "Heading 2" },
+                  { value: items[2], label: "Heading 3" },
+                  { value: items[3], label: "Heading 4" },
+                  { value: items[4], label: "Heading 5" },
+                  { value: items[5], label: "Heading 6" },
+                ]}
+                styles={customStyles}
+                components={{ IndicatorSeparator }}
+                value={
+                  active_heading
+                    ? {
+                        value: active_heading,
+                        label: `Heading ${active_heading?.attrs?.level}`,
+                      }
+                    : { value: "text", label: "text" }
+                }
+                onChange={v => this.call(v?.value)}
+              />
+            </ToolbarHeadingMenu>
+            {[items[6], items[7], items[8]].map((item, index) => {
+              if (!item) return;
+              if (item?.name === "separator" && item.visible !== false) {
+                return <ToolbarSeparator key={index} />;
+              }
+              if (item?.visible === false || !item?.icon) {
+                return null;
+              }
 
-          return (
-            <ToolbarButton
-              key={index}
-              onClick={() => this.call(item)}
-              active={isActive}
-            >
-              <Tooltip tooltip={item.tooltip} placement="top">
-                {Icons[item?.name ? item.name : "none"]}
+              const isActive = item?.active ? item.active(state) : false;
+
+              return (
+                <ToolbarButton
+                  key={index}
+                  onClick={() => this.call(item)}
+                  active={isActive}
+                >
+                  <Tooltip tooltip={item.tooltip} placement="top">
+                    {Icons[item?.name ? item.name : "none"]}
+                  </Tooltip>
+                </ToolbarButton>
+              );
+            })}
+            <ToolbarButton onClick={() => this.pickImage("image", "")}>
+              <Tooltip tooltip={"Add a image"} placement="top">
+                {Icons["image"]}
               </Tooltip>
             </ToolbarButton>
-          );
-        })}
-        <ToolbarButton onClick={() => this.pickImage("image", "")}>
-          <Tooltip tooltip={"Add a image"} placement="top">
-            {Icons["image"]}
-          </Tooltip>
-        </ToolbarButton>
-        {[items[9], items[10], items[11], items[12], items[13], items[14]].map(
-          (item, index) => {
-            if (!item) return;
-            if (item?.name === "separator" && item?.visible !== false) {
-              return <ToolbarSeparator key={index} />;
-            }
-            if (item?.visible === false || !item?.icon) {
-              return null;
-            }
-            const isActive = item?.active ? item.active(state) : false;
+            {[
+              items[9],
+              items[10],
+              items[11],
+              items[12],
+              items[13],
+              items[14],
+            ].map((item, index) => {
+              if (!item) return;
+              if (item?.name === "separator" && item?.visible !== false) {
+                return <ToolbarSeparator key={index} />;
+              }
+              if (item?.visible === false || !item?.icon) {
+                return null;
+              }
+              const isActive = item?.active ? item.active(state) : false;
 
-            return (
-              <ToolbarButton
-                key={index}
-                onClick={() => this.call(item)}
-                active={isActive}
-              >
-                <Tooltip tooltip={item.tooltip} placement="top">
-                  {Icons[item?.name ? item?.name : "none"]}
-                </Tooltip>
-              </ToolbarButton>
-            );
-          }
+              return (
+                <ToolbarButton
+                  key={index}
+                  onClick={() => this.call(item)}
+                  active={isActive}
+                >
+                  <Tooltip tooltip={item.tooltip} placement="top">
+                    {Icons[item?.name ? item?.name : "none"]}
+                  </Tooltip>
+                </ToolbarButton>
+              );
+            })}
+          </>
         )}
       </FlexibleWrapper>
     );

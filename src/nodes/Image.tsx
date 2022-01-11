@@ -254,7 +254,7 @@ export default class Image extends Node {
     const className = layoutClass ? `image image-${layoutClass}` : "image";
 
     return (
-      <div contentEditable={false} className={className}>
+      <div contentEditable={false} className="image image-left-50">
         <ImageWrapper
           className={isSelected ? "ProseMirror-selectednode" : ""}
           onClick={this.handleSelect(props)}
