@@ -754,8 +754,6 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
     const { isRTL } = this.state;
     const dictionary = this.dictionary(this.props.dictionary);
 
-    console.log(this.state.linkMenuOpen,'link')
-
     return (
       <Flex
         onKeyDown={onKeyDown}
@@ -769,6 +767,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
         <ThemeProvider theme={this.theme()}>
           <React.Fragment>
             <StyledEditor
+              id="styledEditor"
               dir={dir}
               rtl={isRTL}
               readOnly={readOnly}

@@ -228,7 +228,7 @@ export default class SelectionToolbar extends React.Component<Props> {
     }
 
     return (
-      <div>
+      <>
         {link && range ? (
           <FloatingToolbarTemp
             view={view}
@@ -260,7 +260,7 @@ export default class SelectionToolbar extends React.Component<Props> {
             />
           </FloatingToolbar>
         )}
-      </div>
+      </>
     );
   }
 }

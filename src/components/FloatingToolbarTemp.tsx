@@ -174,7 +174,7 @@ function FloatingToolbar(props) {
           props.fromCommandMenu
             ? {
                 position: "fixed",
-                minHeight: "250px",
+                minHeight: "177px",
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
@@ -200,7 +200,7 @@ const Wrapper = styled.div<{
   position: absolute;
   z-index: ${props => props.theme.zIndex + 100};
   opacity: 0;
-  background-color: ${props => props.theme.toolbarBackground};
+  background-color: transparent;
   transform: scale(0.95);
   transition: opacity 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275),
     transform 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);

@@ -21,6 +21,14 @@ type Props = {
 const FlexibleWrapper = styled.div`
   display: flex;
   align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Icons = {
@@ -355,7 +363,6 @@ class ToolbarMenu extends React.Component<Props> {
       } else return false;
     });
 
-    console.log(items);
     return (
       <FlexibleWrapper>
         {isImageSelection ? (

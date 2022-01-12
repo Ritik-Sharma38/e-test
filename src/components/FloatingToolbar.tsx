@@ -132,6 +132,7 @@ function usePosition({ menuRef, isSelectingText, props }) {
 function FloatingToolbar(props) {
   const menuRef = props.forwardedRef || React.createRef<HTMLDivElement>();
   const [isSelectingText, setSelectingText] = React.useState(false);
+  const width = document?.getElementById("styledEditor")?.clientWidth;
 
   const position = usePosition({
     menuRef,
@@ -159,30 +160,30 @@ function FloatingToolbar(props) {
     };
   }, [props.active]);
 
+  console.log(width)
   // only render children when state is updated to visible
   // to prevent gaining input focus before calculatePosition runs
   return (
-    <div style={{background: 'grey', position: 'absolute', top: '10px'}}>
-      <Wrapper
-        active={props.active && position.visible}
-        ref={menuRef}
-        offset={position.offset}
-        style={{
-          position: 'absolute',
-          top: 10,
+    <Wrapper
+      active={props.active && position.visible}
+      width={width}
+      ref={menuRef}
+      style={{
+        position: 'absolute',
+        top: 10,
 
-        }}
-      >
-        {position.visible && props.children}
-      </Wrapper>
-    </div>
+      }}
+    >
+      {position.visible && props.children}
+    </Wrapper>
   );
 }
 
 const Wrapper = styled.div<{
   active?: boolean;
-  offset: number;
+  width?: number;
 }>`
+  width: ${props => props.width}px;
   will-change: opacity, transform;
   padding: 8px 1px;
   position: absolute;
@@ -196,7 +197,6 @@ const Wrapper = styled.div<{
   line-height: 0;
   height: 40px;
   box-sizing: border-box;
-  pointer-events: none;
   white-space: nowrap;
 
   * {

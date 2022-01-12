@@ -52,7 +52,7 @@ export default class LinkToolbar extends React.Component<Props> {
     if (
       ev.target &&
       this.menuRef.current &&
-      this.menuRef.current.contains(ev.target)
+      this.menuRef?.current?.contains(ev.target)
     ) {
       return;
     }
@@ -169,7 +169,6 @@ export default class LinkToolbar extends React.Component<Props> {
       >
         {active && (
           <LinkEditor
-            ref={this.menuRef}
             view={view}
             from={selection.from}
             to={selection.to}

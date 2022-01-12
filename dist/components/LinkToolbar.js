@@ -57,9 +57,9 @@ class LinkToolbar extends React.Component {
             top: undefined,
         };
         this.handleClickOutside = ev => {
+            var _a, _b;
             if (ev.target &&
-                this.menuRef.current &&
-                this.menuRef.current.contains(ev.target)) {
+                this.menuRef.current && ((_b = (_a = this.menuRef) === null || _a === void 0 ? void 0 : _a.current) === null || _b === void 0 ? void 0 : _b.contains(ev.target))) {
                 return;
             }
             this.props.onClose();
@@ -109,7 +109,7 @@ class LinkToolbar extends React.Component {
         const _a = this.props, { onCreateLink, onClose, view } = _a, rest = __rest(_a, ["onCreateLink", "onClose", "view"]);
         const { selection } = this.props.view.state;
         const active = isActive(this.props);
-        return (React.createElement(FloatingToolbarTemp_1.default, Object.assign({ view: view, ref: this.menuRef, active: active }, rest, { fromCommandMenu: active }), active && (React.createElement(LinkEditor_1.default, Object.assign({ ref: this.menuRef, view: view, from: selection.from, to: selection.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink, onRemoveLink: onClose, fromCommandMenu: true }, rest)))));
+        return (React.createElement(FloatingToolbarTemp_1.default, Object.assign({ view: view, ref: this.menuRef, active: active }, rest, { fromCommandMenu: active }), active && (React.createElement(LinkEditor_1.default, Object.assign({ view: view, from: selection.from, to: selection.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink, onRemoveLink: onClose, fromCommandMenu: true }, rest)))));
     }
 }
 exports.default = LinkToolbar;

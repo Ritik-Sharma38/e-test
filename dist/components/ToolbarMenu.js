@@ -31,6 +31,14 @@ const react_select_1 = __importDefault(require("react-select"));
 const FlexibleWrapper = styled_components_1.default.div `
   display: flex;
   align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 const Icons = {
     strong: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
@@ -123,7 +131,6 @@ class ToolbarMenu extends React.Component {
             else
                 return false;
         });
-        console.log(items);
         return (React.createElement(FlexibleWrapper, null, isImageSelection ? (React.createElement(React.Fragment, null, items.map((item, index) => {
             if (!item)
                 return;

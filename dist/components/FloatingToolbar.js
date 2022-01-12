@@ -107,8 +107,10 @@ function usePosition({ menuRef, isSelectingText, props }) {
     }
 }
 function FloatingToolbar(props) {
+    var _a;
     const menuRef = props.forwardedRef || React.createRef();
     const [isSelectingText, setSelectingText] = React.useState(false);
+    const width = (_a = document === null || document === void 0 ? void 0 : document.getElementById("styledEditor")) === null || _a === void 0 ? void 0 : _a.clientWidth;
     const position = usePosition({
         menuRef,
         isSelectingText,
@@ -130,13 +132,14 @@ function FloatingToolbar(props) {
             window.removeEventListener("mouseup", handleMouseUp);
         };
     }, [props.active]);
-    return (React.createElement("div", { style: { background: 'grey', position: 'absolute', top: '10px' } },
-        React.createElement(Wrapper, { active: props.active && position.visible, ref: menuRef, offset: position.offset, style: {
-                position: 'absolute',
-                top: 10,
-            } }, position.visible && props.children)));
+    console.log(width);
+    return (React.createElement(Wrapper, { active: props.active && position.visible, width: width, ref: menuRef, style: {
+            position: 'absolute',
+            top: 10,
+        } }, position.visible && props.children));
 }
 const Wrapper = styled_components_1.default.div `
+  width: ${props => props.width}px;
   will-change: opacity, transform;
   padding: 8px 1px;
   position: absolute;
@@ -150,7 +153,6 @@ const Wrapper = styled_components_1.default.div `
   line-height: 0;
   height: 40px;
   box-sizing: border-box;
-  pointer-events: none;
   white-space: nowrap;
 
   * {
