@@ -17,6 +17,7 @@ import Input from "./Input";
 import ToolbarButton from "./ToolbarButton";
 import LinkSearchResult from "./LinkSearchResult";
 import baseDictionary from "../dictionary";
+import EInput from "./EInputField";
 
 export type SearchResult = {
   title: string;
@@ -364,7 +365,7 @@ class LinkEditor extends React.Component<Props, State> {
               width: "100%",
             }}
           >
-            <Input
+            {/*   <Input
               value={title}
               placeholder="Title"
               onChange={e => this.setState({ title: e.target.value })}
@@ -382,6 +383,54 @@ class LinkEditor extends React.Component<Props, State> {
               onKeyDown={this.handleKeyDown}
               onPaste={this.handlePaste}
               onChange={this.handleChange}
+            /> */}
+            <EInput
+              type={"text"}
+              label={"Title"}
+              inputMode={"text"}
+              isDisabled={false}
+              placeholder={"Title"}
+              autoComplete={undefined}
+              name={"Title"}
+              leftIcon={undefined}
+              value={title}
+              onChange={e => this.setState({ title: e.target.value })}
+              rightIcon={undefined}
+              error={undefined}
+              isInvalid={undefined}
+              isReadOnly={undefined}
+              isRequired={undefined}
+              maxCharacters={"100"}
+              isFullWidth={undefined}
+              isAutoFocus
+            />
+            <div style={{ marginTop: "20px" }} />
+            <EInput
+              ref={this.inputSubmit}
+              type={"url"}
+              label={"URL"}
+              inputMode={"url"}
+              isDisabled={false}
+              placeholder={
+                showCreateLink
+                  ? dictionary.findOrCreateDoc
+                  : dictionary.searchOrPasteLink
+              }
+              autoComplete={undefined}
+              name={"Url"}
+              leftIcon={undefined}
+              value={value}
+              onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
+              onPaste={this.handlePaste}
+              rightIcon={undefined}
+              error={undefined}
+              isInvalid={undefined}
+              isReadOnly={undefined}
+              isRequired={undefined}
+              maxCharacters={"100"}
+              isFullWidth={undefined}
+              isAutoFocus={false}
             />
             <div
               style={{
@@ -425,17 +474,32 @@ class LinkEditor extends React.Component<Props, State> {
             style={{ display: "flex", alignItems: "center" }}
             ref={this.wrapperRef}
           >
-            <Input
-              value={value}
+            <EInput
+              ref={this.inputSubmit}
+              type={"url"}
+              label={"URL"}
+              inputMode={"url"}
+              isDisabled={false}
               placeholder={
                 showCreateLink
                   ? dictionary.findOrCreateDoc
                   : dictionary.searchOrPasteLink
               }
+              autoComplete={undefined}
+              name={"Url"}
+              leftIcon={undefined}
+              value={value}
+              onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
               onPaste={this.handlePaste}
-              onChange={this.handleChange}
-              autoFocus={this.href === ""}
+              rightIcon={undefined}
+              error={undefined}
+              isInvalid={undefined}
+              isReadOnly={undefined}
+              isRequired={undefined}
+              maxCharacters={"100"}
+              isFullWidth={undefined}
+              isAutoFocus={true}
             />
 
             <ToolbarButton onClick={this.handleEnterKey} disabled={!value}>
@@ -449,7 +513,7 @@ class LinkEditor extends React.Component<Props, State> {
                 >
                   <path
                     d="M5 7V11H18.17L14.59 7.41L16 6L22 12L16 18L14.59 16.59L18.17 13H3V7H5Z"
-                    fill="#733D47"
+                    fill={`${theme.iconDefault}`}
                   />
                 </svg>
               </Tooltip>
@@ -469,7 +533,7 @@ class LinkEditor extends React.Component<Props, State> {
               </Tooltip>
             </ToolbarButton>
 
-            {showResults && (
+            {showResults && false && (
               <SearchResults id="link-search-results">
                 {results.map((result, index) => (
                   <LinkSearchResult
@@ -517,7 +581,7 @@ const Wrapper = styled(Flex)`
   background: ${props => props.theme.toolbarBackground};
   padding: 10px 20px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: ${props => props.theme.ModalBoxShadow};
 `;
 
 const SearchResults = styled.ol`

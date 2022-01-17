@@ -10,7 +10,15 @@ export declare type Props = {
     shortcut?: string;
     containerId?: string;
 };
-declare const _default: React.ForwardRefExoticComponent<Pick<Props, "disabled" | "title" | "icon" | "onClick" | "selected" | "shortcut" | "containerId"> & {
+declare const _default: React.ForwardRefExoticComponent<{
+    title: React.ReactNode;
+    onClick: () => void;
+    disabled?: boolean | undefined;
+    selected: boolean;
+    icon?: typeof React.Component | React.FC<any> | undefined;
+    shortcut?: string | undefined;
+    containerId?: string | undefined;
+} & {
     theme?: any;
 }>;
 export default _default;

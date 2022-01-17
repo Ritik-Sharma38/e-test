@@ -56,6 +56,7 @@ export declare const base: {
     greyDark: string;
     f0f0f0: string;
     iconDefault: string;
+    iconDefaultDark: string;
 };
 export declare const light: {
     background: string;
@@ -81,6 +82,7 @@ export declare const light: {
     scrollbarThumb: string;
     inputBorder: string;
     iconDefault: string;
+    ModalBoxShadow: string;
     fontFamily: string;
     fontFamilyMono: string;
     fontWeight: number;
@@ -137,6 +139,7 @@ export declare const light: {
     greyMid: string;
     greyDark: string;
     f0f0f0: string;
+    iconDefaultDark: string;
 };
 export declare const dark: {
     background: string;
@@ -164,6 +167,7 @@ export declare const dark: {
     scrollbarThumb: string;
     inputBorder: string;
     iconDefault: string;
+    ModalBoxShadow: string;
     fontFamily: string;
     fontFamilyMono: string;
     fontWeight: number;
@@ -218,6 +222,7 @@ export declare const dark: {
     greyMid: string;
     greyDark: string;
     f0f0f0: string;
+    iconDefaultDark: string;
 };
 export default light;
 //# sourceMappingURL=theme.d.ts.map

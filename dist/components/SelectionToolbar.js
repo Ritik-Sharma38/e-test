@@ -71,7 +71,7 @@ function isVisible(props) {
     const slice = selection.content();
     const fragment = slice.content;
     const nodes = fragment.content;
-    return some_1.default(nodes, n => n.content.size);
+    return (0, some_1.default)(nodes, n => n.content.size);
 }
 class SelectionToolbar extends React.Component {
     constructor() {
@@ -109,7 +109,7 @@ class SelectionToolbar extends React.Component {
             dispatch(view.state.tr
                 .removeMark(from, to, markType)
                 .addMark(from, to, markType.create({ href })));
-            createAndInsertLink_1.default(view, title, href, {
+            (0, createAndInsertLink_1.default)(view, title, href, {
                 onCreateLink,
                 onShowToast,
                 dictionary,
@@ -146,36 +146,36 @@ class SelectionToolbar extends React.Component {
         const { view } = rest;
         const { state } = view;
         const { selection } = state;
-        const isCodeSelection = isNodeActive_1.default(state.schema.nodes.code_block)(state);
-        const isDividerSelection = isNodeActive_1.default(state.schema.nodes.hr)(state);
+        const isCodeSelection = (0, isNodeActive_1.default)(state.schema.nodes.code_block)(state);
+        const isDividerSelection = (0, isNodeActive_1.default)(state.schema.nodes.hr)(state);
         if (isCodeSelection && false) {
             return null;
         }
-        const colIndex = getColumnIndex_1.default(state.selection);
-        const rowIndex = getRowIndex_1.default(state.selection);
+        const colIndex = (0, getColumnIndex_1.default)(state.selection);
+        const rowIndex = (0, getRowIndex_1.default)(state.selection);
         const isTableSelection = colIndex !== undefined && rowIndex !== undefined;
-        const link = isMarkActive_1.default(state.schema.marks.link)(state);
-        const range = getMarkRange_1.default(selection.$from, state.schema.marks.link);
+        const link = (0, isMarkActive_1.default)(state.schema.marks.link)(state);
+        const range = (0, getMarkRange_1.default)(selection.$from, state.schema.marks.link);
         const isImageSelection = selection.node && selection.node.type.name === "image";
         let isTextSelection = false;
         let items = [];
         if (isTableSelection) {
-            items = table_1.default(dictionary);
+            items = (0, table_1.default)(dictionary);
         }
         else if (colIndex !== undefined) {
-            items = tableCol_1.default(state, colIndex, rtl, dictionary);
+            items = (0, tableCol_1.default)(state, colIndex, rtl, dictionary);
         }
         else if (rowIndex !== undefined) {
-            items = tableRow_1.default(state, rowIndex, dictionary);
+            items = (0, tableRow_1.default)(state, rowIndex, dictionary);
         }
         else if (isImageSelection) {
-            items = image_1.default(state, dictionary);
+            items = (0, image_1.default)(state, dictionary);
         }
         else if (isDividerSelection) {
-            items = divider_1.default(state, dictionary);
+            items = (0, divider_1.default)(state, dictionary);
         }
         else {
-            items = formatting_1.default(state, isTemplate, dictionary);
+            items = (0, formatting_1.default)(state, isTemplate, dictionary);
             isTextSelection = true;
         }
         items = items.filter(item => {
@@ -185,7 +185,7 @@ class SelectionToolbar extends React.Component {
                 return false;
             return true;
         });
-        items = filterExcessSeparators_1.default(items);
+        items = (0, filterExcessSeparators_1.default)(items);
         if (!items.length) {
             return null;
         }

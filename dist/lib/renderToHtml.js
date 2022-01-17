@@ -16,15 +16,15 @@ const defaultRules = [
     embeds_1.default,
     breaks_1.default,
     checkboxes_1.default,
-    mark_1.default({ delim: "==", mark: "highlight" }),
-    mark_1.default({ delim: "!!", mark: "placeholder" }),
+    (0, mark_1.default)({ delim: "==", mark: "highlight" }),
+    (0, mark_1.default)({ delim: "!!", mark: "placeholder" }),
     underlines_1.default,
     tables_1.default,
     notices_1.default,
     emoji_1.default,
 ];
 function renderToHtml(markdown, rulePlugins = defaultRules) {
-    return rules_1.default({ plugins: rulePlugins })
+    return (0, rules_1.default)({ plugins: rulePlugins })
         .render(markdown)
         .trim();
 }

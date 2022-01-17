@@ -40,14 +40,14 @@ class Table extends Node_1.default {
         return {
             createTable: ({ rowsCount, colsCount }) => (state, dispatch) => {
                 const offset = state.tr.selection.anchor + 1;
-                const nodes = prosemirror_utils_1.createTable(schema, rowsCount, colsCount);
+                const nodes = (0, prosemirror_utils_1.createTable)(schema, rowsCount, colsCount);
                 const tr = state.tr.replaceSelectionWith(nodes).scrollIntoView();
                 const resolvedPos = tr.doc.resolve(offset);
                 tr.setSelection(prosemirror_state_1.TextSelection.near(resolvedPos));
                 dispatch(tr);
             },
             setColumnAttr: ({ index, alignment }) => (state, dispatch) => {
-                const cells = prosemirror_utils_1.getCellsInColumn(index)(state.selection) || [];
+                const cells = (0, prosemirror_utils_1.getCellsInColumn)(index)(state.selection) || [];
                 let transaction = state.tr;
                 cells.forEach(({ pos }) => {
                     transaction = transaction.setNodeMarkup(pos, null, {
@@ -61,11 +61,11 @@ class Table extends Node_1.default {
             deleteColumn: () => prosemirror_tables_1.deleteColumn,
             addRowAfter: ({ index }) => (state, dispatch) => {
                 if (index === 0) {
-                    const tr = prosemirror_utils_1.addRowAt(index + 2, true)(state.tr);
-                    dispatch(prosemirror_utils_1.moveRow(index + 2, index + 1)(tr));
+                    const tr = (0, prosemirror_utils_1.addRowAt)(index + 2, true)(state.tr);
+                    dispatch((0, prosemirror_utils_1.moveRow)(index + 2, index + 1)(tr));
                 }
                 else {
-                    dispatch(prosemirror_utils_1.addRowAt(index + 1, true)(state.tr));
+                    dispatch((0, prosemirror_utils_1.addRowAt)(index + 1, true)(state.tr));
                 }
             },
             deleteRow: () => prosemirror_tables_1.deleteRow,
@@ -79,13 +79,13 @@ class Table extends Node_1.default {
     }
     keys() {
         return {
-            Tab: prosemirror_tables_1.goToNextCell(1),
-            "Shift-Tab": prosemirror_tables_1.goToNextCell(-1),
+            Tab: (0, prosemirror_tables_1.goToNextCell)(1),
+            "Shift-Tab": (0, prosemirror_tables_1.goToNextCell)(-1),
             Enter: (state, dispatch) => {
-                if (!prosemirror_tables_1.isInTable(state))
+                if (!(0, prosemirror_tables_1.isInTable)(state))
                     return false;
-                const cells = prosemirror_utils_1.getCellsInColumn(0)(state.selection) || [];
-                dispatch(prosemirror_utils_1.addRowAt(cells.length, true)(state.tr));
+                const cells = (0, prosemirror_utils_1.getCellsInColumn)(0)(state.selection) || [];
+                dispatch((0, prosemirror_utils_1.addRowAt)(cells.length, true)(state.tr));
                 return true;
             },
         };
@@ -99,7 +99,7 @@ class Table extends Node_1.default {
     }
     get plugins() {
         return [
-            prosemirror_tables_1.tableEditing(),
+            (0, prosemirror_tables_1.tableEditing)(),
             new prosemirror_state_1.Plugin({
                 props: {
                     decorations: state => {

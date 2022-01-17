@@ -7,7 +7,7 @@ exports.headingToPersistenceKey = void 0;
 const escape_1 = __importDefault(require("lodash/escape"));
 const slugify_1 = __importDefault(require("slugify"));
 function safeSlugify(text) {
-    return `h-${escape_1.default(slugify_1.default(text, {
+    return `h-${(0, escape_1.default)((0, slugify_1.default)(text, {
         remove: /[!"#$%&'\.()*+,\/:;<=>?@\[\]\\^_`{|}~]/g,
         lower: true,
     }))}`;

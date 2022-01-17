@@ -13,6 +13,7 @@ const colors = {
   greyDark: "#DAE1E9",
   f0f0f0: "#F0F0F0",
   iconDefault: "#733D47",
+  iconDefaultDark: "#BF9B9B",
 };
 
 export const base = {
@@ -96,18 +97,19 @@ export const light = {
 
   inputBorder: colors.f0f0f0,
   iconDefault: colors.iconDefault,
+  ModalBoxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
 };
 
 export const dark = {
   ...base,
-  background: colors.almostBlack,
-  text: colors.almostWhite,
+  background: colors.black,
+  text: colors.white,
   code: colors.almostWhite,
   cursor: colors.white,
   divider: "#4E5C6E",
   placeholder: "#52657A",
 
-  toolbarBackground: colors.greyDark,
+  toolbarBackground: colors.black,
   toolbarBackgroundT: colors.greyMid,
   linkToolbarBackground: colors.white,
   toolbarHoverBackground: colors.greyMid,
@@ -129,7 +131,8 @@ export const dark = {
   scrollbarThumb: colors.lightBlack,
 
   inputBorder: colors.f0f0f0,
-  iconDefault: colors.iconDefault,
+  iconDefault: colors.iconDefaultDark,
+  ModalBoxShadow: "0px 0px 10px rgba(255, 255, 255, 0.2)",
 };
 
 export default light;

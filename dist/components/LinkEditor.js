@@ -28,9 +28,9 @@ const outline_icons_1 = require("outline-icons");
 const styled_components_1 = __importStar(require("styled-components"));
 const isUrl_1 = __importDefault(require("../lib/isUrl"));
 const Flex_1 = __importDefault(require("./Flex"));
-const Input_1 = __importDefault(require("./Input"));
 const ToolbarButton_1 = __importDefault(require("./ToolbarButton"));
 const LinkSearchResult_1 = __importDefault(require("./LinkSearchResult"));
+const EInputField_1 = __importDefault(require("./EInputField"));
 class LinkEditor extends React.Component {
     constructor(props) {
         super(props);
@@ -73,7 +73,7 @@ class LinkEditor extends React.Component {
                 return;
             this.discardInputValue = true;
             const { from, to } = this.props;
-            if (!isUrl_1.default(href) &&
+            if (!(0, isUrl_1.default)(href) &&
                 !href.startsWith("/") &&
                 !href.startsWith("#") &&
                 !href.startsWith("mailto:")) {
@@ -217,7 +217,7 @@ class LinkEditor extends React.Component {
         this.moveSelectionToEnd = () => {
             const { to, view } = this.props;
             const { state, dispatch } = view;
-            dispatch(prosemirror_utils_1.setTextSelection(to)(state.tr));
+            dispatch((0, prosemirror_utils_1.setTextSelection)(to)(state.tr));
             view.focus();
         };
         this.wrapperRef = React.createRef();
@@ -265,11 +265,11 @@ class LinkEditor extends React.Component {
                 flexDirection: "column",
                 width: "100%",
             } },
-            React.createElement(Input_1.default, { value: title, placeholder: "Title", onChange: e => this.setState({ title: e.target.value }), autoFocus: this.href === "" }),
-            React.createElement("div", { style: { marginTop: "16px" } }),
-            React.createElement(Input_1.default, { ref: this.inputSubmit, value: value, placeholder: showCreateLink
+            React.createElement(EInputField_1.default, { type: "text", label: "Title", inputMode: "text", isDisabled: false, placeholder: "Title", autoComplete: undefined, name: "Title", leftIcon: undefined, value: title, onChange: e => this.setState({ title: e.target.value }), rightIcon: undefined, error: undefined, isInvalid: undefined, isReadOnly: undefined, isRequired: undefined, maxCharacters: "100", isFullWidth: undefined, isAutoFocus: true }),
+            React.createElement("div", { style: { marginTop: "20px" } }),
+            React.createElement(EInputField_1.default, { ref: this.inputSubmit, type: "url", label: "URL", inputMode: "url", isDisabled: false, placeholder: showCreateLink
                     ? dictionary.findOrCreateDoc
-                    : dictionary.searchOrPasteLink, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste, onChange: this.handleChange }),
+                    : dictionary.searchOrPasteLink, autoComplete: undefined, name: "Url", leftIcon: undefined, value: value, onChange: this.handleChange, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste, rightIcon: undefined, error: undefined, isInvalid: undefined, isReadOnly: undefined, isRequired: undefined, maxCharacters: "100", isFullWidth: undefined, isAutoFocus: false }),
             React.createElement("div", { style: {
                     display: "flex",
                     justifyContent: "space-between",
@@ -291,19 +291,19 @@ class LinkEditor extends React.Component {
                         outline: "none",
                         border: "none",
                     } }, "Save")))) : (React.createElement("div", { style: { display: "flex", alignItems: "center" }, ref: this.wrapperRef },
-            React.createElement(Input_1.default, { value: value, placeholder: showCreateLink
+            React.createElement(EInputField_1.default, { ref: this.inputSubmit, type: "url", label: "URL", inputMode: "url", isDisabled: false, placeholder: showCreateLink
                     ? dictionary.findOrCreateDoc
-                    : dictionary.searchOrPasteLink, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste, onChange: this.handleChange, autoFocus: this.href === "" }),
+                    : dictionary.searchOrPasteLink, autoComplete: undefined, name: "Url", leftIcon: undefined, value: value, onChange: this.handleChange, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste, rightIcon: undefined, error: undefined, isInvalid: undefined, isReadOnly: undefined, isRequired: undefined, maxCharacters: "100", isFullWidth: undefined, isAutoFocus: true }),
             React.createElement(ToolbarButton_1.default, { onClick: this.handleEnterKey, disabled: !value },
                 React.createElement(Tooltip, { tooltip: dictionary.openLink, placement: "top" },
                     React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
-                        React.createElement("path", { d: "M5 7V11H18.17L14.59 7.41L16 6L22 12L16 18L14.59 16.59L18.17 13H3V7H5Z", fill: "#733D47" })))),
+                        React.createElement("path", { d: "M5 7V11H18.17L14.59 7.41L16 6L22 12L16 18L14.59 16.59L18.17 13H3V7H5Z", fill: `${theme.iconDefault}` })))),
             React.createElement(ToolbarButton_1.default, { onClick: this.handleOpenLink, disabled: !value },
                 React.createElement(Tooltip, { tooltip: dictionary.openLink, placement: "top" },
                     React.createElement(outline_icons_1.OpenIcon, { color: theme.iconDefault }))),
             React.createElement(ToolbarButton_1.default, { onClick: this.handleRemoveLink },
                 React.createElement(Tooltip, { tooltip: dictionary.removeLink, placement: "top" }, this.initialValue ? (React.createElement(outline_icons_1.TrashIcon, { color: theme.iconDefault })) : (React.createElement(outline_icons_1.CloseIcon, { color: theme.iconDefault })))),
-            showResults && (React.createElement(SearchResults, { id: "link-search-results" },
+            showResults && false && (React.createElement(SearchResults, { id: "link-search-results" },
                 results.map((result, index) => (React.createElement(LinkSearchResult_1.default, { key: result.url, title: result.title, subtitle: result.subtitle, icon: React.createElement(outline_icons_1.DocumentIcon, { color: theme.toolbarItem }), onMouseOver: () => this.handleFocusLink(index), onClick: this.handleSelectLink(result.url, result.title), selected: index === selectedIndex }))),
                 showCreateLink && (React.createElement(LinkSearchResult_1.default, { key: "create", title: suggestedLinkTitle, subtitle: dictionary.createNewDoc, icon: React.createElement(outline_icons_1.PlusIcon, { color: theme.toolbarItem }), onMouseOver: () => this.handleFocusLink(results.length), onClick: () => {
                         this.handleCreateLink(suggestedLinkTitle);
@@ -313,7 +313,7 @@ class LinkEditor extends React.Component {
                     }, selected: results.length === selectedIndex }))))))));
     }
 }
-const Wrapper = styled_components_1.default(Flex_1.default) `
+const Wrapper = (0, styled_components_1.default)(Flex_1.default) `
   margin-left: -8px;
   margin-right: -8px;
   min-width: 336px;
@@ -321,7 +321,7 @@ const Wrapper = styled_components_1.default(Flex_1.default) `
   background: ${props => props.theme.toolbarBackground};
   padding: 10px 20px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: ${props => props.theme.ModalBoxShadow};
 `;
 const SearchResults = styled_components_1.default.ol `
   background: ${props => props.theme.linkToolbarBackground};
@@ -347,5 +347,5 @@ const SearchResults = styled_components_1.default.ol `
     padding: 8px 8px 4px;
   }
 `;
-exports.default = styled_components_1.withTheme(LinkEditor);
+exports.default = (0, styled_components_1.withTheme)(LinkEditor);
 //# sourceMappingURL=LinkEditor.js.map

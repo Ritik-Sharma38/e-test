@@ -19,15 +19,15 @@ class BulletList extends Node_1.default {
         };
     }
     commands({ type, schema }) {
-        return () => toggleList_1.default(type, schema.nodes.list_item);
+        return () => (0, toggleList_1.default)(type, schema.nodes.list_item);
     }
     keys({ type, schema }) {
         return {
-            "Shift-Ctrl-8": toggleList_1.default(type, schema.nodes.list_item),
+            "Shift-Ctrl-8": (0, toggleList_1.default)(type, schema.nodes.list_item),
         };
     }
     inputRules({ type }) {
-        return [prosemirror_inputrules_1.wrappingInputRule(/^\s*([-+*])\s$/, type)];
+        return [(0, prosemirror_inputrules_1.wrappingInputRule)(/^\s*([-+*])\s$/, type)];
     }
     toMarkdown(state, node) {
         state.renderList(node, "  ", () => (node.attrs.bullet || "*") + " ");

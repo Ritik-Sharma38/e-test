@@ -160,7 +160,6 @@ function FloatingToolbar(props) {
     };
   }, [props.active]);
 
-  console.log(width)
   // only render children when state is updated to visible
   // to prevent gaining input focus before calculatePosition runs
   return (
@@ -169,9 +168,8 @@ function FloatingToolbar(props) {
       width={width}
       ref={menuRef}
       style={{
-        position: 'absolute',
+        position: "absolute",
         top: 10,
-
       }}
     >
       {position.visible && props.children}
@@ -183,7 +181,7 @@ const Wrapper = styled.div<{
   active?: boolean;
   width?: number;
 }>`
-  width: ${props => props.width}px;
+  width: ${props => (props?.width && props?.width < 685 ? props.width : 685)}px;
   will-change: opacity, transform;
   padding: 8px 1px;
   position: absolute;

@@ -38,6 +38,7 @@ export declare const theme: {
     scrollbarThumb: string;
     inputBorder: string;
     iconDefault: string;
+    ModalBoxShadow: string;
     fontFamily: string;
     fontFamilyMono: string;
     fontWeight: number;
@@ -94,6 +95,7 @@ export declare const theme: {
     greyMid: string;
     greyDark: string;
     f0f0f0: string;
+    iconDefaultDark: string;
 };
 export declare type Props = {
     id?: string;
@@ -262,6 +264,7 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
         scrollbarThumb: string;
         inputBorder: string;
         iconDefault: string;
+        ModalBoxShadow: string;
         fontFamily: string;
         fontFamilyMono: string;
         fontWeight: number;
@@ -318,6 +321,7 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
         greyMid: string;
         greyDark: string;
         f0f0f0: string;
+        iconDefaultDark: string;
     };
     dictionary: ((providedDictionary?: Partial<{
         text: string;

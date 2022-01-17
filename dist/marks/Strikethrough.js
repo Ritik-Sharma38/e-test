@@ -28,11 +28,11 @@ class Strikethrough extends Mark_1.default {
     }
     keys({ type }) {
         return {
-            "Mod-d": prosemirror_commands_1.toggleMark(type),
+            "Mod-d": (0, prosemirror_commands_1.toggleMark)(type),
         };
     }
     inputRules({ type }) {
-        return [markInputRule_1.default(/~([^~]+)~$/, type)];
+        return [(0, markInputRule_1.default)(/~([^~]+)~$/, type)];
     }
     get toMarkdown() {
         return {

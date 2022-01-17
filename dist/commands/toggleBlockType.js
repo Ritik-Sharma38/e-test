@@ -7,11 +7,11 @@ const prosemirror_commands_1 = require("prosemirror-commands");
 const isNodeActive_1 = __importDefault(require("../queries/isNodeActive"));
 function toggleBlockType(type, toggleType, attrs = {}) {
     return (state, dispatch) => {
-        const isActive = isNodeActive_1.default(type, attrs)(state);
+        const isActive = (0, isNodeActive_1.default)(type, attrs)(state);
         if (isActive) {
-            return prosemirror_commands_1.setBlockType(toggleType)(state, dispatch);
+            return (0, prosemirror_commands_1.setBlockType)(toggleType)(state, dispatch);
         }
-        return prosemirror_commands_1.setBlockType(type, attrs)(state, dispatch);
+        return (0, prosemirror_commands_1.setBlockType)(type, attrs)(state, dispatch);
     };
 }
 exports.default = toggleBlockType;

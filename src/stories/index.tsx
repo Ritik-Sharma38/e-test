@@ -1,6 +1,8 @@
 import * as React from "react";
 import { dark, light } from "../styles/theme";
 import Editor from "..";
+import { ChakraProvider } from "@chakra-ui/react";
+import chakraTheme from "../styles/customTheme";
 
 class YoutubeEmbed extends React.Component<{
   attrs: any;
@@ -42,28 +44,28 @@ const embeds = [
 ];
 
 export default function Example(props) {
+  const d = false;
   const { body } = document;
-  if (body)
-    body.style.backgroundColor = props.dark
-      ? dark.background
-      : light.background;
-  
+  if (body) body.style.backgroundColor = d ? dark.background : light.background;
   return (
-    <div style={{ padding: "1em 2em" }}>
-      <Editor
-        disableExtensions={["table", "container_notice", "hr", "highlight"]}
-        uploadImage={file => {
-          console.log("File upload triggered: ", file);
-          // Delay to simulate time taken to upload
-          return new Promise(resolve => {
-            setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
-          });
-        }}
-        onChange={(e) => console.log(e())}
-        defaultValue="# Welcome
+    <ChakraProvider theme={chakraTheme}>
+      <div style={{ padding: "1em 2em" }}>
+        <Editor
+          disableExtensions={["table", "container_notice", "hr", "highlight"]}
+          uploadImage={file => {
+            console.log("File upload triggered: ", file);
+            // Delay to simulate time taken to upload
+            return new Promise(resolve => {
+              setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
+            });
+          }}
+          onChange={e => console.log(e())}
+          dark={d}
+          defaultValue="# Welcome
         Just an easy to use **Markdown** editor with \`slash commands\`"
-        embeds={embeds}
-      />
-    </div>
+          embeds={embeds}
+        />
+      </div>
+    </ChakraProvider>
   );
 }

@@ -30,10 +30,10 @@ class Folding extends Extension_1.default {
                     }
                     let modified = false;
                     const tr = newState.tr;
-                    const blocks = prosemirror_utils_1.findBlockNodes(newState.doc);
+                    const blocks = (0, prosemirror_utils_1.findBlockNodes)(newState.doc);
                     for (const block of blocks) {
                         if (block.node.type.name === "heading") {
-                            const persistKey = headingToSlug_1.headingToPersistenceKey(block.node, this.editor.props.id);
+                            const persistKey = (0, headingToSlug_1.headingToPersistenceKey)(block.node, this.editor.props.id);
                             const persistedState = localStorage === null || localStorage === void 0 ? void 0 : localStorage.getItem(persistKey);
                             if (persistedState === "collapsed") {
                                 tr.setNodeMarkup(block.pos, undefined, Object.assign(Object.assign({}, block.node.attrs), { collapsed: true }));
@@ -47,7 +47,7 @@ class Folding extends Extension_1.default {
                 props: {
                     decorations: state => {
                         const { doc } = state;
-                        const decorations = findCollapsedNodes_1.default(doc).map(block => prosemirror_view_1.Decoration.node(block.pos, block.pos + block.node.nodeSize, {
+                        const decorations = (0, findCollapsedNodes_1.default)(doc).map(block => prosemirror_view_1.Decoration.node(block.pos, block.pos + block.node.nodeSize, {
                             class: "folded-content",
                         }));
                         return prosemirror_view_1.DecorationSet.create(doc, decorations);

@@ -13,7 +13,7 @@ function isInCode(state) {
             }
         }
     }
-    return isMarkActive_1.default(state.schema.marks.code_inline)(state);
+    return (0, isMarkActive_1.default)(state.schema.marks.code_inline)(state);
 }
 exports.default = isInCode;
 //# sourceMappingURL=isInCode.js.map

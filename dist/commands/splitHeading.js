@@ -16,8 +16,8 @@ function splitHeading(type) {
             return false;
         if (!$from.parent.attrs.collapsed)
             return false;
-        const allBlocks = prosemirror_utils_1.findBlockNodes(state.doc);
-        const collapsedBlocks = findCollapsedNodes_1.default(state.doc);
+        const allBlocks = (0, prosemirror_utils_1.findBlockNodes)(state.doc);
+        const collapsedBlocks = (0, findCollapsedNodes_1.default)(state.doc);
         const visibleBlocks = allBlocks.filter(a => !collapsedBlocks.find(b => b.pos === a.pos));
         const nextVisibleBlock = visibleBlocks.find(a => a.pos > from);
         const pos = nextVisibleBlock

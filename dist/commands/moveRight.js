@@ -13,7 +13,7 @@ function moveRight() {
         }
         const { storedMarks } = state.tr;
         if (code_inline) {
-            const insideCode = isMarkActive_1.default(code_inline)(state);
+            const insideCode = (0, isMarkActive_1.default)(code_inline)(state);
             const currentPosHasCode = state.doc.rangeHasMark($cursor.pos, $cursor.pos, code_inline);
             const nextPosHasCode = state.doc.rangeHasMark($cursor.pos, $cursor.pos + 1, code_inline);
             const exitingCode = !currentPosHasCode &&

@@ -30,7 +30,7 @@ function BlockMenuItem({ selected, disabled, onClick, title, shortcut, icon, con
     const Icon = icon;
     const ref = React.useCallback(node => {
         if (selected && node) {
-            smooth_scroll_into_view_if_needed_1.default(node, {
+            (0, smooth_scroll_into_view_if_needed_1.default)(node, {
                 scrollMode: "if-needed",
                 block: "center",
                 boundary: parent => {
@@ -82,5 +82,5 @@ const Shortcut = styled_components_1.default.span `
   flex-grow: 1;
   text-align: right;
 `;
-exports.default = styled_components_1.withTheme(BlockMenuItem);
+exports.default = (0, styled_components_1.withTheme)(BlockMenuItem);
 //# sourceMappingURL=BlockMenuItem.js.map

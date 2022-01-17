@@ -84,7 +84,7 @@ class CodeFence extends Node_1.default {
             if (result) {
                 const node = view.state.doc.nodeAt(result.pos);
                 if (node) {
-                    copy_to_clipboard_1.default(node.textContent);
+                    (0, copy_to_clipboard_1.default)(node.textContent);
                     if (this.options.onShowToast) {
                         this.options.onShowToast(this.options.dictionary.codeCopied, types_1.ToastType.Info);
                     }
@@ -166,14 +166,14 @@ class CodeFence extends Node_1.default {
         };
     }
     commands({ type, schema }) {
-        return attrs => toggleBlockType_1.default(type, schema.nodes.paragraph, Object.assign({ language: (localStorage === null || localStorage === void 0 ? void 0 : localStorage.getItem(PERSISTENCE_KEY)) || DEFAULT_LANGUAGE }, attrs));
+        return attrs => (0, toggleBlockType_1.default)(type, schema.nodes.paragraph, Object.assign({ language: (localStorage === null || localStorage === void 0 ? void 0 : localStorage.getItem(PERSISTENCE_KEY)) || DEFAULT_LANGUAGE }, attrs));
     }
     keys({ type, schema }) {
         return {
-            "Shift-Ctrl-\\": toggleBlockType_1.default(type, schema.nodes.paragraph),
+            "Shift-Ctrl-\\": (0, toggleBlockType_1.default)(type, schema.nodes.paragraph),
             "Shift-Enter": (state, dispatch) => {
                 var _a, _b;
-                if (!isInCode_1.default(state))
+                if (!(0, isInCode_1.default)(state))
                     return false;
                 const { tr, selection, } = state;
                 const text = (_b = (_a = selection === null || selection === void 0 ? void 0 : selection.$anchor) === null || _a === void 0 ? void 0 : _a.nodeBefore) === null || _b === void 0 ? void 0 : _b.text;
@@ -187,7 +187,7 @@ class CodeFence extends Node_1.default {
                 return true;
             },
             Tab: (state, dispatch) => {
-                if (!isInCode_1.default(state))
+                if (!(0, isInCode_1.default)(state))
                     return false;
                 const { tr, selection } = state;
                 dispatch(tr.insertText("  ", selection.from, selection.to));
@@ -196,10 +196,10 @@ class CodeFence extends Node_1.default {
         };
     }
     get plugins() {
-        return [Prism_1.default({ name: this.name })];
+        return [(0, Prism_1.default)({ name: this.name })];
     }
     inputRules({ type }) {
-        return [prosemirror_inputrules_1.textblockTypeInputRule(/^```$/, type)];
+        return [(0, prosemirror_inputrules_1.textblockTypeInputRule)(/^```$/, type)];
     }
     toMarkdown(state, node) {
         state.write("```" + (node.attrs.language || "") + "\n");

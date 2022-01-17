@@ -95,7 +95,7 @@ class BlockMenuTrigger extends Extension_1.default {
                         return false;
                     },
                     decorations: state => {
-                        const parent = prosemirror_utils_1.findParentNode(node => node.type.name === "paragraph")(state.selection);
+                        const parent = (0, prosemirror_utils_1.findParentNode)(node => node.type.name === "paragraph")(state.selection);
                         if (!parent) {
                             return;
                         }
@@ -135,7 +135,7 @@ class BlockMenuTrigger extends Extension_1.default {
             new prosemirror_inputrules_1.InputRule(OPEN_REGEX, (state, match) => {
                 if (match &&
                     state.selection.$from.parent.type.name === "paragraph" &&
-                    !prosemirror_tables_1.isInTable(state)) {
+                    !(0, prosemirror_tables_1.isInTable)(state)) {
                     this.options.onOpen(match[1]);
                 }
                 return null;

@@ -48,11 +48,11 @@ class TableHeadCell extends Node_1.default {
                     decorations: state => {
                         const { doc, selection } = state;
                         const decorations = [];
-                        const cells = prosemirror_utils_1.getCellsInRow(0)(selection);
+                        const cells = (0, prosemirror_utils_1.getCellsInRow)(0)(selection);
                         if (cells) {
                             cells.forEach(({ pos }, index) => {
                                 decorations.push(prosemirror_view_1.Decoration.widget(pos + 1, () => {
-                                    const colSelected = prosemirror_utils_1.isColumnSelected(index)(selection);
+                                    const colSelected = (0, prosemirror_utils_1.isColumnSelected)(index)(selection);
                                     let className = "grip-column";
                                     if (colSelected) {
                                         className += " selected";

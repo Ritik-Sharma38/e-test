@@ -1,12 +1,13 @@
 {
-  "name": "e-rich-markdown-editor",
+  "name": "edvoramark",
   "description": "A rich text editor with Markdown shortcuts",
-  "version": "11.21.8",
-  "files": ["dist"],
+  "version": "11.21.10",
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "license": "BSD-3-Clause",
-  "funding": "https://github.com/sponsors/outline",
   "scripts": {
     "test": "jest",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet",
@@ -57,6 +58,11 @@
     "smooth-scroll-into-view-if-needed": "^1.1.29"
   },
   "peerDependencies": {
+    "@chakra-ui/icons": "^1.1.1",
+    "@chakra-ui/react": "^1.7.4",
+    "@emotion/react": "11",
+    "@emotion/styled": "11",
+    "framer-motion": "4.1.17",
     "react": "^16.0.0 || ^17.0.0",
     "react-dom": "^16.0.0 || ^17.0.0",
     "styled-components": "^5.0.0"
@@ -66,6 +72,10 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.12.7",
+    "@chakra-ui/icons": "^1.1.1",
+    "@chakra-ui/react": "^1.7.4",
+    "@emotion/react": "11",
+    "@emotion/styled": "11",
     "@storybook/addon-actions": "^6.4.9",
     "@storybook/addon-essentials": "^6.4.9",
     "@storybook/addon-links": "^6.4.9",
@@ -101,6 +111,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.0.8",
+    "framer-motion": "4.1.17",
     "jest": "^26.6.3",
     "prettier": "^1.19.1",
     "react": "^17.0.0",
@@ -126,9 +137,5 @@
     "text",
     "wysiwyg"
   ],
-  "author": "Tom Moor <tom.moor@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/outline/rich-markdown-editor/issues"
-  },
-  "homepage": "https://github.com/outline/rich-markdown-editor#readme"
+  "author": "Edvora"
 }

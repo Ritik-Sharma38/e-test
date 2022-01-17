@@ -38,9 +38,9 @@ const defaultPosition = {
 function usePosition({ menuRef, isSelectingText, props }) {
     const { view, active } = props;
     const { selection } = view.state;
-    const { width: menuWidth, height: menuHeight } = useComponentSize_1.default(menuRef);
-    const viewportHeight = useViewportHeight_1.default();
-    const isTouchDevice = useMediaQuery_1.default("(hover: none) and (pointer: coarse)");
+    const { width: menuWidth, height: menuHeight } = (0, useComponentSize_1.default)(menuRef);
+    const viewportHeight = (0, useViewportHeight_1.default)();
+    const isTouchDevice = (0, useMediaQuery_1.default)("(hover: none) and (pointer: coarse)");
     if (!active || !menuWidth || !menuHeight || SSR || isSelectingText) {
         return defaultPosition;
     }
@@ -131,18 +131,17 @@ function FloatingToolbar(props) {
             window.removeEventListener("mouseup", handleMouseUp);
         };
     }, [props.active]);
-    console.log(props.active, position.visible);
     return (React.createElement(react_portal_1.Portal, null,
         React.createElement(Wrapper, { active: props.active && position.visible, ref: menuRef, offset: position.offset, style: props.fromCommandMenu
                 ? {
                     position: "fixed",
-                    minHeight: "177px",
+                    minHeight: "227px",
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
                 }
                 : {
-                    top: `${position.top - 18}px`,
+                    top: `${position.top - 8}px`,
                     left: `${position.left}px`,
                 } }, position.visible && props.children)));
 }
@@ -158,25 +157,10 @@ const Wrapper = styled_components_1.default.div `
     transform 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition-delay: 150ms;
   line-height: 0;
-  height: 40px;
+  height: 85px;
   box-sizing: border-box;
   pointer-events: none;
   white-space: nowrap;
-
-  &::before {
-    content: "";
-    display: block;
-    width: 24px;
-    height: 24px;
-    transform: translateX(-50%) rotate(45deg);
-    background: ${props => props.theme.toolbarBackgroundT};
-    border-radius: 3px;
-    z-index: -1;
-    position: absolute;
-    bottom: -16px;
-    left: calc(50% - ${props => props.offset || 0}px);
-    pointer-events: none;
-  }
 
   * {
     box-sizing: border-box;

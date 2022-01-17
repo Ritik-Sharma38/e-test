@@ -54,7 +54,7 @@ const uploadPlugin = options => new prosemirror_state_1.Plugin({
                     tr.deleteSelection();
                 }
                 const pos = tr.selection.from;
-                insertFiles_1.default(view, event, pos, files, options);
+                (0, insertFiles_1.default)(view, event, pos, files, options);
                 return true;
             },
             drop(view, event) {
@@ -62,7 +62,7 @@ const uploadPlugin = options => new prosemirror_state_1.Plugin({
                     !options.uploadImage) {
                     return false;
                 }
-                const files = getDataTransferFiles_1.default(event).filter(file => /image/i.test(file.type));
+                const files = (0, getDataTransferFiles_1.default)(event).filter(file => /image/i.test(file.type));
                 if (files.length === 0) {
                     return false;
                 }
@@ -71,7 +71,7 @@ const uploadPlugin = options => new prosemirror_state_1.Plugin({
                     top: event.clientY,
                 });
                 if (result) {
-                    insertFiles_1.default(view, event, result.pos, files, options);
+                    (0, insertFiles_1.default)(view, event, result.pos, files, options);
                     return true;
                 }
                 return false;
@@ -301,8 +301,8 @@ class Image extends Node_1.default {
                 inputElement.type = "file";
                 inputElement.accept = "image/*";
                 inputElement.onchange = (event) => {
-                    const files = getDataTransferFiles_1.default(event);
-                    insertFiles_1.default(view, event, state.selection.from, files, {
+                    const files = (0, getDataTransferFiles_1.default)(event);
+                    (0, insertFiles_1.default)(view, event, state.selection.from, files, {
                         uploadImage,
                         onImageUploadStart,
                         onImageUploadStop,

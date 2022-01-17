@@ -19,7 +19,7 @@ class History extends Extension_1.default {
         };
     }
     get plugins() {
-        return [prosemirror_history_1.history()];
+        return [(0, prosemirror_history_1.history)()];
     }
 }
 exports.default = History;

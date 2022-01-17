@@ -57,7 +57,7 @@ export default class LinkToolbar extends React.Component<Props> {
       return;
     }
 
-    this.props.onClose();
+    //this.props.onClose();
   };
 
   handleOnCreateLink = async (title: string) => {

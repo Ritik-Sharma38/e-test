@@ -25,6 +25,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __importStar(require("react"));
 const theme_1 = require("../styles/theme");
 const __1 = __importDefault(require(".."));
+const react_1 = require("@chakra-ui/react");
+const customTheme_1 = __importDefault(require("../styles/customTheme"));
 class YoutubeEmbed extends React.Component {
     render() {
         const { attrs } = this.props;
@@ -45,18 +47,18 @@ const embeds = [
     },
 ];
 function Example(props) {
+    const d = false;
     const { body } = document;
     if (body)
-        body.style.backgroundColor = props.dark
-            ? theme_1.dark.background
-            : theme_1.light.background;
-    return (React.createElement("div", { style: { padding: "1em 2em" } },
-        React.createElement(__1.default, { disableExtensions: ["table", "container_notice", "hr", "highlight"], uploadImage: file => {
-                console.log("File upload triggered: ", file);
-                return new Promise(resolve => {
-                    setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
-                });
-            }, onChange: (e) => console.log(e()), defaultValue: "# Welcome\r\n        Just an easy to use **Markdown** editor with \\`slash commands\\`", embeds: embeds })));
+        body.style.backgroundColor = d ? theme_1.dark.background : theme_1.light.background;
+    return (React.createElement(react_1.ChakraProvider, { theme: customTheme_1.default },
+        React.createElement("div", { style: { padding: "1em 2em" } },
+            React.createElement(__1.default, { disableExtensions: ["table", "container_notice", "hr", "highlight"], uploadImage: file => {
+                    console.log("File upload triggered: ", file);
+                    return new Promise(resolve => {
+                        setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
+                    });
+                }, onChange: e => console.log(e()), dark: d, defaultValue: "# Welcome\r\n        Just an easy to use **Markdown** editor with \\`slash commands\\`", embeds: embeds }))));
 }
 exports.default = Example;
 //# sourceMappingURL=index.js.map

@@ -5,8 +5,8 @@ const isNodeActive = (type, attrs = {}) => state => {
     if (!type) {
         return false;
     }
-    const node = prosemirror_utils_1.findSelectedNodeOfType(type)(state.selection) ||
-        prosemirror_utils_1.findParentNode(node => node.type === type)(state.selection);
+    const node = (0, prosemirror_utils_1.findSelectedNodeOfType)(type)(state.selection) ||
+        (0, prosemirror_utils_1.findParentNode)(node => node.type === type)(state.selection);
     if (!Object.keys(attrs).length || !node) {
         return !!node;
     }

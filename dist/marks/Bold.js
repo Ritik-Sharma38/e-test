@@ -21,12 +21,12 @@ class Bold extends Mark_1.default {
         };
     }
     inputRules({ type }) {
-        return [markInputRule_1.default(/(?:\*\*)([^*]+)(?:\*\*)$/, type)];
+        return [(0, markInputRule_1.default)(/(?:\*\*)([^*]+)(?:\*\*)$/, type)];
     }
     keys({ type }) {
         return {
-            "Mod-b": prosemirror_commands_1.toggleMark(type),
-            "Mod-B": prosemirror_commands_1.toggleMark(type),
+            "Mod-b": (0, prosemirror_commands_1.toggleMark)(type),
+            "Mod-B": (0, prosemirror_commands_1.toggleMark)(type),
         };
     }
     get toMarkdown() {

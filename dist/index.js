@@ -165,13 +165,13 @@ class RichMarkdownEditor extends React.PureComponent {
             this.setState({ blockMenuOpen: false });
         };
         this.handleSelectRow = (index, state) => {
-            this.view.dispatch(prosemirror_utils_1.selectRow(index)(state.tr));
+            this.view.dispatch((0, prosemirror_utils_1.selectRow)(index)(state.tr));
         };
         this.handleSelectColumn = (index, state) => {
-            this.view.dispatch(prosemirror_utils_1.selectColumn(index)(state.tr));
+            this.view.dispatch((0, prosemirror_utils_1.selectColumn)(index)(state.tr));
         };
         this.handleSelectTable = (state) => {
-            this.view.dispatch(prosemirror_utils_1.selectTable(state.tr));
+            this.view.dispatch((0, prosemirror_utils_1.selectTable)(state.tr));
         };
         this.focusAtStart = () => {
             const selection = prosemirror_state_1.Selection.atStart(this.view.state.doc);
@@ -192,10 +192,10 @@ class RichMarkdownEditor extends React.PureComponent {
             const previouslySeen = {};
             this.view.state.doc.forEach(node => {
                 if (node.type.name === "heading") {
-                    const slug = headingToSlug_1.default(node);
+                    const slug = (0, headingToSlug_1.default)(node);
                     let id = slug;
                     if (previouslySeen[slug] > 0) {
-                        id = headingToSlug_1.default(node, previouslySeen[slug]);
+                        id = (0, headingToSlug_1.default)(node, previouslySeen[slug]);
                     }
                     previouslySeen[slug] =
                         previouslySeen[slug] !== undefined ? previouslySeen[slug] + 1 : 1;
@@ -211,7 +211,7 @@ class RichMarkdownEditor extends React.PureComponent {
         this.theme = () => {
             return this.props.theme || (this.props.dark ? theme_1.dark : theme_1.light);
         };
-        this.dictionary = memoize_1.default((providedDictionary) => {
+        this.dictionary = (0, memoize_1.default)((providedDictionary) => {
             return Object.assign(Object.assign({}, dictionary_1.default), providedDictionary);
         });
         this.myRef = React.createRef();
@@ -459,12 +459,12 @@ class RichMarkdownEditor extends React.PureComponent {
             plugins: [
                 ...this.plugins,
                 ...this.keymaps,
-                prosemirror_dropcursor_1.dropCursor({ color: this.theme().cursor }),
-                prosemirror_gapcursor_1.gapCursor(),
-                prosemirror_inputrules_1.inputRules({
+                (0, prosemirror_dropcursor_1.dropCursor)({ color: this.theme().cursor }),
+                (0, prosemirror_gapcursor_1.gapCursor)(),
+                (0, prosemirror_inputrules_1.inputRules)({
                     rules: this.inputRules,
                 }),
-                prosemirror_keymap_1.keymap(prosemirror_commands_1.baseKeymap),
+                (0, prosemirror_keymap_1.keymap)(prosemirror_commands_1.baseKeymap),
             ],
         });
     }

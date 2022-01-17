@@ -37,9 +37,9 @@ const defaultPosition = {
 function usePosition({ menuRef, isSelectingText, props }) {
     const { view, active } = props;
     const { selection } = view.state;
-    const { width: menuWidth, height: menuHeight } = useComponentSize_1.default(menuRef);
-    const viewportHeight = useViewportHeight_1.default();
-    const isTouchDevice = useMediaQuery_1.default("(hover: none) and (pointer: coarse)");
+    const { width: menuWidth, height: menuHeight } = (0, useComponentSize_1.default)(menuRef);
+    const viewportHeight = (0, useViewportHeight_1.default)();
+    const isTouchDevice = (0, useMediaQuery_1.default)("(hover: none) and (pointer: coarse)");
     if (!active || !menuWidth || !menuHeight || SSR || isSelectingText) {
         return defaultPosition;
     }
@@ -132,14 +132,13 @@ function FloatingToolbar(props) {
             window.removeEventListener("mouseup", handleMouseUp);
         };
     }, [props.active]);
-    console.log(width);
     return (React.createElement(Wrapper, { active: props.active && position.visible, width: width, ref: menuRef, style: {
-            position: 'absolute',
+            position: "absolute",
             top: 10,
         } }, position.visible && props.children));
 }
 const Wrapper = styled_components_1.default.div `
-  width: ${props => props.width}px;
+  width: ${props => ((props === null || props === void 0 ? void 0 : props.width) && (props === null || props === void 0 ? void 0 : props.width) < 685 ? props.width : 685)}px;
   will-change: opacity, transform;
   padding: 8px 1px;
   position: absolute;

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { Plugin } from "prosemirror-state";
 import { InputRule } from "prosemirror-inputrules";
 import Node from "./Node";

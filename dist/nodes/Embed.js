@@ -66,7 +66,7 @@ class Embed extends Node_1.default {
         };
     }
     get rulePlugins() {
-        return [embeds_1.default(this.options.embeds)];
+        return [(0, embeds_1.default)(this.options.embeds)];
     }
     component({ isEditable, isSelected, theme, node }) {
         const { embeds } = this.editor.props;

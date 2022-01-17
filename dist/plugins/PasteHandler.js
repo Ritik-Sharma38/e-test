@@ -36,13 +36,13 @@ class PasteHandler extends Extension_1.default {
                         const html = event.clipboardData.getData("text/html");
                         const vscode = event.clipboardData.getData("vscode-editor-data");
                         const { state, dispatch } = view;
-                        if (isUrl_1.default(text)) {
+                        if ((0, isUrl_1.default)(text)) {
                             if (!state.selection.empty) {
-                                prosemirror_commands_1.toggleMark(this.editor.schema.marks.link, { href: text })(state, dispatch);
+                                (0, prosemirror_commands_1.toggleMark)(this.editor.schema.marks.link, { href: text })(state, dispatch);
                                 return true;
                             }
                             const { embeds } = this.editor.props;
-                            if (embeds && !prosemirror_tables_1.isInTable(state)) {
+                            if (embeds && !(0, prosemirror_tables_1.isInTable)(state)) {
                                 for (const embed of embeds) {
                                     const matches = embed.matcher(text);
                                     if (matches) {
@@ -59,7 +59,7 @@ class PasteHandler extends Extension_1.default {
                             view.dispatch(transaction);
                             return true;
                         }
-                        if (isInCode_1.default(view.state)) {
+                        if ((0, isInCode_1.default)(view.state)) {
                             event.preventDefault();
                             view.dispatch(view.state.tr.insertText(text));
                             return true;
@@ -80,7 +80,7 @@ class PasteHandler extends Extension_1.default {
                         if (html === null || html === void 0 ? void 0 : html.includes("data-pm-slice")) {
                             return false;
                         }
-                        if (isMarkdown_1.default(text) ||
+                        if ((0, isMarkdown_1.default)(text) ||
                             html.length === 0 ||
                             pasteCodeLanguage === "markdown") {
                             event.preventDefault();

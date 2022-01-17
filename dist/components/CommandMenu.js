@@ -190,16 +190,16 @@ class CommandMenu extends React.Component {
             this.setState({ insertItem: item });
         };
         this.handleImagePicked = event => {
-            const files = getDataTransferFiles_1.default(event);
+            const files = (0, getDataTransferFiles_1.default)(event);
             const { view, uploadImage, onImageUploadStart, onImageUploadStop, onShowToast, } = this.props;
             const { state } = view;
-            const parent = prosemirror_utils_1.findParentNode(node => !!node)(state.selection);
+            const parent = (0, prosemirror_utils_1.findParentNode)(node => !!node)(state.selection);
             this.clearSearch("");
             if (!uploadImage) {
                 throw new Error("uploadImage prop is required to replace images");
             }
             if (parent) {
-                insertFiles_1.default(view, event, parent.pos, files, {
+                (0, insertFiles_1.default)(view, event, parent.pos, files, {
                     uploadImage,
                     onImageUploadStart,
                     onImageUploadStop,
@@ -247,7 +247,7 @@ class CommandMenu extends React.Component {
             command(item.attrs);
         }
         else {
-            this.props.commands[`create${capitalize_1.default(item.name)}`](item.attrs);
+            this.props.commands[`create${(0, capitalize_1.default)(item.name)}`](item.attrs);
         }
         this.props.onClose();
     }
@@ -288,7 +288,7 @@ class CommandMenu extends React.Component {
         const domAtPos = view.domAtPos.bind(view);
         const ref = this.menuRef.current;
         const offsetHeight = ref ? ref.offsetHeight : 0;
-        const node = prosemirror_utils_1.findDomRefAtPos(selection.from, domAtPos);
+        const node = (0, prosemirror_utils_1.findDomRefAtPos)(selection.from, domAtPos);
         const paragraph = { node };
         if (!props.isActive ||
             !paragraph.node ||
@@ -340,7 +340,7 @@ class CommandMenu extends React.Component {
                 return true;
             if (item.name &&
                 !commands[item.name] &&
-                !commands[`create${capitalize_1.default(item.name)}`]) {
+                !commands[`create${(0, capitalize_1.default)(item.name)}`]) {
                 return false;
             }
             if (!uploadImage && item.name === "image")
@@ -354,7 +354,7 @@ class CommandMenu extends React.Component {
             return ((item.title || "").toLowerCase().includes(n) ||
                 (item.keywords || "").toLowerCase().includes(n));
         });
-        return filterExcessSeparators_1.default(filtered);
+        return (0, filterExcessSeparators_1.default)(filtered);
     }
     render() {
         const { dictionary, isActive, uploadImage } = this.props;
@@ -389,7 +389,7 @@ class CommandMenu extends React.Component {
 const LinkInputWrapper = styled_components_1.default.div `
   margin: 8px;
 `;
-const LinkInput = styled_components_1.default(Input_1.default) `
+const LinkInput = (0, styled_components_1.default)(Input_1.default) `
   height: 36px;
   width: 100%;
   color: ${props => props.theme.blockToolbarText};

@@ -16,7 +16,16 @@ declare class ToolbarMenu extends React.Component<Props> {
     call: (item: any) => void;
     render(): JSX.Element;
 }
-declare const _default: React.ForwardRefExoticComponent<Pick<Props & React.RefAttributes<ToolbarMenu>, "view" | "tooltip" | "ref" | "key" | "commands" | "commandRef" | "items" | "isImageSelection"> & {
+declare const _default: React.ForwardRefExoticComponent<{
+    view: EditorView<any>;
+    ref?: React.Ref<ToolbarMenu> | undefined;
+    key?: React.Key | null | undefined;
+    tooltip: typeof React.Component | React.FC<any>;
+    commands: Record<string, any>;
+    commandRef: any;
+    items: MenuItem[];
+    isImageSelection: any;
+} & {
     theme?: any;
 }>;
 export default _default;

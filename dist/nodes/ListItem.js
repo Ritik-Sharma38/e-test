@@ -39,12 +39,12 @@ class ListItem extends Node_1.default {
                         set = set.map(tr.mapping, tr.doc);
                         switch (action === null || action === void 0 ? void 0 : action.event) {
                             case "mouseover": {
-                                const result = prosemirror_utils_1.findParentNodeClosestToPos(newState.doc.resolve(action.pos), node => node.type.name === this.name ||
+                                const result = (0, prosemirror_utils_1.findParentNodeClosestToPos)(newState.doc.resolve(action.pos), node => node.type.name === this.name ||
                                     node.type.name === "checkbox_item");
                                 if (!result) {
                                     return set;
                                 }
-                                const list = prosemirror_utils_1.findParentNodeClosestToPos(newState.doc.resolve(action.pos), node => isList_1.default(node, this.editor.schema));
+                                const list = (0, prosemirror_utils_1.findParentNodeClosestToPos)(newState.doc.resolve(action.pos), node => (0, isList_1.default)(node, this.editor.schema));
                                 if (!list) {
                                     return set;
                                 }
@@ -68,7 +68,7 @@ class ListItem extends Node_1.default {
                                 ]);
                             }
                             case "mouseout": {
-                                const result = prosemirror_utils_1.findParentNodeClosestToPos(newState.doc.resolve(action.pos), node => node.type.name === this.name ||
+                                const result = (0, prosemirror_utils_1.findParentNodeClosestToPos)(newState.doc.resolve(action.pos), node => node.type.name === this.name ||
                                     node.type.name === "checkbox_item");
                                 if (!result) {
                                     return set;
@@ -132,13 +132,13 @@ class ListItem extends Node_1.default {
     }
     keys({ type }) {
         return {
-            Enter: prosemirror_schema_list_1.splitListItem(type),
-            Tab: prosemirror_schema_list_1.sinkListItem(type),
-            "Shift-Tab": prosemirror_schema_list_1.liftListItem(type),
-            "Mod-]": prosemirror_schema_list_1.sinkListItem(type),
-            "Mod-[": prosemirror_schema_list_1.liftListItem(type),
+            Enter: (0, prosemirror_schema_list_1.splitListItem)(type),
+            Tab: (0, prosemirror_schema_list_1.sinkListItem)(type),
+            "Shift-Tab": (0, prosemirror_schema_list_1.liftListItem)(type),
+            "Mod-]": (0, prosemirror_schema_list_1.sinkListItem)(type),
+            "Mod-[": (0, prosemirror_schema_list_1.liftListItem)(type),
             "Shift-Enter": (state, dispatch) => {
-                if (!isInList_1.default(state))
+                if (!(0, isInList_1.default)(state))
                     return false;
                 if (!state.selection.empty)
                     return false;
@@ -149,7 +149,7 @@ class ListItem extends Node_1.default {
             "Alt-ArrowUp": (state, dispatch) => {
                 if (!state.selection.empty)
                     return false;
-                const result = getParentListItem_1.default(state);
+                const result = (0, getParentListItem_1.default)(state);
                 if (!result)
                     return false;
                 const [li, pos] = result;
@@ -170,7 +170,7 @@ class ListItem extends Node_1.default {
             "Alt-ArrowDown": (state, dispatch) => {
                 if (!state.selection.empty)
                     return false;
-                const result = getParentListItem_1.default(state);
+                const result = (0, getParentListItem_1.default)(state);
                 if (!result)
                     return false;
                 const [li, pos] = result;

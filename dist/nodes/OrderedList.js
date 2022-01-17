@@ -35,16 +35,16 @@ class OrderedList extends Node_1.default {
         };
     }
     commands({ type, schema }) {
-        return () => toggleList_1.default(type, schema.nodes.list_item);
+        return () => (0, toggleList_1.default)(type, schema.nodes.list_item);
     }
     keys({ type, schema }) {
         return {
-            "Shift-Ctrl-9": toggleList_1.default(type, schema.nodes.list_item),
+            "Shift-Ctrl-9": (0, toggleList_1.default)(type, schema.nodes.list_item),
         };
     }
     inputRules({ type }) {
         return [
-            prosemirror_inputrules_1.wrappingInputRule(/^(\d+)\.\s$/, type, match => ({ order: +match[1] }), (match, node) => node.childCount + node.attrs.order === +match[1]),
+            (0, prosemirror_inputrules_1.wrappingInputRule)(/^(\d+)\.\s$/, type, match => ({ order: +match[1] }), (match, node) => node.childCount + node.attrs.order === +match[1]),
         ];
     }
     toMarkdown(state, node) {

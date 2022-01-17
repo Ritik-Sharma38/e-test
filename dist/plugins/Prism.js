@@ -34,7 +34,7 @@ exports.LANGUAGES = {
 const cache = {};
 function getDecorations({ doc, name }) {
     const decorations = [];
-    const blocks = prosemirror_utils_1.findBlockNodes(doc).filter(item => item.node.type.name === name);
+    const blocks = (0, prosemirror_utils_1.findBlockNodes)(doc).filter(item => item.node.type.name === name);
     function parseNodes(nodes, classNames = []) {
         return nodes.map(node => {
             if (node.type === "element") {
@@ -55,7 +55,7 @@ function getDecorations({ doc, name }) {
         }
         if (!cache[block.pos] || !cache[block.pos].node.eq(block.node)) {
             const nodes = core_1.default.highlight(block.node.textContent, language);
-            const _decorations = flattenDeep_1.default(parseNodes(nodes))
+            const _decorations = (0, flattenDeep_1.default)(parseNodes(nodes))
                 .map((node) => {
                 const from = startPos;
                 const to = from + node.text.length;
