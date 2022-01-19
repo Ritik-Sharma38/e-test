@@ -59,11 +59,13 @@ export default function Example(props) {
               setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
             });
           }}
-          onChange={e => console.log(e())}
+          onChange={e => {}}
           dark={d}
           defaultValue="# Welcome
-        Just an easy to use **Markdown** editor with \`slash commands\`"
+        Just an easy to use **Markdown** editor with `slash command`"
           embeds={embeds}
+          onBlur={() => console.log("blured")}
+          onFocus={() => console.log("focused")}
         />
       </div>
     </ChakraProvider>

@@ -13,7 +13,7 @@ declare type Props = {
 };
 declare class ToolbarMenu extends React.Component<Props> {
     pickImage: (action: string, type: string) => void;
-    call: (item: any) => void;
+    call: (item: any, active_heading: any) => void;
     render(): JSX.Element;
 }
 declare const _default: React.ForwardRefExoticComponent<{

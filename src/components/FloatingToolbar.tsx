@@ -162,6 +162,7 @@ function FloatingToolbar(props) {
 
   // only render children when state is updated to visible
   // to prevent gaining input focus before calculatePosition runs
+
   return (
     <Wrapper
       active={props.active && position.visible}

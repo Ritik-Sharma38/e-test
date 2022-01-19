@@ -8,6 +8,9 @@ exports.default = styled_components_1.default.button `
   display: flex;
   width: 120px;
   height: 40px;
+  margin-right: 15px;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   margin-left: 30px;
   border: none;

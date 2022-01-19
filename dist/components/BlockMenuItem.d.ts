@@ -9,6 +9,7 @@ export declare type Props = {
     title: React.ReactNode;
     shortcut?: string;
     containerId?: string;
+    itemName: string;
 };
 declare const _default: React.ForwardRefExoticComponent<{
     title: React.ReactNode;
@@ -17,6 +18,7 @@ declare const _default: React.ForwardRefExoticComponent<{
     selected: boolean;
     icon?: typeof React.Component | React.FC<any> | undefined;
     shortcut?: string | undefined;
+    itemName: string;
     containerId?: string | undefined;
 } & {
     theme?: any;

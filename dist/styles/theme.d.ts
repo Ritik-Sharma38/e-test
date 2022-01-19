@@ -47,8 +47,10 @@ export declare const base: {
     almostWhite: string;
     white: string;
     white10: string;
+    white20: string;
     black: string;
     black10: string;
+    black20: string;
     primary: string;
     greyLight: string;
     grey: string;
@@ -57,6 +59,12 @@ export declare const base: {
     f0f0f0: string;
     iconDefault: string;
     iconDefaultDark: string;
+    el200: string;
+    el100: string;
+    ed200: string;
+    eae3e3: string;
+    hel200: string;
+    hed200: string;
 };
 export declare const light: {
     background: string;
@@ -64,6 +72,10 @@ export declare const light: {
     code: string;
     cursor: string;
     divider: string;
+    color: string;
+    hover: string;
+    hover20: string;
+    e200: string;
     toolbarBackground: string;
     toolbarBackgroundT: string;
     linkToolbarBackground: string;
@@ -131,8 +143,10 @@ export declare const light: {
     almostWhite: string;
     white: string;
     white10: string;
+    white20: string;
     black: string;
     black10: string;
+    black20: string;
     primary: string;
     greyLight: string;
     grey: string;
@@ -140,6 +154,12 @@ export declare const light: {
     greyDark: string;
     f0f0f0: string;
     iconDefaultDark: string;
+    el200: string;
+    el100: string;
+    ed200: string;
+    eae3e3: string;
+    hel200: string;
+    hed200: string;
 };
 export declare const dark: {
     background: string;
@@ -148,6 +168,10 @@ export declare const dark: {
     cursor: string;
     divider: string;
     placeholder: string;
+    color: string;
+    hover: string;
+    hover20: string;
+    e200: string;
     toolbarBackground: string;
     toolbarBackgroundT: string;
     linkToolbarBackground: string;
@@ -214,8 +238,10 @@ export declare const dark: {
     almostWhite: string;
     white: string;
     white10: string;
+    white20: string;
     black: string;
     black10: string;
+    black20: string;
     primary: string;
     greyLight: string;
     grey: string;
@@ -223,6 +249,12 @@ export declare const dark: {
     greyDark: string;
     f0f0f0: string;
     iconDefaultDark: string;
+    el200: string;
+    el100: string;
+    ed200: string;
+    eae3e3: string;
+    hel200: string;
+    hed200: string;
 };
 export default light;
 //# sourceMappingURL=theme.d.ts.map

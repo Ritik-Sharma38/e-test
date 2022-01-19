@@ -4,8 +4,10 @@ const colors = {
   almostWhite: "#E6E6E6",
   white: "#FFF",
   white10: "rgba(255, 255, 255, 0.1)",
+  white20: "rgba(255, 255, 255, 0.2)",
   black: "#000",
   black10: "rgba(0, 0, 0, 0.1)",
+  black20: "rgba(0, 0, 0, 0.2)",
   primary: "#1AB6FF",
   greyLight: "#F4F7FA",
   grey: "#E8EBED",
@@ -14,6 +16,12 @@ const colors = {
   f0f0f0: "#F0F0F0",
   iconDefault: "#733D47",
   iconDefaultDark: "#BF9B9B",
+  el200: "#F2D8D5",
+  el100: "#733D47",
+  ed200: "#BF9B9B",
+  eae3e3: "#EAE3E3",
+  hel200: "rgba(242, 216, 213, 0.4)",
+  hed200: "rgba(191, 155, 155, 0.3)",
 };
 
 export const base = {
@@ -74,6 +82,10 @@ export const light = {
   code: colors.lightBlack,
   cursor: colors.black,
   divider: colors.greyMid,
+  color: colors.black,
+  hover: colors.white10,
+  hover20: colors.hel200,
+  e200: colors.el200,
 
   toolbarBackground: colors.white,
   toolbarBackgroundT: colors.white10,
@@ -108,6 +120,10 @@ export const dark = {
   cursor: colors.white,
   divider: "#4E5C6E",
   placeholder: "#52657A",
+  color: colors.white,
+  hover: colors.black10,
+  hover20: colors.hed200,
+  e200: colors.ed200,
 
   toolbarBackground: colors.black,
   toolbarBackgroundT: colors.greyMid,

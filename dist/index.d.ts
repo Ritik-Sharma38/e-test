@@ -20,6 +20,10 @@ export declare const theme: {
     code: string;
     cursor: string;
     divider: string;
+    color: string;
+    hover: string;
+    hover20: string;
+    e200: string;
     toolbarBackground: string;
     toolbarBackgroundT: string;
     linkToolbarBackground: string;
@@ -87,8 +91,10 @@ export declare const theme: {
     almostWhite: string;
     white: string;
     white10: string;
+    white20: string;
     black: string;
     black10: string;
+    black20: string;
     primary: string;
     greyLight: string;
     grey: string;
@@ -96,6 +102,12 @@ export declare const theme: {
     greyDark: string;
     f0f0f0: string;
     iconDefaultDark: string;
+    el200: string;
+    el100: string;
+    ed200: string;
+    eae3e3: string;
+    hel200: string;
+    hed200: string;
 };
 export declare type Props = {
     id?: string;
@@ -246,6 +258,10 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
         code: string;
         cursor: string;
         divider: string;
+        color: string;
+        hover: string;
+        hover20: string;
+        e200: string;
         toolbarBackground: string;
         toolbarBackgroundT: string;
         linkToolbarBackground: string;
@@ -313,8 +329,10 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
         almostWhite: string;
         white: string;
         white10: string;
+        white20: string;
         black: string;
         black10: string;
+        black20: string;
         primary: string;
         greyLight: string;
         grey: string;
@@ -322,6 +340,12 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
         greyDark: string;
         f0f0f0: string;
         iconDefaultDark: string;
+        el200: string;
+        el100: string;
+        ed200: string;
+        eae3e3: string;
+        hel200: string;
+        hed200: string;
     };
     dictionary: ((providedDictionary?: Partial<{
         text: string;

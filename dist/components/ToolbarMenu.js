@@ -86,9 +86,9 @@ class ToolbarMenu extends React.Component {
             const { commandRef } = this.props;
             commandRef.current.insertItem({ name: action }, type);
         };
-        this.call = (item) => {
-            if (item.name) {
-                if (item.name === "link") {
+        this.call = (item, active_heading) => {
+            if (item === null || item === void 0 ? void 0 : item.name) {
+                if ((item === null || item === void 0 ? void 0 : item.name) === "link") {
                     const { view } = this.props;
                     const { state } = view;
                     const selectionText = state.doc.cut(state.selection.from, state.selection.to).textContent;
@@ -98,23 +98,28 @@ class ToolbarMenu extends React.Component {
                 }
                 this.props.commands[item.name](item.attrs);
             }
+            else if (item === "Text" && (active_heading === null || active_heading === void 0 ? void 0 : active_heading.name)) {
+                this.props.commands[active_heading.name](active_heading.attrs);
+            }
         };
     }
     render() {
         var _a;
-        const { view, items, isImageSelection } = this.props;
+        const { view, items, isImageSelection, theme } = this.props;
         const { state } = view;
         const Tooltip = this.props.tooltip;
         const customStyles = {
-            menu: provided => (Object.assign(Object.assign({}, provided), { width: "120px" })),
+            menu: provided => (Object.assign(Object.assign({}, provided), { width: "120px", background: theme.background, boxShadow: theme.ModalBoxShadow })),
             control: () => ({
                 width: "120px",
                 display: "flex",
             }),
-            option: provided => (Object.assign({}, provided)),
+            option: (provided, { isSelected }) => (Object.assign(Object.assign({}, provided), { color: theme.color, height: "30px", display: "flex", alignItems: "center", "&:hover": {
+                    background: isSelected ? theme.e200 : theme.hover20,
+                }, backgroundColor: isSelected ? theme.e200 : "transparent" })),
             menuPortal: provided => (Object.assign(Object.assign({}, provided), { margintTop: 0 })),
             menuList: provided => (Object.assign(Object.assign({}, provided), { margintTop: 0 })),
-            singleValue: provided => (Object.assign(Object.assign({}, provided), { overflow: "unset" })),
+            singleValue: provided => (Object.assign(Object.assign({}, provided), { overflow: "unset", color: theme.color })),
         };
         const IndicatorSeparator = () => null;
         const active_heading = [
@@ -131,34 +136,23 @@ class ToolbarMenu extends React.Component {
             else
                 return false;
         });
-        return (React.createElement(FlexibleWrapper, null, isImageSelection ? (React.createElement(React.Fragment, null, items.map((item, index) => {
-            if (!item)
-                return;
-            if ((item === null || item === void 0 ? void 0 : item.name) === "separator" && item.visible !== false) {
-                return React.createElement(ToolbarSeparator_1.default, { key: index });
-            }
-            if ((item === null || item === void 0 ? void 0 : item.visible) === false || !(item === null || item === void 0 ? void 0 : item.icon)) {
-                return null;
-            }
-            const isActive = (item === null || item === void 0 ? void 0 : item.active) ? item.active(state) : false;
-            return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item), active: isActive },
-                React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item.name : "none"])));
-        }))) : (React.createElement(React.Fragment, null,
+        return (React.createElement("div", { style: { display: "flex", flexDirection: "row" } },
             React.createElement(ToolbarHeadingMenu_1.default, null,
                 React.createElement(react_select_1.default, { options: [
+                        { value: "Text", label: "Text" },
                         { value: items[0], label: "Heading 1" },
                         { value: items[1], label: "Heading 2" },
                         { value: items[2], label: "Heading 3" },
                         { value: items[3], label: "Heading 4" },
                         { value: items[4], label: "Heading 5" },
                         { value: items[5], label: "Heading 6" },
-                    ], styles: customStyles, components: { IndicatorSeparator }, value: active_heading
+                    ], styles: customStyles, isSearchable: false, components: { IndicatorSeparator }, value: active_heading
                         ? {
                             value: active_heading,
                             label: `Heading ${(_a = active_heading === null || active_heading === void 0 ? void 0 : active_heading.attrs) === null || _a === void 0 ? void 0 : _a.level}`,
                         }
-                        : { value: "text", label: "text" }, onChange: v => this.call(v === null || v === void 0 ? void 0 : v.value) })),
-            [items[6], items[7], items[8]].map((item, index) => {
+                        : { value: "Text", label: "Text" }, onChange: v => this.call(v === null || v === void 0 ? void 0 : v.value, active_heading) })),
+            React.createElement(FlexibleWrapper, null, isImageSelection ? (React.createElement(React.Fragment, null, items.map((item, index) => {
                 if (!item)
                     return;
                 if ((item === null || item === void 0 ? void 0 : item.name) === "separator" && item.visible !== false) {
@@ -168,31 +162,44 @@ class ToolbarMenu extends React.Component {
                     return null;
                 }
                 const isActive = (item === null || item === void 0 ? void 0 : item.active) ? item.active(state) : false;
-                return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item), active: isActive },
+                return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item, ""), active: isActive },
                     React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item.name : "none"])));
-            }),
-            React.createElement(ToolbarButton_1.default, { onClick: () => this.pickImage("image", "") },
-                React.createElement(Tooltip, { tooltip: "Add a image", placement: "top" }, Icons["image"])),
-            [
-                items[9],
-                items[10],
-                items[11],
-                items[12],
-                items[13],
-                items[14],
-            ].map((item, index) => {
-                if (!item)
-                    return;
-                if ((item === null || item === void 0 ? void 0 : item.name) === "separator" && (item === null || item === void 0 ? void 0 : item.visible) !== false) {
-                    return React.createElement(ToolbarSeparator_1.default, { key: index });
-                }
-                if ((item === null || item === void 0 ? void 0 : item.visible) === false || !(item === null || item === void 0 ? void 0 : item.icon)) {
-                    return null;
-                }
-                const isActive = (item === null || item === void 0 ? void 0 : item.active) ? item.active(state) : false;
-                return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item), active: isActive },
-                    React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item === null || item === void 0 ? void 0 : item.name : "none"])));
-            })))));
+            }))) : (React.createElement(React.Fragment, null,
+                [items[6], items[7], items[8]].map((item, index) => {
+                    if (!item)
+                        return;
+                    if ((item === null || item === void 0 ? void 0 : item.name) === "separator" && item.visible !== false) {
+                        return React.createElement(ToolbarSeparator_1.default, { key: index });
+                    }
+                    if ((item === null || item === void 0 ? void 0 : item.visible) === false || !(item === null || item === void 0 ? void 0 : item.icon)) {
+                        return null;
+                    }
+                    const isActive = (item === null || item === void 0 ? void 0 : item.active) ? item.active(state) : false;
+                    return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item, ""), active: isActive },
+                        React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item.name : "none"])));
+                }),
+                React.createElement(ToolbarButton_1.default, { onClick: () => this.pickImage("image", "") },
+                    React.createElement(Tooltip, { tooltip: "Add a image", placement: "top" }, Icons["image"])),
+                [
+                    items[9],
+                    items[10],
+                    items[11],
+                    items[12],
+                    items[13],
+                    items[14],
+                ].map((item, index) => {
+                    if (!item)
+                        return;
+                    if ((item === null || item === void 0 ? void 0 : item.name) === "separator" && (item === null || item === void 0 ? void 0 : item.visible) !== false) {
+                        return React.createElement(ToolbarSeparator_1.default, { key: index });
+                    }
+                    if ((item === null || item === void 0 ? void 0 : item.visible) === false || !(item === null || item === void 0 ? void 0 : item.icon)) {
+                        return null;
+                    }
+                    const isActive = (item === null || item === void 0 ? void 0 : item.active) ? item.active(state) : false;
+                    return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item, ""), active: isActive },
+                        React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item === null || item === void 0 ? void 0 : item.name : "none"])));
+                }))))));
     }
 }
 exports.default = (0, styled_components_1.withTheme)(ToolbarMenu);

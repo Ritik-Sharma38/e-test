@@ -58,7 +58,7 @@ function Example(props) {
                     return new Promise(resolve => {
                         setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
                     });
-                }, onChange: e => console.log(e()), dark: d, defaultValue: "# Welcome\r\n        Just an easy to use **Markdown** editor with \\`slash commands\\`", embeds: embeds }))));
+                }, onChange: e => { }, dark: d, defaultValue: "# Welcome\r\n        Just an easy to use **Markdown** editor with `slash command`", embeds: embeds, onBlur: () => console.log("blured"), onFocus: () => console.log("focused") }))));
 }
 exports.default = Example;
 //# sourceMappingURL=index.js.map

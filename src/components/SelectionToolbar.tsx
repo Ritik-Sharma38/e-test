@@ -43,15 +43,15 @@ function isVisible(props) {
   const { view } = props;
   const { selection } = view.state;
 
-  if (!selection) return true;
-  if (selection.empty) return true;
+  if (!selection) return false;
+  if (selection.empty) return false;
   if (selection.node && selection.node.type.name === "hr") {
     return true;
   }
   if (selection.node && selection.node.type.name === "image") {
     return true;
   }
-  if (selection.node) return true;
+  if (selection.node) return false;
 
   const slice = selection.content();
   const fragment = slice.content;
@@ -232,7 +232,7 @@ export default class SelectionToolbar extends React.Component<Props> {
         {link && range ? (
           <FloatingToolbarTemp
             view={view}
-            active={isVisible(this.props)}
+            active={isVisible(this.props) || true}
             ref={this.menuRef}
             fromCommandMenu={false}
           >
@@ -249,7 +249,7 @@ export default class SelectionToolbar extends React.Component<Props> {
         ) : (
           <FloatingToolbar
             view={view}
-            active={isVisible(this.props)}
+            active={isVisible(this.props) || true}
             ref={this.menuRef}
           >
             <ToolbarMenu

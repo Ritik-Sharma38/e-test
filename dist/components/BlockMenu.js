@@ -25,7 +25,7 @@ class BlockMenu extends react_1.default.Component {
     render() {
         const { passRef } = this.props;
         return (react_1.default.createElement(CommandMenu_1.default, Object.assign({}, this.props, { ref: passRef, filterable: true, onClearSearch: this.clearSearch, renderMenuItem: (item, _index, options) => {
-                return (react_1.default.createElement(BlockMenuItem_1.default, { onClick: options.onClick, selected: options.selected, icon: item.icon, title: item.title, shortcut: item.shortcut }));
+                return (react_1.default.createElement(BlockMenuItem_1.default, { onClick: options.onClick, selected: options.selected, icon: item.icon, title: item.title, itemName: (item === null || item === void 0 ? void 0 : item.name) ? item.name : "", shortcut: item.shortcut }));
             }, items: this.items })));
     }
 }

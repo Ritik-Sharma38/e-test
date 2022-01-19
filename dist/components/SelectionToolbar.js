@@ -57,9 +57,9 @@ function isVisible(props) {
     const { view } = props;
     const { selection } = view.state;
     if (!selection)
-        return true;
+        return false;
     if (selection.empty)
-        return true;
+        return false;
     if (selection.node && selection.node.type.name === "hr") {
         return true;
     }
@@ -67,7 +67,7 @@ function isVisible(props) {
         return true;
     }
     if (selection.node)
-        return true;
+        return false;
     const slice = selection.content();
     const fragment = slice.content;
     const nodes = fragment.content;
@@ -193,8 +193,8 @@ class SelectionToolbar extends React.Component {
         if (isTextSelection && !selectionText && false) {
             return null;
         }
-        return (React.createElement(React.Fragment, null, link && range ? (React.createElement(FloatingToolbarTemp_1.default, { view: view, active: isVisible(this.props), ref: this.menuRef, fromCommandMenu: false },
-            React.createElement(LinkEditor_1.default, Object.assign({ dictionary: dictionary, mark: range.mark, from: range.from, to: range.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink }, rest)))) : (React.createElement(FloatingToolbar_1.default, { view: view, active: isVisible(this.props), ref: this.menuRef },
+        return (React.createElement(React.Fragment, null, link && range ? (React.createElement(FloatingToolbarTemp_1.default, { view: view, active: isVisible(this.props) || true, ref: this.menuRef, fromCommandMenu: false },
+            React.createElement(LinkEditor_1.default, Object.assign({ dictionary: dictionary, mark: range.mark, from: range.from, to: range.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink }, rest)))) : (React.createElement(FloatingToolbar_1.default, { view: view, active: isVisible(this.props) || true, ref: this.menuRef },
             React.createElement(ToolbarMenu_1.default, Object.assign({ items: items }, rest, { commandRef: commandRef, isImageSelection: isImageSelection }))))));
     }
 }
