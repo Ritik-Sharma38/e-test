@@ -14,6 +14,8 @@ exports.StyledEditor = (0, styled_components_1.default)("div") `
   line-height: 1.7em;
   width: 100%;
   margin: 55px 0 0 0;
+  height: calc(100vh - 190px);
+  overflow-y: auto;
 
   .ProseMirror {
     position: relative;
