@@ -21,6 +21,7 @@ declare type Props = {
 export default class SelectionToolbar extends React.Component<Props> {
     isActive: boolean;
     menuRef: React.RefObject<HTMLDivElement>;
+    linkEditorRef: React.RefObject<HTMLDivElement>;
     componentDidUpdate(): void;
     componentDidMount(): void;
     componentWillUnmount(): void;

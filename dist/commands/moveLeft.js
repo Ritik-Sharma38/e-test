@@ -21,7 +21,7 @@ function moveLeft() {
         }
         const { storedMarks } = state.tr;
         if (code_inline) {
-            const insideCode = code_inline && (0, isMarkActive_1.default)(code_inline)(state);
+            const insideCode = code_inline && isMarkActive_1.default(code_inline)(state);
             const currentPosHasCode = hasCode(state, $cursor.pos);
             const nextPosHasCode = hasCode(state, $cursor.pos - 1);
             const nextNextPosHasCode = hasCode(state, $cursor.pos - 2);

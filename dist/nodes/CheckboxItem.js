@@ -74,11 +74,11 @@ class CheckboxItem extends Node_1.default {
     }
     keys({ type }) {
         return {
-            Enter: (0, prosemirror_schema_list_1.splitListItem)(type),
-            Tab: (0, prosemirror_schema_list_1.sinkListItem)(type),
-            "Shift-Tab": (0, prosemirror_schema_list_1.liftListItem)(type),
-            "Mod-]": (0, prosemirror_schema_list_1.sinkListItem)(type),
-            "Mod-[": (0, prosemirror_schema_list_1.liftListItem)(type),
+            Enter: prosemirror_schema_list_1.splitListItem(type),
+            Tab: prosemirror_schema_list_1.sinkListItem(type),
+            "Shift-Tab": prosemirror_schema_list_1.liftListItem(type),
+            "Mod-]": prosemirror_schema_list_1.sinkListItem(type),
+            "Mod-[": prosemirror_schema_list_1.liftListItem(type),
         };
     }
     toMarkdown(state, node) {

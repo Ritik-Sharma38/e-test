@@ -78,6 +78,6 @@ exports.parser = extensions.parser({
     plugins: extensions.rulePlugins,
 });
 exports.serializer = extensions.serializer();
-const renderToHtml = (markdown) => (0, renderToHtml_1.default)(markdown, extensions.rulePlugins);
+const renderToHtml = (markdown) => renderToHtml_1.default(markdown, extensions.rulePlugins);
 exports.renderToHtml = renderToHtml;
 //# sourceMappingURL=server.js.map

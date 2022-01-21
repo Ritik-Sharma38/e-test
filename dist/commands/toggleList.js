@@ -14,12 +14,12 @@ function toggleList(listType, itemType) {
         if (!range) {
             return false;
         }
-        const parentList = (0, prosemirror_utils_1.findParentNode)(node => (0, isList_1.default)(node, schema))(selection);
+        const parentList = prosemirror_utils_1.findParentNode(node => isList_1.default(node, schema))(selection);
         if (range.depth >= 1 && parentList && range.depth - parentList.depth <= 1) {
             if (parentList.node.type === listType) {
-                return (0, prosemirror_schema_list_1.liftListItem)(itemType)(state, dispatch);
+                return prosemirror_schema_list_1.liftListItem(itemType)(state, dispatch);
             }
-            if ((0, isList_1.default)(parentList.node, schema) &&
+            if (isList_1.default(parentList.node, schema) &&
                 listType.validContent(parentList.node.content)) {
                 const { tr } = state;
                 tr.setNodeMarkup(parentList.pos, listType);
@@ -29,7 +29,7 @@ function toggleList(listType, itemType) {
                 return false;
             }
         }
-        return (0, prosemirror_schema_list_1.wrapInList)(listType)(state, dispatch);
+        return prosemirror_schema_list_1.wrapInList(listType)(state, dispatch);
     };
 }
 exports.default = toggleList;

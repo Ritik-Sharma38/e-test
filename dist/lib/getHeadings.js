@@ -9,10 +9,10 @@ function getHeadings(view) {
     const previouslySeen = {};
     view.state.doc.forEach(node => {
         if (node.type.name === "heading") {
-            const id = (0, headingToSlug_1.default)(node);
+            const id = headingToSlug_1.default(node);
             let name = id;
             if (previouslySeen[id] > 0) {
-                name = (0, headingToSlug_1.default)(node, previouslySeen[id]);
+                name = headingToSlug_1.default(node, previouslySeen[id]);
             }
             previouslySeen[id] =
                 previouslySeen[id] !== undefined ? previouslySeen[id] + 1 : 1;

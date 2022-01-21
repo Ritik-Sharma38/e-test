@@ -22,14 +22,14 @@ class Italic extends Mark_1.default {
     }
     inputRules({ type }) {
         return [
-            (0, markInputRule_1.default)(/(?:^|[\s])(_([^_]+)_)$/, type),
-            (0, markInputRule_1.default)(/(?:^|[^*])(\*([^*]+)\*)$/, type),
+            markInputRule_1.default(/(?:^|[\s])(_([^_]+)_)$/, type),
+            markInputRule_1.default(/(?:^|[^*])(\*([^*]+)\*)$/, type),
         ];
     }
     keys({ type }) {
         return {
-            "Mod-i": (0, prosemirror_commands_1.toggleMark)(type),
-            "Mod-I": (0, prosemirror_commands_1.toggleMark)(type),
+            "Mod-i": prosemirror_commands_1.toggleMark(type),
+            "Mod-I": prosemirror_commands_1.toggleMark(type),
         };
     }
     get toMarkdown() {

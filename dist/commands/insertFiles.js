@@ -53,7 +53,7 @@ const insertFiles = function (view, event, pos, files, options) {
             .then(src => {
             const newImg = new Image();
             newImg.onload = () => {
-                const result = (0, uploadPlaceholder_1.findPlaceholder)(view.state, id);
+                const result = uploadPlaceholder_1.findPlaceholder(view.state, id);
                 if (result === null) {
                     return;
                 }

@@ -38,13 +38,13 @@ class Code extends Mark_1.default {
         };
     }
     inputRules({ type }) {
-        return [(0, markInputRule_1.default)(/(?:^|[^`])(`([^`]+)`)$/, type)];
+        return [markInputRule_1.default(/(?:^|[^`])(`([^`]+)`)$/, type)];
     }
     keys({ type }) {
         return {
-            "Mod`": (0, prosemirror_commands_1.toggleMark)(type),
-            ArrowLeft: (0, moveLeft_1.default)(),
-            ArrowRight: (0, moveRight_1.default)(),
+            "Mod`": prosemirror_commands_1.toggleMark(type),
+            ArrowLeft: moveLeft_1.default(),
+            ArrowRight: moveRight_1.default(),
         };
     }
     get toMarkdown() {

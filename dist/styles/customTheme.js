@@ -4,9 +4,9 @@ const react_1 = require("@chakra-ui/react");
 const theme_tools_1 = require("@chakra-ui/theme-tools");
 const config = {
     initialColorMode: "light",
-    useSystemColorMode: true,
+    useSystemColorMode: false,
 };
-const breakpoints = (0, theme_tools_1.createBreakpoints)({
+const breakpoints = theme_tools_1.createBreakpoints({
     sm: "360px",
     sxm: "480px",
     md: "640px",
@@ -16,7 +16,7 @@ const breakpoints = (0, theme_tools_1.createBreakpoints)({
     xxxl: "1440px",
     lg: "1920px",
 });
-const chakraTheme = (0, react_1.extendTheme)({
+const chakraTheme = react_1.extendTheme({
     config,
     breakpoints,
     colors: {
@@ -124,19 +124,19 @@ const chakraTheme = (0, react_1.extendTheme)({
             baseStyle: {},
             variants: {
                 subtext: props => ({
-                    color: (0, theme_tools_1.mode)("text.light.subtext", "text.dark.subtext")(props),
+                    color: theme_tools_1.mode("text.light.subtext", "text.dark.subtext")(props),
                     fontSize: "12px",
                 }),
                 h3: props => ({
-                    color: (0, theme_tools_1.mode)("text.light.h3_captions", "text.dark.h3_captions")(props),
+                    color: theme_tools_1.mode("text.light.h3_captions", "text.dark.h3_captions")(props),
                 }),
                 h2: props => ({
-                    color: (0, theme_tools_1.mode)("text.light.h2", "text.dark.h2")(props),
+                    color: theme_tools_1.mode("text.light.h2", "text.dark.h2")(props),
                     fontSize: "14px",
                     fontWeight: "bold",
                 }),
                 h1: props => ({
-                    color: (0, theme_tools_1.mode)("text.light.h1", "text.dark.h1")(props),
+                    color: theme_tools_1.mode("text.light.h1", "text.dark.h1")(props),
                     fontSize: "14px",
                 }),
             },
@@ -166,14 +166,14 @@ const chakraTheme = (0, react_1.extendTheme)({
         },
         Button: {
             baseStyle: props => ({
-                bg: (0, theme_tools_1.mode)("primary.light.200", "primary.dark.200")(props),
-                color: (0, theme_tools_1.mode)("primary.light._000", "primary.dark._000")(props),
+                bg: theme_tools_1.mode("primary.light.200", "primary.dark.200")(props),
+                color: theme_tools_1.mode("primary.light._000", "primary.dark._000")(props),
                 fontSize: "18px",
                 h: "32px",
                 p: "5px 10px",
                 borderRadius: "5px",
                 _hover: {
-                    bg: (0, theme_tools_1.mode)((0, theme_tools_1.darken)("primary.light.200", 10), (0, theme_tools_1.whiten)("primary.dark.200", 10))(props),
+                    bg: theme_tools_1.mode(theme_tools_1.darken("primary.light.200", 10), theme_tools_1.whiten("primary.dark.200", 10))(props),
                 },
             }),
             sizes: {
@@ -193,57 +193,57 @@ const chakraTheme = (0, react_1.extendTheme)({
             },
             variants: {
                 primary: props => ({
-                    fill: (0, theme_tools_1.mode)("primary.light._000", "primary.dark._000")(props),
+                    fill: theme_tools_1.mode("primary.light._000", "primary.dark._000")(props),
                 }),
                 secondary: props => ({
                     bg: "transparent",
                     border: "1px solid",
-                    borderColor: (0, theme_tools_1.mode)("primary.light.200", "primary.dark.200")(props),
-                    color: (0, theme_tools_1.mode)("primary.light.200", "primary.dark.200")(props),
+                    borderColor: theme_tools_1.mode("primary.light.200", "primary.dark.200")(props),
+                    color: theme_tools_1.mode("primary.light.200", "primary.dark.200")(props),
                     _hover: {
-                        bg: (0, theme_tools_1.mode)((0, theme_tools_1.whiten)("primary.light.100", 70), (0, theme_tools_1.whiten)("backgrounds.dark.100", 20))(props),
+                        bg: theme_tools_1.mode(theme_tools_1.whiten("primary.light.100", 70), theme_tools_1.whiten("backgrounds.dark.100", 20))(props),
                     },
                 }),
                 sidebar_button: props => ({
                     bg: "transparent",
                     borderRadius: "10px",
-                    fill: (0, theme_tools_1.mode)("primary.dark.100", "text.light.h3_captions")(props),
+                    fill: theme_tools_1.mode("primary.dark.100", "text.light.h3_captions")(props),
                     _hover: {
-                        bg: (0, theme_tools_1.mode)((0, theme_tools_1.darken)("primary.dark.200", 10), (0, theme_tools_1.whiten)("backgrounds.dark.e000", 20))(props),
+                        bg: theme_tools_1.mode(theme_tools_1.darken("primary.dark.200", 10), theme_tools_1.whiten("backgrounds.dark.e000", 20))(props),
                         fill: "white",
                     },
                 }),
                 active_sidebar_button: props => ({
                     borderRadius: "10px",
                     fill: "white",
-                    bg: (0, theme_tools_1.mode)("primary.light.200", "text.dark.disabled")(props),
+                    bg: theme_tools_1.mode("primary.light.200", "text.dark.disabled")(props),
                 }),
                 transparent: props => ({
                     bg: "transparent",
                     _hover: {
-                        bg: (0, theme_tools_1.mode)((0, theme_tools_1.darken)("primary.light._000", 20), (0, theme_tools_1.whiten)("primary.dark._000", 20))(props),
+                        bg: theme_tools_1.mode(theme_tools_1.darken("primary.light._000", 20), theme_tools_1.whiten("primary.dark._000", 20))(props),
                     },
                 }),
                 transparent_nav_a: props => ({
                     bg: "transparent",
-                    color: (0, theme_tools_1.mode)("primary.light.200", "primary.dark.200")(props),
+                    color: theme_tools_1.mode("primary.light.200", "primary.dark.200")(props),
                     borderRadius: 0,
                     h: "full",
-                    fill: (0, theme_tools_1.mode)("primary.light.200", "primary.dark.200")(props),
-                    stroke: (0, theme_tools_1.mode)("primary.light.200", "primary.dark.200")(props),
+                    fill: theme_tools_1.mode("primary.light.200", "primary.dark.200")(props),
+                    stroke: theme_tools_1.mode("primary.light.200", "primary.dark.200")(props),
                     _hover: {
-                        bg: (0, theme_tools_1.mode)((0, theme_tools_1.darken)("primary.light._000", 10), (0, theme_tools_1.whiten)("backgrounds.dark._000", 20))(props),
+                        bg: theme_tools_1.mode(theme_tools_1.darken("primary.light._000", 10), theme_tools_1.whiten("backgrounds.dark._000", 20))(props),
                     },
                 }),
                 transparent_nav: props => ({
                     bg: "transparent",
-                    color: (0, theme_tools_1.mode)("text.light.subtext", "text.dark.subtext")(props),
+                    color: theme_tools_1.mode("text.light.subtext", "text.dark.subtext")(props),
                     borderRadius: 0,
                     h: "full",
-                    fill: (0, theme_tools_1.mode)("text.light.subtext", "text.dark.subtext")(props),
-                    stroke: (0, theme_tools_1.mode)("text.light.subtext", "text.dark.subtext")(props),
+                    fill: theme_tools_1.mode("text.light.subtext", "text.dark.subtext")(props),
+                    stroke: theme_tools_1.mode("text.light.subtext", "text.dark.subtext")(props),
                     _hover: {
-                        bg: (0, theme_tools_1.mode)((0, theme_tools_1.darken)("primary.light._000", 10), (0, theme_tools_1.whiten)("backgrounds.dark._000", 20))(props),
+                        bg: theme_tools_1.mode(theme_tools_1.darken("primary.light._000", 10), theme_tools_1.whiten("backgrounds.dark._000", 20))(props),
                     },
                 }),
                 drawer_mini: props => ({
@@ -254,7 +254,7 @@ const chakraTheme = (0, react_1.extendTheme)({
                     bottom: "66px",
                     left: "1",
                     _hover: {
-                        bg: (0, theme_tools_1.whiten)("primary.dark.200", 20),
+                        bg: theme_tools_1.whiten("primary.dark.200", 20),
                         fill: "white",
                         opacity: 1,
                     },
@@ -268,7 +268,7 @@ const chakraTheme = (0, react_1.extendTheme)({
         Input: {
             variants: {
                 filled_a: props => ({
-                    bg: (0, theme_tools_1.mode)("primary.dark.200", "primary.light.200")(props),
+                    bg: theme_tools_1.mode("primary.dark.200", "primary.light.200")(props),
                 }),
             },
         },
@@ -277,7 +277,7 @@ const chakraTheme = (0, react_1.extendTheme)({
     styles: {
         global: props => ({
             body: {
-                bg: (0, theme_tools_1.mode)("backgrounds.light.e200", "backgrounds.dark.e200")(props),
+                bg: theme_tools_1.mode("backgrounds.light.e200", "backgrounds.dark.e200")(props),
             },
         }),
     },

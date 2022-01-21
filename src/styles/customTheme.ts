@@ -9,7 +9,7 @@ import {
 
 const config = {
   initialColorMode: "light",
-  useSystemColorMode: true,
+  useSystemColorMode: false,
 };
 
 const breakpoints = createBreakpoints({

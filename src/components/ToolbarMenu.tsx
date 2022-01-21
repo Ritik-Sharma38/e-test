@@ -16,6 +16,7 @@ type Props = {
   theme: typeof theme;
   items: MenuItem[];
   isImageSelection: any;
+  linkEditorRef: any;
 };
 
 const FlexibleWrapper = styled.div`

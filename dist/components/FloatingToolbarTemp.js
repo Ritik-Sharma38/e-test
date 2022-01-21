@@ -38,9 +38,9 @@ const defaultPosition = {
 function usePosition({ menuRef, isSelectingText, props }) {
     const { view, active } = props;
     const { selection } = view.state;
-    const { width: menuWidth, height: menuHeight } = (0, useComponentSize_1.default)(menuRef);
-    const viewportHeight = (0, useViewportHeight_1.default)();
-    const isTouchDevice = (0, useMediaQuery_1.default)("(hover: none) and (pointer: coarse)");
+    const { width: menuWidth, height: menuHeight } = useComponentSize_1.default(menuRef);
+    const viewportHeight = useViewportHeight_1.default();
+    const isTouchDevice = useMediaQuery_1.default("(hover: none) and (pointer: coarse)");
     if (!active || !menuWidth || !menuHeight || SSR || isSelectingText) {
         return defaultPosition;
     }

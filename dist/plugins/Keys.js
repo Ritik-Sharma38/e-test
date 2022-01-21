@@ -39,7 +39,7 @@ class Keys extends Extension_1.default {
                                 return true;
                             }
                         }
-                        if (!(0, isModKey_1.default)(event)) {
+                        if (!isModKey_1.default(event)) {
                             return false;
                         }
                         if (event.key === "s") {

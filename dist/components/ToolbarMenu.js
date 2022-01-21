@@ -202,5 +202,5 @@ class ToolbarMenu extends React.Component {
                 }))))));
     }
 }
-exports.default = (0, styled_components_1.withTheme)(ToolbarMenu);
+exports.default = styled_components_1.withTheme(ToolbarMenu);
 //# sourceMappingURL=ToolbarMenu.js.map

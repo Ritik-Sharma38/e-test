@@ -53,7 +53,7 @@ class Heading extends Node_1.default {
                         tr.setSelection(prosemirror_state_1.Selection.near($pos, -1));
                     }
                     const transaction = tr.setNodeMarkup(result.inside, undefined, Object.assign(Object.assign({}, node.attrs), { collapsed }));
-                    const persistKey = (0, headingToSlug_1.headingToPersistenceKey)(node, this.editor.props.id);
+                    const persistKey = headingToSlug_1.headingToPersistenceKey(node, this.editor.props.id);
                     if (collapsed) {
                         localStorage === null || localStorage === void 0 ? void 0 : localStorage.setItem(persistKey, "collapsed");
                     }
@@ -74,7 +74,7 @@ class Heading extends Node_1.default {
             }
             const hash = `#${anchor.id}`;
             const urlWithoutHash = window.location.href.split("#")[0];
-            (0, copy_to_clipboard_1.default)(urlWithoutHash + hash);
+            copy_to_clipboard_1.default(urlWithoutHash + hash);
             if (this.options.onShowToast) {
                 this.options.onShowToast(this.options.dictionary.linkCopied, types_1.ToastType.Info);
             }
@@ -158,14 +158,14 @@ class Heading extends Node_1.default {
     }
     commands({ type, schema }) {
         return (attrs) => {
-            return (0, toggleBlockType_1.default)(type, schema.nodes.paragraph, attrs);
+            return toggleBlockType_1.default(type, schema.nodes.paragraph, attrs);
         };
     }
     keys({ type, schema }) {
         const options = this.options.levels.reduce((items, level) => (Object.assign(Object.assign({}, items), {
-            [`Shift-Ctrl-${level}`]: (0, toggleBlockType_1.default)(type, schema.nodes.paragraph, { level }),
+            [`Shift-Ctrl-${level}`]: toggleBlockType_1.default(type, schema.nodes.paragraph, { level }),
         })), {});
-        return Object.assign(Object.assign({}, options), { Backspace: (0, backspaceToParagraph_1.default)(type), Enter: (0, splitHeading_1.default)(type) });
+        return Object.assign(Object.assign({}, options), { Backspace: backspaceToParagraph_1.default(type), Enter: splitHeading_1.default(type) });
     }
     get plugins() {
         const getAnchors = doc => {
@@ -174,10 +174,10 @@ class Heading extends Node_1.default {
             doc.descendants((node, pos) => {
                 if (node.type.name !== this.name)
                     return;
-                const slug = (0, headingToSlug_1.default)(node);
+                const slug = headingToSlug_1.default(node);
                 let id = slug;
                 if (previouslySeen[slug] > 0) {
-                    id = (0, headingToSlug_1.default)(node, previouslySeen[slug]);
+                    id = headingToSlug_1.default(node, previouslySeen[slug]);
                 }
                 previouslySeen[slug] =
                     previouslySeen[slug] !== undefined ? previouslySeen[slug] + 1 : 1;
@@ -209,7 +209,7 @@ class Heading extends Node_1.default {
         return [plugin];
     }
     inputRules({ type }) {
-        return this.options.levels.map(level => (0, prosemirror_inputrules_1.textblockTypeInputRule)(new RegExp(`^(#{1,${level}})\\s$`), type, () => ({
+        return this.options.levels.map(level => prosemirror_inputrules_1.textblockTypeInputRule(new RegExp(`^(#{1,${level}})\\s$`), type, () => ({
             level,
         })));
     }

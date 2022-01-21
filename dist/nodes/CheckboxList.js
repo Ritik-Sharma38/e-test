@@ -24,14 +24,14 @@ class CheckboxList extends Node_1.default {
     }
     keys({ type, schema }) {
         return {
-            "Shift-Ctrl-7": (0, toggleList_1.default)(type, schema.nodes.checkbox_item),
+            "Shift-Ctrl-7": toggleList_1.default(type, schema.nodes.checkbox_item),
         };
     }
     commands({ type, schema }) {
-        return () => (0, toggleList_1.default)(type, schema.nodes.checkbox_item);
+        return () => toggleList_1.default(type, schema.nodes.checkbox_item);
     }
     inputRules({ type }) {
-        return [(0, prosemirror_inputrules_1.wrappingInputRule)(/^-?\s*(\[ \])\s$/i, type)];
+        return [prosemirror_inputrules_1.wrappingInputRule(/^-?\s*(\[ \])\s$/i, type)];
     }
     toMarkdown(state, node) {
         state.renderList(node, "  ", () => "- ");

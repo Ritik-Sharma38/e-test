@@ -118,10 +118,10 @@ class Notice extends Node_1.default {
         };
     }
     commands({ type }) {
-        return attrs => (0, toggleWrap_1.default)(type, attrs);
+        return attrs => toggleWrap_1.default(type, attrs);
     }
     inputRules({ type }) {
-        return [(0, prosemirror_inputrules_1.wrappingInputRule)(/^:::$/, type)];
+        return [prosemirror_inputrules_1.wrappingInputRule(/^:::$/, type)];
     }
     toMarkdown(state, node) {
         state.write("\n:::" + (node.attrs.style || "info") + "\n");

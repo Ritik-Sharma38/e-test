@@ -1,3 +1,3 @@
-declare const chakraTheme: import("@chakra-ui/utils").Dict<any>;
+declare const chakraTheme: Record<string, any>;
 export default chakraTheme;
 //# sourceMappingURL=customTheme.d.ts.map

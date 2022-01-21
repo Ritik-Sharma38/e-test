@@ -71,13 +71,14 @@ function isVisible(props) {
     const slice = selection.content();
     const fragment = slice.content;
     const nodes = fragment.content;
-    return (0, some_1.default)(nodes, n => n.content.size);
+    return some_1.default(nodes, n => n.content.size);
 }
 class SelectionToolbar extends React.Component {
     constructor() {
         super(...arguments);
         this.isActive = false;
         this.menuRef = React.createRef();
+        this.linkEditorRef = React.createRef();
         this.handleClickOutside = (ev) => {
             if (ev.target instanceof Node &&
                 this.menuRef.current &&
@@ -109,7 +110,7 @@ class SelectionToolbar extends React.Component {
             dispatch(view.state.tr
                 .removeMark(from, to, markType)
                 .addMark(from, to, markType.create({ href })));
-            (0, createAndInsertLink_1.default)(view, title, href, {
+            createAndInsertLink_1.default(view, title, href, {
                 onCreateLink,
                 onShowToast,
                 dictionary,
@@ -146,36 +147,36 @@ class SelectionToolbar extends React.Component {
         const { view } = rest;
         const { state } = view;
         const { selection } = state;
-        const isCodeSelection = (0, isNodeActive_1.default)(state.schema.nodes.code_block)(state);
-        const isDividerSelection = (0, isNodeActive_1.default)(state.schema.nodes.hr)(state);
+        const isCodeSelection = isNodeActive_1.default(state.schema.nodes.code_block)(state);
+        const isDividerSelection = isNodeActive_1.default(state.schema.nodes.hr)(state);
         if (isCodeSelection && false) {
             return null;
         }
-        const colIndex = (0, getColumnIndex_1.default)(state.selection);
-        const rowIndex = (0, getRowIndex_1.default)(state.selection);
+        const colIndex = getColumnIndex_1.default(state.selection);
+        const rowIndex = getRowIndex_1.default(state.selection);
         const isTableSelection = colIndex !== undefined && rowIndex !== undefined;
-        const link = (0, isMarkActive_1.default)(state.schema.marks.link)(state);
-        const range = (0, getMarkRange_1.default)(selection.$from, state.schema.marks.link);
+        const link = isMarkActive_1.default(state.schema.marks.link)(state);
+        const range = getMarkRange_1.default(selection.$from, state.schema.marks.link);
         const isImageSelection = selection.node && selection.node.type.name === "image";
         let isTextSelection = false;
         let items = [];
         if (isTableSelection) {
-            items = (0, table_1.default)(dictionary);
+            items = table_1.default(dictionary);
         }
         else if (colIndex !== undefined) {
-            items = (0, tableCol_1.default)(state, colIndex, rtl, dictionary);
+            items = tableCol_1.default(state, colIndex, rtl, dictionary);
         }
         else if (rowIndex !== undefined) {
-            items = (0, tableRow_1.default)(state, rowIndex, dictionary);
+            items = tableRow_1.default(state, rowIndex, dictionary);
         }
         else if (isImageSelection) {
-            items = (0, image_1.default)(state, dictionary);
+            items = image_1.default(state, dictionary);
         }
         else if (isDividerSelection) {
-            items = (0, divider_1.default)(state, dictionary);
+            items = divider_1.default(state, dictionary);
         }
         else {
-            items = (0, formatting_1.default)(state, isTemplate, dictionary);
+            items = formatting_1.default(state, isTemplate, dictionary);
             isTextSelection = true;
         }
         items = items.filter(item => {
@@ -185,7 +186,7 @@ class SelectionToolbar extends React.Component {
                 return false;
             return true;
         });
-        items = (0, filterExcessSeparators_1.default)(items);
+        items = filterExcessSeparators_1.default(items);
         if (!items.length) {
             return null;
         }
@@ -194,8 +195,8 @@ class SelectionToolbar extends React.Component {
             return null;
         }
         return (React.createElement(React.Fragment, null, link && range ? (React.createElement(FloatingToolbarTemp_1.default, { view: view, active: isVisible(this.props) || true, ref: this.menuRef, fromCommandMenu: false },
-            React.createElement(LinkEditor_1.default, Object.assign({ dictionary: dictionary, mark: range.mark, from: range.from, to: range.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink }, rest)))) : (React.createElement(FloatingToolbar_1.default, { view: view, active: isVisible(this.props) || true, ref: this.menuRef },
-            React.createElement(ToolbarMenu_1.default, Object.assign({ items: items }, rest, { commandRef: commandRef, isImageSelection: isImageSelection }))))));
+            React.createElement(LinkEditor_1.default, Object.assign({ ref: this.linkEditorRef, dictionary: dictionary, mark: range.mark, from: range.from, to: range.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink }, rest)))) : (React.createElement(FloatingToolbar_1.default, { view: view, active: isVisible(this.props) || true, ref: this.menuRef },
+            React.createElement(ToolbarMenu_1.default, Object.assign({ items: items }, rest, { commandRef: commandRef, linkEditorRef: this.linkEditorRef, isImageSelection: isImageSelection }))))));
     }
 }
 exports.default = SelectionToolbar;

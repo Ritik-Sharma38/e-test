@@ -63,6 +63,7 @@ function isVisible(props) {
 export default class SelectionToolbar extends React.Component<Props> {
   isActive = false;
   menuRef = React.createRef<HTMLDivElement>();
+  linkEditorRef = React.createRef<HTMLDivElement>();
 
   componentDidUpdate(): void {
     const visible = isVisible(this.props);
@@ -237,6 +238,7 @@ export default class SelectionToolbar extends React.Component<Props> {
             fromCommandMenu={false}
           >
             <LinkEditor
+              ref={this.linkEditorRef}
               dictionary={dictionary}
               mark={range.mark}
               from={range.from}
@@ -256,6 +258,7 @@ export default class SelectionToolbar extends React.Component<Props> {
               items={items}
               {...rest}
               commandRef={commandRef}
+              linkEditorRef={this.linkEditorRef}
               isImageSelection={isImageSelection}
             />
           </FloatingToolbar>

@@ -139,6 +139,7 @@ export declare type Props = {
     }) => void;
     onCancel?: () => void;
     onChange?: (value: () => string) => void;
+    onPlainText?: (value: () => string) => void;
     onImageUploadStart?: () => void;
     onImageUploadStop?: () => void;
     onCreateLink?: (title: string) => Promise<string>;
@@ -232,6 +233,7 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
     calculateDir: () => void;
     value: () => string;
     handleChange: () => void;
+    handlePlainText: () => void;
     handleSave: () => void;
     handleSaveAndExit: () => void;
     handleEditorBlur: () => void;

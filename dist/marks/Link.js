@@ -64,7 +64,7 @@ class Link extends Mark_1.default {
         ];
     }
     commands({ type }) {
-        return ({ href } = { href: "" }) => (0, prosemirror_commands_1.toggleMark)(type, { href });
+        return ({ href } = { href: "" }) => prosemirror_commands_1.toggleMark(type, { href });
     }
     keys({ type }) {
         return {
@@ -73,7 +73,7 @@ class Link extends Mark_1.default {
                     this.options.onKeyboardShortcut();
                     return true;
                 }
-                return (0, prosemirror_commands_1.toggleMark)(type, { href: "" })(state, dispatch);
+                return prosemirror_commands_1.toggleMark(type, { href: "" })(state, dispatch);
             },
         };
     }

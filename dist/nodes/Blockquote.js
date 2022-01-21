@@ -21,17 +21,17 @@ class Blockquote extends Node_1.default {
         };
     }
     inputRules({ type }) {
-        return [(0, prosemirror_inputrules_1.wrappingInputRule)(/^\s*>\s$/, type)];
+        return [prosemirror_inputrules_1.wrappingInputRule(/^\s*>\s$/, type)];
     }
     commands({ type }) {
-        return () => (0, toggleWrap_1.default)(type);
+        return () => toggleWrap_1.default(type);
     }
     keys({ type }) {
         return {
-            "Ctrl->": (0, toggleWrap_1.default)(type),
-            "Mod-]": (0, toggleWrap_1.default)(type),
+            "Ctrl->": toggleWrap_1.default(type),
+            "Mod-]": toggleWrap_1.default(type),
             "Shift-Enter": (state, dispatch) => {
-                if (!(0, isNodeActive_1.default)(type)(state)) {
+                if (!isNodeActive_1.default(type)(state)) {
                     return false;
                 }
                 const { tr, selection } = state;

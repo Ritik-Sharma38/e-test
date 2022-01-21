@@ -18,15 +18,15 @@ class Highlight extends Mark_1.default {
         };
     }
     inputRules({ type }) {
-        return [(0, markInputRule_1.default)(/(?:==)([^=]+)(?:==)$/, type)];
+        return [markInputRule_1.default(/(?:==)([^=]+)(?:==)$/, type)];
     }
     keys({ type }) {
         return {
-            "Mod-Ctrl-h": (0, prosemirror_commands_1.toggleMark)(type),
+            "Mod-Ctrl-h": prosemirror_commands_1.toggleMark(type),
         };
     }
     get rulePlugins() {
-        return [(0, mark_1.default)({ delim: "==", mark: "highlight" })];
+        return [mark_1.default({ delim: "==", mark: "highlight" })];
     }
     get toMarkdown() {
         return {

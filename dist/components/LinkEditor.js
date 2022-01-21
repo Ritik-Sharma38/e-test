@@ -73,7 +73,7 @@ class LinkEditor extends React.Component {
                 return;
             this.discardInputValue = true;
             const { from, to } = this.props;
-            if (!(0, isUrl_1.default)(href) &&
+            if (!isUrl_1.default(href) &&
                 !href.startsWith("/") &&
                 !href.startsWith("#") &&
                 !href.startsWith("mailto:")) {
@@ -217,7 +217,7 @@ class LinkEditor extends React.Component {
         this.moveSelectionToEnd = () => {
             const { to, view } = this.props;
             const { state, dispatch } = view;
-            dispatch((0, prosemirror_utils_1.setTextSelection)(to)(state.tr));
+            dispatch(prosemirror_utils_1.setTextSelection(to)(state.tr));
             view.focus();
         };
         this.wrapperRef = React.createRef();
@@ -282,7 +282,7 @@ class LinkEditor extends React.Component {
                         outline: "none",
                         border: "none",
                     }, onClick: () => this.props.onRemoveLink && this.props.onRemoveLink() }, "Cancel"),
-                React.createElement("button", { onClick: e => {
+                React.createElement("button", { onClick: () => {
                         this.handleEnterKey();
                     }, style: {
                         padding: "5px 10px",
@@ -313,7 +313,7 @@ class LinkEditor extends React.Component {
                     }, selected: results.length === selectedIndex }))))))));
     }
 }
-const Wrapper = (0, styled_components_1.default)(Flex_1.default) `
+const Wrapper = styled_components_1.default(Flex_1.default) `
   margin-left: -8px;
   margin-right: -8px;
   min-width: 336px;
@@ -347,5 +347,5 @@ const SearchResults = styled_components_1.default.ol `
     padding: 8px 8px 4px;
   }
 `;
-exports.default = (0, styled_components_1.withTheme)(LinkEditor);
+exports.default = styled_components_1.withTheme(LinkEditor);
 //# sourceMappingURL=LinkEditor.js.map

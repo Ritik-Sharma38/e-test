@@ -59,8 +59,7 @@ class LinkToolbar extends React.Component {
         this.handleClickOutside = ev => {
             var _a, _b;
             if (ev.target &&
-                this.menuRef.current &&
-                ((_b = (_a = this.menuRef) === null || _a === void 0 ? void 0 : _a.current) === null || _b === void 0 ? void 0 : _b.contains(ev.target))) {
+                this.menuRef.current && ((_b = (_a = this.menuRef) === null || _a === void 0 ? void 0 : _a.current) === null || _b === void 0 ? void 0 : _b.contains(ev.target))) {
                 return;
             }
         };
@@ -80,7 +79,7 @@ class LinkToolbar extends React.Component {
             dispatch(view.state.tr
                 .insertText(title, from, to)
                 .addMark(from, to + title.length, state.schema.marks.link.create({ href })));
-            (0, createAndInsertLink_1.default)(view, title, href, {
+            createAndInsertLink_1.default(view, title, href, {
                 onCreateLink,
                 onShowToast,
                 dictionary,

@@ -13,7 +13,6 @@ import styled, { withTheme } from "styled-components";
 import isUrl from "../lib/isUrl";
 import theme from "../styles/theme";
 import Flex from "./Flex";
-import Input from "./Input";
 import ToolbarButton from "./ToolbarButton";
 import LinkSearchResult from "./LinkSearchResult";
 import baseDictionary from "../dictionary";
@@ -454,7 +453,7 @@ class LinkEditor extends React.Component<Props, State> {
                 Cancel
               </button>
               <button
-                onClick={e => {
+                onClick={() => {
                   this.handleEnterKey();
                 }}
                 style={{

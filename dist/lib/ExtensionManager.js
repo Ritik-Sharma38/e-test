@@ -39,7 +39,7 @@ class ExtensionManager {
                 return nodes;
             return Object.assign(Object.assign({}, nodes), { [extension.markdownToken || extension.name]: md });
         }, {});
-        return new prosemirror_markdown_1.MarkdownParser(schema, (0, rules_1.default)({ rules, plugins }), tokens);
+        return new prosemirror_markdown_1.MarkdownParser(schema, rules_1.default({ rules, plugins }), tokens);
     }
     get marks() {
         return this.extensions
@@ -74,7 +74,7 @@ class ExtensionManager {
         return [
             ...extensionKeymaps,
             ...nodeMarkKeymaps,
-        ].map((keys) => (0, prosemirror_keymap_1.keymap)(keys));
+        ].map((keys) => prosemirror_keymap_1.keymap(keys));
     }
     inputRules({ schema }) {
         const extensionInputRules = this.extensions

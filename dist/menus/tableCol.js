@@ -13,7 +13,7 @@ function tableColMenuItems(state, index, rtl, dictionary) {
             tooltip: dictionary.alignLeft,
             icon: outline_icons_1.AlignLeftIcon,
             attrs: { index, alignment: "left" },
-            active: (0, isNodeActive_1.default)(schema.nodes.th, {
+            active: isNodeActive_1.default(schema.nodes.th, {
                 colspan: 1,
                 rowspan: 1,
                 alignment: "left",
@@ -24,7 +24,7 @@ function tableColMenuItems(state, index, rtl, dictionary) {
             tooltip: dictionary.alignCenter,
             icon: outline_icons_1.AlignCenterIcon,
             attrs: { index, alignment: "center" },
-            active: (0, isNodeActive_1.default)(schema.nodes.th, {
+            active: isNodeActive_1.default(schema.nodes.th, {
                 colspan: 1,
                 rowspan: 1,
                 alignment: "center",
@@ -35,7 +35,7 @@ function tableColMenuItems(state, index, rtl, dictionary) {
             tooltip: dictionary.alignRight,
             icon: outline_icons_1.AlignRightIcon,
             attrs: { index, alignment: "right" },
-            active: (0, isNodeActive_1.default)(schema.nodes.th, {
+            active: isNodeActive_1.default(schema.nodes.th, {
                 colspan: 1,
                 rowspan: 1,
                 alignment: "right",

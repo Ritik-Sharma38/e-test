@@ -7,10 +7,10 @@ const outline_icons_1 = require("outline-icons");
 const isNodeActive_1 = __importDefault(require("../queries/isNodeActive"));
 function imageMenuItems(state, dictionary) {
     const { schema } = state;
-    const isLeftAligned = (0, isNodeActive_1.default)(schema.nodes.image, {
+    const isLeftAligned = isNodeActive_1.default(schema.nodes.image, {
         layoutClass: "left-50",
     });
-    const isRightAligned = (0, isNodeActive_1.default)(schema.nodes.image, {
+    const isRightAligned = isNodeActive_1.default(schema.nodes.image, {
         layoutClass: "right-50",
     });
     return [
@@ -26,7 +26,7 @@ function imageMenuItems(state, dictionary) {
             tooltip: dictionary.alignCenter,
             icon: outline_icons_1.AlignImageCenterIcon,
             visible: true,
-            active: state => (0, isNodeActive_1.default)(schema.nodes.image)(state) &&
+            active: state => isNodeActive_1.default(schema.nodes.image)(state) &&
                 !isLeftAligned(state) &&
                 !isRightAligned(state),
         },

@@ -175,7 +175,7 @@ exports.Persisted.args = {
         `# Persisted
   
 The contents of this editor are persisted to local storage on change (edit and reload)`,
-    onChange: (0, debounce_1.default)(value => {
+    onChange: debounce_1.default(value => {
         const text = value();
         localStorage.setItem("saved", text);
     }, 250),

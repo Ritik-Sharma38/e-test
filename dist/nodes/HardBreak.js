@@ -33,7 +33,7 @@ class HardBreak extends Node_1.default {
     keys({ type }) {
         return {
             "Shift-Enter": (state, dispatch) => {
-                if (!(0, prosemirror_tables_1.isInTable)(state))
+                if (!prosemirror_tables_1.isInTable(state))
                     return false;
                 dispatch(state.tr.replaceSelectionWith(type.create()).scrollIntoView());
                 return true;

@@ -26,7 +26,7 @@ class EmojiTrigger extends Extension_1.default {
                         if (event.key === "Backspace") {
                             setTimeout(() => {
                                 const { pos } = view.state.selection.$from;
-                                return (0, BlockMenuTrigger_1.run)(view, pos, pos, OPEN_REGEX, (state, match) => {
+                                return BlockMenuTrigger_1.run(view, pos, pos, OPEN_REGEX, (state, match) => {
                                     if (match) {
                                         this.options.onOpen(match[1]);
                                     }
@@ -42,7 +42,7 @@ class EmojiTrigger extends Extension_1.default {
                             event.key === "ArrowDown" ||
                             event.key === "Tab") {
                             const { pos } = view.state.selection.$from;
-                            return (0, BlockMenuTrigger_1.run)(view, pos, pos, OPEN_REGEX, (state, match) => {
+                            return BlockMenuTrigger_1.run(view, pos, pos, OPEN_REGEX, (state, match) => {
                                 return match ? true : null;
                             });
                         }
@@ -57,7 +57,7 @@ class EmojiTrigger extends Extension_1.default {
             new prosemirror_inputrules_1.InputRule(OPEN_REGEX, (state, match) => {
                 if (match &&
                     state.selection.$from.parent.type.name === "paragraph" &&
-                    !(0, isInCode_1.default)(state)) {
+                    !isInCode_1.default(state)) {
                     this.options.onOpen(match[1]);
                 }
                 return null;

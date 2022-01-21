@@ -12,14 +12,14 @@ function dividerMenuItems(state, dictionary) {
             name: "hr",
             tooltip: dictionary.pageBreak,
             attrs: { markup: "***" },
-            active: (0, isNodeActive_1.default)(schema.nodes.hr, { markup: "***" }),
+            active: isNodeActive_1.default(schema.nodes.hr, { markup: "***" }),
             icon: outline_icons_1.PageBreakIcon,
         },
         {
             name: "hr",
             tooltip: dictionary.hr,
             attrs: { markup: "---" },
-            active: (0, isNodeActive_1.default)(schema.nodes.hr, { markup: "---" }),
+            active: isNodeActive_1.default(schema.nodes.hr, { markup: "---" }),
             icon: outline_icons_1.HorizontalRuleIcon,
         },
     ];

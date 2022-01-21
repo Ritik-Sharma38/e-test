@@ -18,7 +18,7 @@ class Placeholder extends Mark_1.default {
         };
     }
     get rulePlugins() {
-        return [(0, mark_1.default)({ delim: "!!", mark: "placeholder" })];
+        return [mark_1.default({ delim: "!!", mark: "placeholder" })];
     }
     get toMarkdown() {
         return {
@@ -41,7 +41,7 @@ class Placeholder extends Mark_1.default {
                         }
                         const { state, dispatch } = view;
                         const $from = state.doc.resolve(from);
-                        const range = (0, getMarkRange_1.default)($from, state.schema.marks.placeholder);
+                        const range = getMarkRange_1.default($from, state.schema.marks.placeholder);
                         if (!range)
                             return false;
                         const selectionStart = Math.min(from, range.from);
@@ -67,7 +67,7 @@ class Placeholder extends Mark_1.default {
                         }
                         const { state, dispatch } = view;
                         if (event.key === "Backspace") {
-                            const range = (0, getMarkRange_1.default)(state.doc.resolve(Math.max(0, state.selection.from - 1)), state.schema.marks.placeholder);
+                            const range = getMarkRange_1.default(state.doc.resolve(Math.max(0, state.selection.from - 1)), state.schema.marks.placeholder);
                             if (!range)
                                 return false;
                             dispatch(state.tr
@@ -76,7 +76,7 @@ class Placeholder extends Mark_1.default {
                             return true;
                         }
                         if (event.key === "ArrowLeft") {
-                            const range = (0, getMarkRange_1.default)(state.doc.resolve(Math.max(0, state.selection.from - 1)), state.schema.marks.placeholder);
+                            const range = getMarkRange_1.default(state.doc.resolve(Math.max(0, state.selection.from - 1)), state.schema.marks.placeholder);
                             if (!range)
                                 return false;
                             const startOfMark = state.doc.resolve(range.from);
@@ -84,7 +84,7 @@ class Placeholder extends Mark_1.default {
                             return true;
                         }
                         if (event.key === "ArrowRight") {
-                            const range = (0, getMarkRange_1.default)(state.selection.$from, state.schema.marks.placeholder);
+                            const range = getMarkRange_1.default(state.selection.$from, state.schema.marks.placeholder);
                             if (!range)
                                 return false;
                             const endOfMark = state.doc.resolve(range.to);
@@ -103,7 +103,7 @@ class Placeholder extends Mark_1.default {
                         if (event.target instanceof HTMLSpanElement &&
                             event.target.className.includes("template-placeholder")) {
                             const { state, dispatch } = view;
-                            const range = (0, getMarkRange_1.default)(state.selection.$from, state.schema.marks.placeholder);
+                            const range = getMarkRange_1.default(state.selection.$from, state.schema.marks.placeholder);
                             if (!range)
                                 return false;
                             event.stopPropagation();

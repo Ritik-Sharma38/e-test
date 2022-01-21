@@ -13,14 +13,14 @@ class BlockMenu extends react_1.default.Component {
         super(...arguments);
         this.clearSearch = (type) => {
             const { state, dispatch } = this.props.view;
-            const parent = (0, prosemirror_utils_1.findParentNode)(node => !!node)(state.selection);
+            const parent = prosemirror_utils_1.findParentNode(node => !!node)(state.selection);
             if (parent) {
                 dispatch(state.tr.insertText("", type === "middle" ? state.selection.from : parent.pos, state.selection.to));
             }
         };
     }
     get items() {
-        return (0, block_1.default)(this.props.dictionary);
+        return block_1.default(this.props.dictionary);
     }
     render() {
         const { passRef } = this.props;

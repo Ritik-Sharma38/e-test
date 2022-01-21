@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const prosemirror_utils_1 = require("prosemirror-utils");
 function findCollapsedNodes(doc) {
-    const blocks = (0, prosemirror_utils_1.findBlockNodes)(doc);
+    const blocks = prosemirror_utils_1.findBlockNodes(doc);
     const nodes = [];
     let withinCollapsedHeading;
     for (const block of blocks) {

@@ -10,15 +10,15 @@ const isMarkActive_1 = __importDefault(require("../queries/isMarkActive"));
 const isNodeActive_1 = __importDefault(require("../queries/isNodeActive"));
 function formattingMenuItems(state, isTemplate, dictionary) {
     const { schema } = state;
-    const isTable = (0, prosemirror_tables_1.isInTable)(state);
-    const isList = (0, isInList_1.default)(state);
+    const isTable = prosemirror_tables_1.isInTable(state);
+    const isList = isInList_1.default(state);
     const allowBlocks = !isTable && !isList;
     return [
         {
             name: "heading",
             tooltip: dictionary.heading,
             icon: outline_icons_1.Heading1Icon,
-            active: (0, isNodeActive_1.default)(schema.nodes.heading, { level: 1 }),
+            active: isNodeActive_1.default(schema.nodes.heading, { level: 1 }),
             attrs: { level: 1 },
             visible: allowBlocks,
         },
@@ -26,7 +26,7 @@ function formattingMenuItems(state, isTemplate, dictionary) {
             name: "heading",
             tooltip: dictionary.subheading,
             icon: outline_icons_1.Heading2Icon,
-            active: (0, isNodeActive_1.default)(schema.nodes.heading, { level: 2 }),
+            active: isNodeActive_1.default(schema.nodes.heading, { level: 2 }),
             attrs: { level: 2 },
             visible: allowBlocks,
         },
@@ -34,7 +34,7 @@ function formattingMenuItems(state, isTemplate, dictionary) {
             name: "heading",
             tooltip: dictionary.subheading,
             icon: outline_icons_1.Heading3Icon,
-            active: (0, isNodeActive_1.default)(schema.nodes.heading, { level: 3 }),
+            active: isNodeActive_1.default(schema.nodes.heading, { level: 3 }),
             attrs: { level: 3 },
             visible: allowBlocks,
         },
@@ -42,7 +42,7 @@ function formattingMenuItems(state, isTemplate, dictionary) {
             name: "heading",
             tooltip: dictionary.subheading,
             icon: outline_icons_1.Heading3Icon,
-            active: (0, isNodeActive_1.default)(schema.nodes.heading, { level: 4 }),
+            active: isNodeActive_1.default(schema.nodes.heading, { level: 4 }),
             attrs: { level: 4 },
             visible: allowBlocks,
         },
@@ -50,7 +50,7 @@ function formattingMenuItems(state, isTemplate, dictionary) {
             name: "heading",
             tooltip: dictionary.subheading,
             icon: outline_icons_1.Heading3Icon,
-            active: (0, isNodeActive_1.default)(schema.nodes.heading, { level: 5 }),
+            active: isNodeActive_1.default(schema.nodes.heading, { level: 5 }),
             attrs: { level: 5 },
             visible: allowBlocks,
         },
@@ -58,7 +58,7 @@ function formattingMenuItems(state, isTemplate, dictionary) {
             name: "heading",
             tooltip: dictionary.subheading,
             icon: outline_icons_1.Heading3Icon,
-            active: (0, isNodeActive_1.default)(schema.nodes.heading, { level: 6 }),
+            active: isNodeActive_1.default(schema.nodes.heading, { level: 6 }),
             attrs: { level: 6 },
             visible: allowBlocks,
         },
@@ -66,39 +66,39 @@ function formattingMenuItems(state, isTemplate, dictionary) {
             name: "strong",
             tooltip: dictionary.strong,
             icon: outline_icons_1.BoldIcon,
-            active: (0, isMarkActive_1.default)(schema.marks.strong),
+            active: isMarkActive_1.default(schema.marks.strong),
         },
         {
             name: "em",
             tooltip: dictionary.em,
             icon: outline_icons_1.ItalicIcon,
-            active: (0, isMarkActive_1.default)(schema.marks.em),
+            active: isMarkActive_1.default(schema.marks.em),
         },
         {
             name: "strikethrough",
             tooltip: dictionary.strikethrough,
             icon: outline_icons_1.StrikethroughIcon,
-            active: (0, isMarkActive_1.default)(schema.marks.strikethrough),
+            active: isMarkActive_1.default(schema.marks.strikethrough),
         },
         {
             name: "link",
             tooltip: dictionary.createLink,
             icon: outline_icons_1.LinkIcon,
-            active: (0, isMarkActive_1.default)(schema.marks.link),
+            active: isMarkActive_1.default(schema.marks.link),
             attrs: { href: "" },
         },
         {
             name: "ordered_list",
             tooltip: dictionary.orderedList,
             icon: outline_icons_1.OrderedListIcon,
-            active: (0, isNodeActive_1.default)(schema.nodes.ordered_list),
+            active: isNodeActive_1.default(schema.nodes.ordered_list),
             visible: allowBlocks || isList,
         },
         {
             name: "bullet_list",
             tooltip: dictionary.bulletList,
             icon: outline_icons_1.BulletedListIcon,
-            active: (0, isNodeActive_1.default)(schema.nodes.bullet_list),
+            active: isNodeActive_1.default(schema.nodes.bullet_list),
             visible: allowBlocks || isList,
         },
         {
@@ -106,20 +106,20 @@ function formattingMenuItems(state, isTemplate, dictionary) {
             tooltip: dictionary.checkboxList,
             icon: outline_icons_1.TodoListIcon,
             keywords: "checklist checkbox task",
-            active: (0, isNodeActive_1.default)(schema.nodes.checkbox_list),
+            active: isNodeActive_1.default(schema.nodes.checkbox_list),
             visible: allowBlocks || isList,
         },
         {
             name: "code_inline",
             tooltip: dictionary.codeInline,
             icon: outline_icons_1.CodeIcon,
-            active: (0, isMarkActive_1.default)(schema.marks.code_inline),
+            active: isMarkActive_1.default(schema.marks.code_inline),
         },
         {
             name: "blockquote",
             tooltip: dictionary.quote,
             icon: outline_icons_1.BlockQuoteIcon,
-            active: (0, isNodeActive_1.default)(schema.nodes.blockquote),
+            active: isNodeActive_1.default(schema.nodes.blockquote),
             attrs: { level: 2 },
             visible: allowBlocks,
         },
@@ -127,7 +127,7 @@ function formattingMenuItems(state, isTemplate, dictionary) {
             name: "text",
             tooltip: dictionary.text,
             icon: outline_icons_1.Heading1Icon,
-            active: (0, isNodeActive_1.default)(schema.node.text),
+            active: isNodeActive_1.default(schema.node.text),
         },
     ];
 }

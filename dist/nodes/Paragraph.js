@@ -19,11 +19,11 @@ class Paragraph extends Node_1.default {
     }
     keys({ type }) {
         return {
-            "Shift-Ctrl-0": (0, prosemirror_commands_1.setBlockType)(type),
+            "Shift-Ctrl-0": prosemirror_commands_1.setBlockType(type),
         };
     }
     commands({ type }) {
-        return () => (0, prosemirror_commands_1.setBlockType)(type);
+        return () => prosemirror_commands_1.setBlockType(type);
     }
     toMarkdown(state, node) {
         if (node.textContent.trim() === "" &&

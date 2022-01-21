@@ -27,11 +27,11 @@ class Underline extends Mark_1.default {
         return [underlines_1.default];
     }
     inputRules({ type }) {
-        return [(0, markInputRule_1.default)(/(?:__)([^_]+)(?:__)$/, type)];
+        return [markInputRule_1.default(/(?:__)([^_]+)(?:__)$/, type)];
     }
     keys({ type }) {
         return {
-            "Mod-u": (0, prosemirror_commands_1.toggleMark)(type),
+            "Mod-u": prosemirror_commands_1.toggleMark(type),
         };
     }
     get toMarkdown() {

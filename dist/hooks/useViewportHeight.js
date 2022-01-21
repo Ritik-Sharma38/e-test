@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 function useViewportHeight() {
-    const [height, setHeight] = (0, react_1.useState)(() => { var _a; return ((_a = window.visualViewport) === null || _a === void 0 ? void 0 : _a.height) || window.innerHeight; });
-    (0, react_1.useLayoutEffect)(() => {
+    const [height, setHeight] = react_1.useState(() => { var _a; return ((_a = window.visualViewport) === null || _a === void 0 ? void 0 : _a.height) || window.innerHeight; });
+    react_1.useLayoutEffect(() => {
         var _a;
         const handleResize = () => {
             setHeight(() => { var _a; return ((_a = window.visualViewport) === null || _a === void 0 ? void 0 : _a.height) || window.innerHeight; });

@@ -40,7 +40,7 @@ function LinkSearchResult(_a) {
     var { title, subtitle, selected, icon } = _a, rest = __rest(_a, ["title", "subtitle", "selected", "icon"]);
     const ref = React.useCallback(node => {
         if (selected && node) {
-            (0, smooth_scroll_into_view_if_needed_1.default)(node, {
+            smooth_scroll_into_view_if_needed_1.default(node, {
                 scrollMode: "if-needed",
                 block: "center",
                 boundary: parent => {

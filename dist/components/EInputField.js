@@ -35,17 +35,17 @@ const react_1 = require("@chakra-ui/react");
 const react_2 = __importStar(require("react"));
 const EInput = (_a) => {
     var { type, inputMode, name = type, label = name, value, onChange, placeholder = label, leftIcon, rightIcon, isFullWidth, error, isInvalid, isDisabled, isReadOnly, isRequired, autoComplete, maxCharacters, isAutoFocus } = _a, rest = __rest(_a, ["type", "inputMode", "name", "label", "value", "onChange", "placeholder", "leftIcon", "rightIcon", "isFullWidth", "error", "isInvalid", "isDisabled", "isReadOnly", "isRequired", "autoComplete", "maxCharacters", "isAutoFocus"]);
-    const borderColor = (0, react_1.useColorModeValue)("#f0f0f0", "#2E2E2E");
-    const errorBorderColor = (0, react_1.useColorModeValue)("red.e200", "red.e200");
-    const focusBorderColor = (0, react_1.useColorModeValue)("#733D47", "#BF9B9B");
-    const hoverBorderColor = (0, react_1.useColorModeValue)("#733D47", "#BF9B9B");
-    const placeHolderColor = (0, react_1.useColorModeValue)("#D1D1D1", "#414141");
-    const textColor = (0, react_1.useColorModeValue)("#111111", "#FFFFFF");
-    const labelColor = (0, react_1.useColorModeValue)("#717171", "#C1C1C1");
-    const labelBGColor = (0, react_1.useColorModeValue)("#FFFFFF", "#000000");
-    const iconLeftColor = (0, react_1.useColorModeValue)("#D1D1D1", "#414141");
-    const iconRightColor = (0, react_1.useColorModeValue)("#D1D1D1", "#B1B1B1");
-    const [passwordVisible, setPasswordVisible] = (0, react_2.useState)(false);
+    const borderColor = react_1.useColorModeValue("#f0f0f0", "#2E2E2E");
+    const errorBorderColor = react_1.useColorModeValue("red.e200", "red.e200");
+    const focusBorderColor = react_1.useColorModeValue("#733D47", "#BF9B9B");
+    const hoverBorderColor = react_1.useColorModeValue("#733D47", "#BF9B9B");
+    const placeHolderColor = react_1.useColorModeValue("#D1D1D1", "#414141");
+    const textColor = react_1.useColorModeValue("#111111", "#FFFFFF");
+    const labelColor = react_1.useColorModeValue("#717171", "#C1C1C1");
+    const labelBGColor = react_1.useColorModeValue("#FFFFFF", "#000000");
+    const iconLeftColor = react_1.useColorModeValue("#D1D1D1", "#414141");
+    const iconRightColor = react_1.useColorModeValue("#D1D1D1", "#B1B1B1");
+    const [passwordVisible, setPasswordVisible] = react_2.useState(false);
     let handleToggle = e => {
         e.preventDefault();
     };

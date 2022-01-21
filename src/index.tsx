@@ -143,6 +143,7 @@ export type Props = {
   onSave?: ({ done: boolean }) => void;
   onCancel?: () => void;
   onChange?: (value: () => string) => void;
+  onPlainText?: (value: () => string) => void;
   onImageUploadStart?: () => void;
   onImageUploadStop?: () => void;
   onCreateLink?: (title: string) => Promise<string>;
@@ -570,6 +571,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
               transactions.some(isEditingCheckbox)))
         ) {
           self.handleChange();
+          self.handlePlainText();
         }
 
         self.calculateDir();
@@ -621,6 +623,14 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
 
     this.props.onChange(() => {
       return this.value();
+    });
+  };
+
+  handlePlainText = () => {
+    if (!this.props.onPlainText) return;
+
+    this.props.onPlainText(() => {
+      return this.view?.state?.doc?.textContent;
     });
   };
 
@@ -754,6 +764,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
     const { isRTL } = this.state;
     const dictionary = this.dictionary(this.props.dictionary);
 
+    //console.log(this.view?.state?.doc?.textContent)
     return (
       <Flex
         onKeyDown={onKeyDown}
