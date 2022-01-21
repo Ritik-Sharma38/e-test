@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* global window File Promise */
-import * as React from "react";
+import React from "react";
 import memoize from "lodash/memoize";
 import { EditorState, Selection, Plugin } from "prosemirror-state";
 import { dropCursor } from "prosemirror-dropcursor";
@@ -89,6 +89,8 @@ export const theme = lightTheme;
 export type Props = {
   id?: string;
   passRef?: any;
+  linkToolBarRef: any;
+  styledEditor: any;
   value?: string;
   defaultValue: string;
   placeholder: string;
@@ -175,12 +177,15 @@ type Step = {
 
 class RichMarkdownEditor extends React.PureComponent<Props, State> {
   public myRef;
+  public linkToolBarRef;
   constructor(props: Props) {
     super(props);
     this.myRef = React.createRef();
+    this.linkToolBarRef = React.createRef();
   }
   static defaultProps = {
     myRef: React.createRef(),
+    linkToolBarRef: React.createRef(),
     defaultValue: "",
     dir: "auto",
     placeholder: "Write something nice…",
@@ -207,6 +212,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
     blockMenuSearch: "",
     emojiMenuOpen: false,
     myRef: React.createRef(),
+    linkToolBarRef: React.createRef(),
   };
 
   isBlurred: boolean;
@@ -703,9 +709,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
 
   focusAtEnd = () => {
     const selection = Selection.atEnd(this.view.state.doc);
-    console.log(selection);
     const transaction = this.view.state.tr.setSelection(selection);
-    console.log(transaction);
     this.view.dispatch(transaction);
     this.view.focus();
   };
@@ -760,11 +764,11 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
       tooltip,
       className,
       onKeyDown,
+      styledEditor,
     } = this.props;
     const { isRTL } = this.state;
     const dictionary = this.dictionary(this.props.dictionary);
 
-    //console.log(this.view?.state?.doc?.textContent)
     return (
       <Flex
         onKeyDown={onKeyDown}
@@ -784,6 +788,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
               readOnly={readOnly}
               readOnlyWriteCheckboxes={readOnlyWriteCheckboxes}
               ref={ref => (this.element = ref)}
+              style={styledEditor}
             />
             {!readOnly && this.view && (
               <React.Fragment>
@@ -793,6 +798,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   commands={this.commands}
                   rtl={isRTL}
                   commandRef={this.myRef}
+                  linkToolBarRef={this.linkToolBarRef}
                   isTemplate={this.props.template === true}
                   onOpen={this.handleOpenSelectionMenu}
                   onClose={this.handleCloseSelectionMenu}
@@ -801,9 +807,12 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   onCreateLink={this.props.onCreateLink}
                   tooltip={tooltip}
                   value={this.value()}
+                  onCloseLink={this.handleCloseLinkMenu}
+                  rootState={this.state}
                 />
                 <LinkToolbar
                   view={this.view}
+                  linkToolBarRef={this.linkToolBarRef}
                   dictionary={dictionary}
                   isActive={this.state.linkMenuOpen}
                   onCreateLink={this.props.onCreateLink}

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { EditorState, Plugin } from "prosemirror-state";
 import { MarkdownParser, MarkdownSerializer } from "prosemirror-markdown";
 import { EditorView } from "prosemirror-view";
@@ -112,6 +112,8 @@ export declare const theme: {
 export declare type Props = {
     id?: string;
     passRef?: any;
+    linkToolBarRef: any;
+    styledEditor: any;
     value?: string;
     defaultValue: string;
     placeholder: string;
@@ -165,9 +167,11 @@ declare type State = {
 };
 declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
     myRef: any;
+    linkToolBarRef: any;
     constructor(props: Props);
     static defaultProps: {
         myRef: React.RefObject<unknown>;
+        linkToolBarRef: React.RefObject<unknown>;
         defaultValue: string;
         dir: string;
         placeholder: string;
@@ -187,6 +191,7 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
         blockMenuSearch: string;
         emojiMenuOpen: boolean;
         myRef: React.RefObject<unknown>;
+        linkToolBarRef: React.RefObject<unknown>;
     };
     isBlurred: boolean;
     extensions: ExtensionManager;

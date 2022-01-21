@@ -87,10 +87,18 @@ class ToolbarMenu extends React.Component {
             commandRef.current.insertItem({ name: action }, type);
         };
         this.call = (item, active_heading) => {
+            var _a;
             if (item === null || item === void 0 ? void 0 : item.name) {
                 if ((item === null || item === void 0 ? void 0 : item.name) === "link") {
-                    const { view } = this.props;
+                    const { view, rootState, onCloseLink, linkToolBarRef } = this.props;
                     const { state } = view;
+                    if (rootState.linkMenuOpen) {
+                        onCloseLink();
+                        if (linkToolBarRef === null || linkToolBarRef === void 0 ? void 0 : linkToolBarRef.current) {
+                            (_a = linkToolBarRef.current) === null || _a === void 0 ? void 0 : _a.handleRemoveLinkViaProp();
+                        }
+                        return;
+                    }
                     const selectionText = state.doc.cut(state.selection.from, state.selection.to).textContent;
                     if (!selectionText) {
                         this.pickImage("link", "middle");
@@ -105,7 +113,7 @@ class ToolbarMenu extends React.Component {
     }
     render() {
         var _a;
-        const { view, items, isImageSelection, theme } = this.props;
+        const { view, items, isImageSelection, theme, rootState } = this.props;
         const { state } = view;
         const Tooltip = this.props.tooltip;
         const customStyles = {
@@ -196,8 +204,21 @@ class ToolbarMenu extends React.Component {
                     if ((item === null || item === void 0 ? void 0 : item.visible) === false || !(item === null || item === void 0 ? void 0 : item.icon)) {
                         return null;
                     }
-                    const isActive = (item === null || item === void 0 ? void 0 : item.active) ? item.active(state) : false;
-                    return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item, ""), active: isActive },
+                    let isActive = (item === null || item === void 0 ? void 0 : item.active) ? item.active(state) : false;
+                    if (item.name === "link") {
+                        if (rootState.linkMenuOpen)
+                            isActive = true;
+                        else
+                            isActive = false;
+                    }
+                    let isDisabled = false;
+                    if (((item === null || item === void 0 ? void 0 : item.name) === "checkbox_list" ||
+                        (item === null || item === void 0 ? void 0 : item.name) === "bullet_list" ||
+                        (item === null || item === void 0 ? void 0 : item.name) === "ordered_list") &&
+                        (active_heading === null || active_heading === void 0 ? void 0 : active_heading.name) === "heading") {
+                        isDisabled = true;
+                    }
+                    return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item, ""), active: isActive, disabled: isDisabled },
                         React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item === null || item === void 0 ? void 0 : item.name : "none"])));
                 }))))));
     }

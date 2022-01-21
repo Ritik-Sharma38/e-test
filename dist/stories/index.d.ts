@@ -1,2 +1,2 @@
-export default function Example(props: any): JSX.Element;
+export default function Example(): JSX.Element;
 //# sourceMappingURL=index.d.ts.map

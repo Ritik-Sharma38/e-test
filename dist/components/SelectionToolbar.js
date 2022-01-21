@@ -143,7 +143,7 @@ class SelectionToolbar extends React.Component {
         window.removeEventListener("mouseup", this.handleClickOutside);
     }
     render() {
-        const _a = this.props, { dictionary, onCreateLink, isTemplate, commandRef, rtl } = _a, rest = __rest(_a, ["dictionary", "onCreateLink", "isTemplate", "commandRef", "rtl"]);
+        const _a = this.props, { dictionary, onCreateLink, isTemplate, commandRef, rtl, linkToolBarRef, onCloseLink, rootState } = _a, rest = __rest(_a, ["dictionary", "onCreateLink", "isTemplate", "commandRef", "rtl", "linkToolBarRef", "onCloseLink", "rootState"]);
         const { view } = rest;
         const { state } = view;
         const { selection } = state;
@@ -196,7 +196,7 @@ class SelectionToolbar extends React.Component {
         }
         return (React.createElement(React.Fragment, null, link && range ? (React.createElement(FloatingToolbarTemp_1.default, { view: view, active: isVisible(this.props) || true, ref: this.menuRef, fromCommandMenu: false },
             React.createElement(LinkEditor_1.default, Object.assign({ ref: this.linkEditorRef, dictionary: dictionary, mark: range.mark, from: range.from, to: range.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink }, rest)))) : (React.createElement(FloatingToolbar_1.default, { view: view, active: isVisible(this.props) || true, ref: this.menuRef },
-            React.createElement(ToolbarMenu_1.default, Object.assign({ items: items }, rest, { commandRef: commandRef, linkEditorRef: this.linkEditorRef, isImageSelection: isImageSelection }))))));
+            React.createElement(ToolbarMenu_1.default, Object.assign({ items: items }, rest, { commandRef: commandRef, linkEditorRef: this.linkEditorRef, isImageSelection: isImageSelection, linkToolBarRef: linkToolBarRef, onCloseLink: onCloseLink, rootState: rootState }))))));
     }
 }
 exports.default = SelectionToolbar;

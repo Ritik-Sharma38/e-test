@@ -135,7 +135,7 @@ function FloatingToolbar(props) {
         React.createElement(Wrapper, { active: props.active && position.visible, ref: menuRef, offset: position.offset, style: props.fromCommandMenu
                 ? {
                     position: "fixed",
-                    minHeight: "227px",
+                    minHeight: "240px",
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",

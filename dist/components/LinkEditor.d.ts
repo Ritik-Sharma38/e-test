@@ -65,6 +65,7 @@ declare class LinkEditor extends React.Component<Props, State> {
     handleRemoveLink: () => void;
     handleSelectLink: (url: string, title: string) => (event: any) => void;
     moveSelectionToEnd: () => void;
+    handleRemoveLinkViaProp: () => void;
     render(): JSX.Element;
 }
 declare const _default: React.ForwardRefExoticComponent<Pick<Pick<any, string | number | symbol> & React.RefAttributes<LinkEditor>, string | number | symbol> & {

@@ -46,7 +46,7 @@ const embeds = [
         component: YoutubeEmbed,
     },
 ];
-function Example(props) {
+function Example() {
     const d = false;
     const { body } = document;
     if (body)
@@ -58,7 +58,7 @@ function Example(props) {
                     return new Promise(resolve => {
                         setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
                     });
-                }, dark: d, defaultValue: "# Welcome\r\n        Just an easy to use **Markdown** editor with `slash command`", embeds: embeds, onBlur: () => console.log("blured"), onFocus: () => console.log("focused"), onChange: e => console.log(e()), onPlainText: e => console.log(e()) }))));
+                }, dark: d, defaultValue: "# Welcome\r\n        Just an easy to use **Markdown** editor with `slash command`", embeds: embeds, styledEditor: { height: "500px" } }))));
 }
 exports.default = Example;
 //# sourceMappingURL=index.js.map

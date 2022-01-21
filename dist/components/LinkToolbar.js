@@ -105,10 +105,10 @@ class LinkToolbar extends React.Component {
         window.removeEventListener("mousedown", this.handleClickOutside);
     }
     render() {
-        const _a = this.props, { onCreateLink, onClose, view } = _a, rest = __rest(_a, ["onCreateLink", "onClose", "view"]);
+        const _a = this.props, { onCreateLink, onClose, view, linkToolBarRef } = _a, rest = __rest(_a, ["onCreateLink", "onClose", "view", "linkToolBarRef"]);
         const { selection } = this.props.view.state;
         const active = isActive(this.props);
-        return (React.createElement(FloatingToolbarTemp_1.default, Object.assign({ view: view, ref: this.menuRef, active: active }, rest, { fromCommandMenu: active }), active && (React.createElement(LinkEditor_1.default, Object.assign({ view: view, from: selection.from, to: selection.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink, onRemoveLink: onClose, fromCommandMenu: true }, rest)))));
+        return (React.createElement(FloatingToolbarTemp_1.default, Object.assign({ view: view, ref: this.menuRef, active: active }, rest, { fromCommandMenu: active }), active && (React.createElement(LinkEditor_1.default, Object.assign({ view: view, ref: linkToolBarRef, from: selection.from, to: selection.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink, onRemoveLink: onClose, fromCommandMenu: true }, rest)))));
     }
 }
 exports.default = LinkToolbar;

@@ -18,6 +18,7 @@ type Props = {
   onClickLink: (href: string, event: MouseEvent) => void;
   onShowToast?: (msg: string, code: string) => void;
   onClose: () => void;
+  linkToolBarRef: any;
 };
 
 function isActive(props: Props) {
@@ -155,10 +156,9 @@ export default class LinkToolbar extends React.Component<Props> {
   };
 
   render() {
-    const { onCreateLink, onClose, view, ...rest } = this.props;
+    const { onCreateLink, onClose, view, linkToolBarRef, ...rest } = this.props;
     const { selection } = this.props.view.state;
     const active = isActive(this.props);
-
     return (
       <FloatingToolbarTemp
         view={view}
@@ -170,6 +170,7 @@ export default class LinkToolbar extends React.Component<Props> {
         {active && (
           <LinkEditor
             view={view}
+            ref={linkToolBarRef}
             from={selection.from}
             to={selection.to}
             onCreateLink={onCreateLink ? this.handleOnCreateLink : undefined}

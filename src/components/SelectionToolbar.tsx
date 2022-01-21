@@ -27,6 +27,7 @@ type Props = {
   tooltip: typeof React.Component | React.FC<any>;
   rtl: boolean;
   commandRef: any;
+  linkToolBarRef: any;
   value: any;
   isTemplate: boolean;
   commands: Record<string, any>;
@@ -37,6 +38,8 @@ type Props = {
   onCreateLink?: (title: string) => Promise<string>;
   onShowToast?: (msg: string, code: string) => void;
   view: EditorView;
+  onCloseLink: () => void;
+  rootState: any;
 };
 
 function isVisible(props) {
@@ -169,6 +172,9 @@ export default class SelectionToolbar extends React.Component<Props> {
       isTemplate,
       commandRef,
       rtl,
+      linkToolBarRef,
+      onCloseLink,
+      rootState,
       ...rest
     } = this.props;
     const { view } = rest;
@@ -260,6 +266,9 @@ export default class SelectionToolbar extends React.Component<Props> {
               commandRef={commandRef}
               linkEditorRef={this.linkEditorRef}
               isImageSelection={isImageSelection}
+              linkToolBarRef={linkToolBarRef}
+              onCloseLink={onCloseLink}
+              rootState={rootState}
             />
           </FloatingToolbar>
         )}

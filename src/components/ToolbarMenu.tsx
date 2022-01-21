@@ -17,6 +17,9 @@ type Props = {
   items: MenuItem[];
   isImageSelection: any;
   linkEditorRef: any;
+  linkToolBarRef: any;
+  onCloseLink: () => void;
+  rootState: any;
 };
 
 const FlexibleWrapper = styled.div`
@@ -298,8 +301,16 @@ class ToolbarMenu extends React.Component<Props> {
   call = (item: any, active_heading: any) => {
     if (item?.name) {
       if (item?.name === "link") {
-        const { view } = this.props;
+        const { view, rootState, onCloseLink, linkToolBarRef } = this.props;
         const { state } = view;
+
+        if (rootState.linkMenuOpen) {
+          onCloseLink();
+          if (linkToolBarRef?.current) {
+            linkToolBarRef.current?.handleRemoveLinkViaProp();
+          }
+          return;
+        }
 
         const selectionText = state.doc.cut(
           state.selection.from,
@@ -317,7 +328,7 @@ class ToolbarMenu extends React.Component<Props> {
   };
 
   render() {
-    const { view, items, isImageSelection, theme } = this.props;
+    const { view, items, isImageSelection, theme, rootState } = this.props;
     const { state } = view;
     const Tooltip = this.props.tooltip;
     const customStyles = {
@@ -474,13 +485,29 @@ class ToolbarMenu extends React.Component<Props> {
                 if (item?.visible === false || !item?.icon) {
                   return null;
                 }
-                const isActive = item?.active ? item.active(state) : false;
+
+                let isActive = item?.active ? item.active(state) : false;
+                if (item.name === "link") {
+                  if (rootState.linkMenuOpen) isActive = true;
+                  else isActive = false;
+                }
+
+                let isDisabled = false;
+                if (
+                  (item?.name === "checkbox_list" ||
+                    item?.name === "bullet_list" ||
+                    item?.name === "ordered_list") &&
+                  active_heading?.name === "heading"
+                ) {
+                  isDisabled = true;
+                }
 
                 return (
                   <ToolbarButton
                     key={index}
                     onClick={() => this.call(item, "")}
                     active={isActive}
+                    disabled={isDisabled}
                   >
                     <Tooltip tooltip={item.tooltip} placement="top">
                       {Icons[item?.name ? item?.name : "none"]}

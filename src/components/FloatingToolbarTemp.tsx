@@ -173,7 +173,7 @@ function FloatingToolbar(props) {
           props.fromCommandMenu
             ? {
                 position: "fixed",
-                minHeight: "227px",
+                minHeight: "240px",
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",

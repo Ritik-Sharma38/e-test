@@ -12,7 +12,7 @@ export const StyledEditor = styled("div")<{
   font-size: 1em;
   line-height: 1.7em;
   width: 100%;
-  margin: 55px 0 0 0;
+  margin: 35px 0 0 0;
   height: calc(100vh - 190px);
   overflow-y: auto;
 

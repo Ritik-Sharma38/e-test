@@ -317,6 +317,14 @@ class LinkEditor extends React.Component<Props, State> {
     view.focus();
   };
 
+  handleRemoveLinkViaProp = () => {
+    const { onRemoveLink } = this.props;
+    if (onRemoveLink) {
+      onRemoveLink();
+      this.handleRemoveLink();
+    }
+  };
+
   render() {
     const { dictionary, theme, fromCommandMenu, from, to } = this.props;
     const { value, selectedIndex, title } = this.state;
@@ -364,25 +372,6 @@ class LinkEditor extends React.Component<Props, State> {
               width: "100%",
             }}
           >
-            {/*   <Input
-              value={title}
-              placeholder="Title"
-              onChange={e => this.setState({ title: e.target.value })}
-              autoFocus={this.href === ""}
-            />
-            <div style={{ marginTop: "16px" }} />
-            <Input
-              ref={this.inputSubmit}
-              value={value}
-              placeholder={
-                showCreateLink
-                  ? dictionary.findOrCreateDoc
-                  : dictionary.searchOrPasteLink
-              }
-              onKeyDown={this.handleKeyDown}
-              onPaste={this.handlePaste}
-              onChange={this.handleChange}
-            /> */}
             <EInput
               type={"text"}
               label={"Title"}
@@ -445,6 +434,7 @@ class LinkEditor extends React.Component<Props, State> {
                   borderRadius: "5px",
                   outline: "none",
                   border: "none",
+                  height: "30px",
                 }}
                 onClick={() =>
                   this.props.onRemoveLink && this.props.onRemoveLink()
@@ -462,6 +452,7 @@ class LinkEditor extends React.Component<Props, State> {
                   borderRadius: "5px",
                   outline: "none",
                   border: "none",
+                  height: "30px",
                 }}
               >
                 Save

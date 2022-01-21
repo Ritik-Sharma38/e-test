@@ -88,7 +88,7 @@ const EInput = (_a) => {
                     color: placeHolderColor,
                     fontSize: "inherit",
                     fontWeight: "inherit",
-                }, _disabled: { borderColor: borderColor }, autoComplete: autoComplete, border: "1.5px solid", borderColor: focusBorderColor, borderRadius: "10px", bg: "transparent", color: textColor, fontSize: "16px", autoFocus: isAutoFocus, fontWeight: 400, inputMode: inputMode, isDisabled: isDisabled, isInvalid: isInvalid || error, isRequired: isRequired, placeholder: placeholder, value: value, onChange: onChange }, rest))),
+                }, _disabled: { borderColor: borderColor }, autoComplete: autoComplete, border: "1.5px solid", borderColor: focusBorderColor, borderRadius: "10px", bg: "transparent", color: textColor, fontSize: "16px", autoFocus: isAutoFocus, fontWeight: 400, inputMode: inputMode, isDisabled: isDisabled, isInvalid: isInvalid || error, isRequired: isRequired, placeholder: placeholder, value: value, onChange: onChange, paddingLeft: "12px" }, rest))),
             rightIcon && (react_2.default.createElement(react_1.InputRightElement, { h: "52px", color: iconRightColor, onClick: handleToggle }, rightIcon))),
         error && (react_2.default.createElement(react_1.Text, { mt: "10px", fontSize: "14px", lineHeight: "17px", fontWeight: "300", color: errorBorderColor }, error))));
 };

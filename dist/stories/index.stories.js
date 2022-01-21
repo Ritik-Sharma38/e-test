@@ -27,7 +27,9 @@ exports.default = {
         disableExtensions: [],
     },
 };
-const Template = args => react_1.default.createElement(index_1.default, Object.assign({}, args));
+function Template(args) {
+    return react_1.default.createElement(index_1.default, Object.assign({}, args));
+}
 exports.Default = Template.bind({});
 exports.Default.args = {
     defaultValue: `# Welcome

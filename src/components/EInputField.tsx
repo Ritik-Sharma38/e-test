@@ -201,6 +201,7 @@ const EInput = ({
             placeholder={placeholder}
             value={value}
             onChange={onChange}
+            paddingLeft="12px"
             {...rest}
           />
         )}

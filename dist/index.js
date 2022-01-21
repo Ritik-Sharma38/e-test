@@ -1,29 +1,10 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.theme = exports.Extension = exports.renderToHtml = exports.serializer = exports.parser = exports.schema = void 0;
-const React = __importStar(require("react"));
+const react_1 = __importDefault(require("react"));
 const memoize_1 = __importDefault(require("lodash/memoize"));
 const prosemirror_state_1 = require("prosemirror-state");
 const prosemirror_dropcursor_1 = require("prosemirror-dropcursor");
@@ -94,7 +75,7 @@ Object.defineProperty(exports, "renderToHtml", { enumerable: true, get: function
 var Extension_1 = require("./lib/Extension");
 Object.defineProperty(exports, "Extension", { enumerable: true, get: function () { return __importDefault(Extension_1).default; } });
 exports.theme = theme_1.light;
-class RichMarkdownEditor extends React.PureComponent {
+class RichMarkdownEditor extends react_1.default.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -105,7 +86,8 @@ class RichMarkdownEditor extends React.PureComponent {
             linkMenuOpen: false,
             blockMenuSearch: "",
             emojiMenuOpen: false,
-            myRef: React.createRef(),
+            myRef: react_1.default.createRef(),
+            linkToolBarRef: react_1.default.createRef(),
         };
         this.calculateDir = () => {
             if (!this.element)
@@ -189,9 +171,7 @@ class RichMarkdownEditor extends React.PureComponent {
         };
         this.focusAtEnd = () => {
             const selection = prosemirror_state_1.Selection.atEnd(this.view.state.doc);
-            console.log(selection);
             const transaction = this.view.state.tr.setSelection(selection);
-            console.log(transaction);
             this.view.dispatch(transaction);
             this.view.focus();
         };
@@ -222,7 +202,8 @@ class RichMarkdownEditor extends React.PureComponent {
         this.dictionary = memoize_1.default((providedDictionary) => {
             return Object.assign(Object.assign({}, dictionary_1.default), providedDictionary);
         });
-        this.myRef = React.createRef();
+        this.myRef = react_1.default.createRef();
+        this.linkToolBarRef = react_1.default.createRef();
     }
     componentDidMount() {
         this.init();
@@ -526,21 +507,22 @@ class RichMarkdownEditor extends React.PureComponent {
         }
     }
     render() {
-        const { dir, readOnly, readOnlyWriteCheckboxes, style, tooltip, className, onKeyDown, } = this.props;
+        const { dir, readOnly, readOnlyWriteCheckboxes, style, tooltip, className, onKeyDown, styledEditor, } = this.props;
         const { isRTL } = this.state;
         const dictionary = this.dictionary(this.props.dictionary);
-        return (React.createElement(Flex_1.default, { onKeyDown: onKeyDown, style: style, className: className, align: "flex-start", justify: "center", dir: dir, column: true },
-            React.createElement(styled_components_1.ThemeProvider, { theme: this.theme() },
-                React.createElement(React.Fragment, null,
-                    React.createElement(editor_1.StyledEditor, { id: "styledEditor", dir: dir, rtl: isRTL, readOnly: readOnly, readOnlyWriteCheckboxes: readOnlyWriteCheckboxes, ref: ref => (this.element = ref) }),
-                    !readOnly && this.view && (React.createElement(React.Fragment, null,
-                        React.createElement(SelectionToolbar_1.default, { view: this.view, dictionary: dictionary, commands: this.commands, rtl: isRTL, commandRef: this.myRef, isTemplate: this.props.template === true, onOpen: this.handleOpenSelectionMenu, onClose: this.handleCloseSelectionMenu, onSearchLink: this.props.onSearchLink, onClickLink: this.props.onClickLink, onCreateLink: this.props.onCreateLink, tooltip: tooltip, value: this.value() }),
-                        React.createElement(LinkToolbar_1.default, { view: this.view, dictionary: dictionary, isActive: this.state.linkMenuOpen, onCreateLink: this.props.onCreateLink, onSearchLink: this.props.onSearchLink, onClickLink: this.props.onClickLink, onShowToast: this.props.onShowToast, onClose: this.handleCloseLinkMenu, tooltip: tooltip }),
-                        React.createElement(BlockMenu_1.default, { view: this.view, commands: this.commands, dictionary: dictionary, rtl: isRTL, passRef: this.myRef, isActive: this.state.blockMenuOpen, search: this.state.blockMenuSearch, onClose: this.handleCloseBlockMenu, uploadImage: this.props.uploadImage, onLinkToolbarOpen: this.handleOpenLinkMenu, onImageUploadStart: this.props.onImageUploadStart, onImageUploadStop: this.props.onImageUploadStop, onShowToast: this.props.onShowToast, embeds: this.props.embeds })))))));
+        return (react_1.default.createElement(Flex_1.default, { onKeyDown: onKeyDown, style: style, className: className, align: "flex-start", justify: "center", dir: dir, column: true },
+            react_1.default.createElement(styled_components_1.ThemeProvider, { theme: this.theme() },
+                react_1.default.createElement(react_1.default.Fragment, null,
+                    react_1.default.createElement(editor_1.StyledEditor, { id: "styledEditor", dir: dir, rtl: isRTL, readOnly: readOnly, readOnlyWriteCheckboxes: readOnlyWriteCheckboxes, ref: ref => (this.element = ref), style: styledEditor }),
+                    !readOnly && this.view && (react_1.default.createElement(react_1.default.Fragment, null,
+                        react_1.default.createElement(SelectionToolbar_1.default, { view: this.view, dictionary: dictionary, commands: this.commands, rtl: isRTL, commandRef: this.myRef, linkToolBarRef: this.linkToolBarRef, isTemplate: this.props.template === true, onOpen: this.handleOpenSelectionMenu, onClose: this.handleCloseSelectionMenu, onSearchLink: this.props.onSearchLink, onClickLink: this.props.onClickLink, onCreateLink: this.props.onCreateLink, tooltip: tooltip, value: this.value(), onCloseLink: this.handleCloseLinkMenu, rootState: this.state }),
+                        react_1.default.createElement(LinkToolbar_1.default, { view: this.view, linkToolBarRef: this.linkToolBarRef, dictionary: dictionary, isActive: this.state.linkMenuOpen, onCreateLink: this.props.onCreateLink, onSearchLink: this.props.onSearchLink, onClickLink: this.props.onClickLink, onShowToast: this.props.onShowToast, onClose: this.handleCloseLinkMenu, tooltip: tooltip }),
+                        react_1.default.createElement(BlockMenu_1.default, { view: this.view, commands: this.commands, dictionary: dictionary, rtl: isRTL, passRef: this.myRef, isActive: this.state.blockMenuOpen, search: this.state.blockMenuSearch, onClose: this.handleCloseBlockMenu, uploadImage: this.props.uploadImage, onLinkToolbarOpen: this.handleOpenLinkMenu, onImageUploadStart: this.props.onImageUploadStart, onImageUploadStop: this.props.onImageUploadStop, onShowToast: this.props.onShowToast, embeds: this.props.embeds })))))));
     }
 }
 RichMarkdownEditor.defaultProps = {
-    myRef: React.createRef(),
+    myRef: react_1.default.createRef(),
+    linkToolBarRef: react_1.default.createRef(),
     defaultValue: "",
     dir: "auto",
     placeholder: "Write something nice…",

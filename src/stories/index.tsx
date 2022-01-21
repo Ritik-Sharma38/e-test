@@ -43,7 +43,7 @@ const embeds = [
   },
 ];
 
-export default function Example(props) {
+export default function Example() {
   const d = false;
   const { body } = document;
   if (body) body.style.backgroundColor = d ? dark.background : light.background;
@@ -63,10 +63,7 @@ export default function Example(props) {
           defaultValue="# Welcome
         Just an easy to use **Markdown** editor with `slash command`"
           embeds={embeds}
-          onBlur={() => console.log("blured")}
-          onFocus={() => console.log("focused")}
-          onChange={e => console.log(e())}
-          onPlainText={e => console.log(e())}
+          styledEditor={{ height: "500px" }}
         />
       </div>
     </ChakraProvider>

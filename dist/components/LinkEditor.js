@@ -220,6 +220,13 @@ class LinkEditor extends React.Component {
             dispatch(prosemirror_utils_1.setTextSelection(to)(state.tr));
             view.focus();
         };
+        this.handleRemoveLinkViaProp = () => {
+            const { onRemoveLink } = this.props;
+            if (onRemoveLink) {
+                onRemoveLink();
+                this.handleRemoveLink();
+            }
+        };
         this.wrapperRef = React.createRef();
         this.inputSubmit = React.createRef();
         this.from = 0;
@@ -281,6 +288,7 @@ class LinkEditor extends React.Component {
                         borderRadius: "5px",
                         outline: "none",
                         border: "none",
+                        height: "30px",
                     }, onClick: () => this.props.onRemoveLink && this.props.onRemoveLink() }, "Cancel"),
                 React.createElement("button", { onClick: () => {
                         this.handleEnterKey();
@@ -290,6 +298,7 @@ class LinkEditor extends React.Component {
                         borderRadius: "5px",
                         outline: "none",
                         border: "none",
+                        height: "30px",
                     } }, "Save")))) : (React.createElement("div", { style: { display: "flex", alignItems: "center" }, ref: this.wrapperRef },
             React.createElement(EInputField_1.default, { ref: this.inputSubmit, type: "url", label: "URL", inputMode: "url", isDisabled: false, placeholder: showCreateLink
                     ? dictionary.findOrCreateDoc
