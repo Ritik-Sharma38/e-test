@@ -63,7 +63,11 @@ export default function Example() {
           defaultValue="# Welcome
         Just an easy to use **Markdown** editor with `slash command`"
           embeds={embeds}
-          styledEditor={{ height: "500px" }}
+          styledEditor={{
+            padding: "10px 20px 150px 30px",
+            height: "calc(100vh - 140px)",
+            overflowWrap: "break-word",
+          }}
         />
       </div>
     </ChakraProvider>
