@@ -58,7 +58,11 @@ function Example() {
                     return new Promise(resolve => {
                         setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
                     });
-                }, dark: d, defaultValue: "# Welcome\r\n        Just an easy to use **Markdown** editor with `slash command`", embeds: embeds, styledEditor: { height: "500px" } }))));
+                }, dark: d, defaultValue: "# Welcome\r\n        Just an easy to use **Markdown** editor with `slash command`", embeds: embeds, styledEditor: {
+                    padding: "10px 20px 150px 30px",
+                    height: "calc(100vh - 140px)",
+                    overflowWrap: "break-word",
+                } }))));
 }
 exports.default = Example;
 //# sourceMappingURL=index.js.map

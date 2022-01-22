@@ -73,11 +73,11 @@ const Icons = {
     alignRight: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
         React.createElement("path", { d: "M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z", fill: "#929292" }))),
     downloadImage: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
-        React.createElement("path", { d: "M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z", fill: "#929292" }))),
+        React.createElement("path", { d: "M19 12V19H5V12H3V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V12H19ZM13 12.67L15.59 10.09L17 11.5L12 16.5L7 11.5L8.41 10.09L11 12.67V3H13V12.67Z", fill: "#929292" }))),
     replaceImage: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
-        React.createElement("path", { d: "M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z", fill: "#929292" }))),
+        React.createElement("path", { d: "M12 6V9L16 5L12 1V4C7.58 4 4 7.58 4 12C4 13.57 4.46 15.03 5.24 16.26L6.7 14.8C6.25 13.97 6 13.01 6 12C6 8.69 8.69 6 12 6ZM18.76 7.74L17.3 9.2C17.74 10.04 18 10.99 18 12C18 15.31 15.31 18 12 18V15L8 19L12 23V20C16.42 20 20 16.42 20 12C20 10.43 19.54 8.97 18.76 7.74Z", fill: "#929292" }))),
     deleteImage: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
-        React.createElement("path", { d: "M6 17H9L11 13V7H5V13H8L6 17ZM14 17H17L19 13V7H13V13H16L14 17Z", fill: "#929292" }))),
+        React.createElement("path", { d: "M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM8 9H16V19H8V9ZM15.5 4L14.5 3H9.5L8.5 4H5V6H19V4H15.5Z", fill: "#929292" }))),
 };
 class ToolbarMenu extends React.Component {
     constructor() {
@@ -144,7 +144,19 @@ class ToolbarMenu extends React.Component {
             else
                 return false;
         });
-        return (React.createElement("div", { style: { display: "flex", flexDirection: "row" } },
+        return (React.createElement("div", { style: { display: "flex", flexDirection: "row" } }, isImageSelection ? (React.createElement(FlexibleWrapper, null, items.map((item, index) => {
+            if (!item)
+                return;
+            if ((item === null || item === void 0 ? void 0 : item.name) === "separator" && item.visible !== false) {
+                return React.createElement(ToolbarSeparator_1.default, { key: index });
+            }
+            if ((item === null || item === void 0 ? void 0 : item.visible) === false || !(item === null || item === void 0 ? void 0 : item.icon)) {
+                return null;
+            }
+            const isActive = (item === null || item === void 0 ? void 0 : item.active) ? item.active(state) : false;
+            return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item, ""), active: isActive },
+                React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item.name : "none"])));
+        }))) : (React.createElement(React.Fragment, null,
             React.createElement(ToolbarHeadingMenu_1.default, null,
                 React.createElement(react_select_1.default, { options: [
                         { value: "Text", label: "Text" },
@@ -160,19 +172,7 @@ class ToolbarMenu extends React.Component {
                             label: `Heading ${(_a = active_heading === null || active_heading === void 0 ? void 0 : active_heading.attrs) === null || _a === void 0 ? void 0 : _a.level}`,
                         }
                         : { value: "Text", label: "Text" }, onChange: v => this.call(v === null || v === void 0 ? void 0 : v.value, active_heading) })),
-            React.createElement(FlexibleWrapper, null, isImageSelection ? (React.createElement(React.Fragment, null, items.map((item, index) => {
-                if (!item)
-                    return;
-                if ((item === null || item === void 0 ? void 0 : item.name) === "separator" && item.visible !== false) {
-                    return React.createElement(ToolbarSeparator_1.default, { key: index });
-                }
-                if ((item === null || item === void 0 ? void 0 : item.visible) === false || !(item === null || item === void 0 ? void 0 : item.icon)) {
-                    return null;
-                }
-                const isActive = (item === null || item === void 0 ? void 0 : item.active) ? item.active(state) : false;
-                return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item, ""), active: isActive },
-                    React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item.name : "none"])));
-            }))) : (React.createElement(React.Fragment, null,
+            React.createElement(FlexibleWrapper, null,
                 [items[6], items[7], items[8]].map((item, index) => {
                     if (!item)
                         return;
