@@ -13,6 +13,7 @@ import getDataTransferFiles from "../lib/getDataTransferFiles";
 import filterExcessSeparators from "../lib/filterExcessSeparators";
 import insertFiles from "../commands/insertFiles";
 import baseDictionary from "../dictionary";
+import getFormattingMenuItems from "../menus/formatting";
 
 const SSR = typeof window === "undefined";
 
@@ -303,6 +304,21 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
 
   insertBlock(item) {
     this.clearSearch("");
+
+    if (item?.name === "bullet_list") {
+      const { dictionary, view } = this.props;
+      const { state } = view;
+      const bulletItem = getFormattingMenuItems(
+        state,
+        false,
+        dictionary
+      ).filter(item => item.name === "bullet_list")[0];
+      if (bulletItem?.name) {
+        this.props.commands[bulletItem.name](bulletItem.attrs);
+        this.props.onClose();
+        return true;
+      }
+    }
 
     const command = this.props.commands[item.name];
 

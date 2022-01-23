@@ -45,6 +45,7 @@ const VisuallyHidden_1 = __importDefault(require("./VisuallyHidden"));
 const getDataTransferFiles_1 = __importDefault(require("../lib/getDataTransferFiles"));
 const filterExcessSeparators_1 = __importDefault(require("../lib/filterExcessSeparators"));
 const insertFiles_1 = __importDefault(require("../commands/insertFiles"));
+const formatting_1 = __importDefault(require("../menus/formatting"));
 const SSR = typeof window === "undefined";
 const defaultPosition = {
     left: -1000,
@@ -242,6 +243,16 @@ class CommandMenu extends React.Component {
     }
     insertBlock(item) {
         this.clearSearch("");
+        if ((item === null || item === void 0 ? void 0 : item.name) === "bullet_list") {
+            const { dictionary, view } = this.props;
+            const { state } = view;
+            const bulletItem = formatting_1.default(state, false, dictionary).filter(item => item.name === "bullet_list")[0];
+            if (bulletItem === null || bulletItem === void 0 ? void 0 : bulletItem.name) {
+                this.props.commands[bulletItem.name](bulletItem.attrs);
+                this.props.onClose();
+                return true;
+            }
+        }
         const command = this.props.commands[item.name];
         if (command) {
             command(item.attrs);

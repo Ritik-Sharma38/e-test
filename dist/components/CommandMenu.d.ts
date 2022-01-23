@@ -51,7 +51,7 @@ declare class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State>
     triggerLinkInput: (item: any) => void;
     handleImagePicked: (event: any) => void;
     clearSearch: (type: string) => void;
-    insertBlock(item: any): void;
+    insertBlock(item: any): true | undefined;
     get caretPosition(): {
         top: number;
         left: number;
