@@ -46,7 +46,7 @@ export default class BlockMenuTrigger extends Extension {
     const button = document.createElement("button");
     button.className = "block-menu-trigger";
     button.type = "button";
-    ReactDOM.render(<PlusIcon color="currentColor" />, button);
+    //ReactDOM.render(<PlusIcon color="currentColor" />, button);
 
     return [
       new Plugin({
@@ -104,7 +104,7 @@ export default class BlockMenuTrigger extends Extension {
 
             const decorations: Decoration[] = [];
             const isEmpty = parent && parent.node.content.size === 0;
-            const isSlash = parent && parent.node.textContent === "/";
+            //const isSlash = parent && parent.node.textContent === "/";
             const isTopLevel = state.selection.$from.depth === 1;
 
             if (isTopLevel) {
@@ -118,7 +118,7 @@ export default class BlockMenuTrigger extends Extension {
                   })
                 );
 
-                decorations.push(
+                /* decorations.push(
                   Decoration.node(
                     parent.pos,
                     parent.pos + parent.node.nodeSize,
@@ -127,10 +127,10 @@ export default class BlockMenuTrigger extends Extension {
                       "data-empty-text": this.options.dictionary.newLineEmpty,
                     }
                   )
-                );
+                ); */
               }
 
-              if (isSlash) {
+              /* if (isSlash) {
                 decorations.push(
                   Decoration.node(
                     parent.pos,
@@ -141,7 +141,7 @@ export default class BlockMenuTrigger extends Extension {
                     }
                   )
                 );
-              }
+              } */
 
               return DecorationSet.create(state.doc, decorations);
             }

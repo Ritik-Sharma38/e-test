@@ -52,17 +52,16 @@ function Example() {
     if (body)
         body.style.backgroundColor = d ? theme_1.dark.background : theme_1.light.background;
     return (React.createElement(react_1.ChakraProvider, { theme: customTheme_1.default },
-        React.createElement("div", { style: { padding: "1em 2em" } },
-            React.createElement(__1.default, { disableExtensions: ["table", "container_notice", "hr", "highlight"], uploadImage: file => {
-                    console.log("File upload triggered: ", file);
-                    return new Promise(resolve => {
-                        setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
-                    });
-                }, dark: d, defaultValue: "# Welcome\r\n        Just an easy to use **Markdown** editor with `slash command`", embeds: embeds, styledEditor: {
-                    padding: "10px 20px 150px 30px",
-                    height: "calc(100vh - 140px)",
-                    overflowWrap: "break-word",
-                } }))));
+        React.createElement(__1.default, { disableExtensions: ["table", "container_notice", "hr", "highlight"], uploadImage: file => {
+                console.log("File upload triggered: ", file);
+                return new Promise(resolve => {
+                    setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
+                });
+            }, dark: d, defaultValue: "# Welcome\r\n        Just an easy to use **Markdown** editor with `slash command`", embeds: embeds, styledEditor: {
+                padding: "10px 20px 150px 30px",
+                height: "calc(100vh - 140px)",
+                overflowWrap: "break-word",
+            } })));
 }
 exports.default = Example;
 //# sourceMappingURL=index.js.map

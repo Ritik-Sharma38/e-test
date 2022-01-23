@@ -306,20 +306,20 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
   insertBlock(item) {
     this.clearSearch("");
 
-    if (item?.name === "bullet_list") {
-      const { toolbarMenuRef, view, dictionary } = this.props;
-      const { state } = view;
-      const bulletListItem = getFormattingMenuItems(
-        state,
-        false,
-        dictionary
-      ).filter(item => item.name === "bullet_list")[0];
-      if (bulletListItem?.name) {
-        toolbarMenuRef?.current?.call(bulletListItem, "");
-      }
-      this.props.onClose();
-      return;
-    }
+    // if (item?.name === "bullet_list") {
+    //   const { toolbarMenuRef, view, dictionary } = this.props;
+    //   const { state } = view;
+    //   const bulletListItem = getFormattingMenuItems(
+    //     state,
+    //     false,
+    //     dictionary
+    //   ).filter(item => item.name === "bullet_list")[0];
+    //   if (bulletListItem?.name) {
+    //     toolbarMenuRef?.current?.call(bulletListItem, "");
+    //   }
+    //   this.props.onClose();
+    //   return;
+    // }
     const command = this.props.commands[item.name];
 
     if (command) {

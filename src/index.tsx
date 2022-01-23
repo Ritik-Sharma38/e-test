@@ -836,7 +836,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   search={this.state.blockMenuSearch}
                   onClose={() => this.setState({ emojiMenuOpen: false })}
                 /> */}
-                <BlockMenu
+               {/*  <BlockMenu
                   view={this.view}
                   commands={this.commands}
                   dictionary={dictionary}
@@ -852,7 +852,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   onShowToast={this.props.onShowToast}
                   embeds={this.props.embeds}
                   toolbarMenuRef={this.toolbarMenuRef}
-                />
+                /> */}
               </React.Fragment>
             )}
           </React.Fragment>

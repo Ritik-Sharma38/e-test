@@ -49,27 +49,27 @@ export default function Example() {
   if (body) body.style.backgroundColor = d ? dark.background : light.background;
   return (
     <ChakraProvider theme={chakraTheme}>
-      <div style={{ padding: "1em 2em" }}>
-        <Editor
-          disableExtensions={["table", "container_notice", "hr", "highlight"]}
-          uploadImage={file => {
-            console.log("File upload triggered: ", file);
-            // Delay to simulate time taken to upload
-            return new Promise(resolve => {
-              setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
-            });
-          }}
-          dark={d}
-          defaultValue="# Welcome
+
+      <Editor
+        disableExtensions={["table", "container_notice", "hr", "highlight"]}
+        uploadImage={file => {
+          console.log("File upload triggered: ", file);
+          // Delay to simulate time taken to upload
+          return new Promise(resolve => {
+            setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
+          });
+        }}
+        dark={d}
+        defaultValue="# Welcome
         Just an easy to use **Markdown** editor with `slash command`"
-          embeds={embeds}
-          styledEditor={{
-            padding: "10px 20px 150px 30px",
-            height: "calc(100vh - 140px)",
-            overflowWrap: "break-word",
-          }}
-        />
-      </div>
+        embeds={embeds}
+        styledEditor={{
+          padding: "10px 20px 150px 30px",
+          height: "calc(100vh - 140px)",
+          overflowWrap: "break-word",
+        }}
+      />
+
     </ChakraProvider>
   );
 }
