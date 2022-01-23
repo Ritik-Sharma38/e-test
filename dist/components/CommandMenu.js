@@ -242,16 +242,17 @@ class CommandMenu extends React.Component {
         }
     }
     insertBlock(item) {
+        var _a;
         this.clearSearch("");
         if ((item === null || item === void 0 ? void 0 : item.name) === "bullet_list") {
-            const { dictionary, view } = this.props;
+            const { toolbarMenuRef, view, dictionary } = this.props;
             const { state } = view;
-            const bulletItem = formatting_1.default(state, false, dictionary).filter(item => item.name === "bullet_list")[0];
-            if (bulletItem === null || bulletItem === void 0 ? void 0 : bulletItem.name) {
-                this.props.commands[bulletItem.name](bulletItem.attrs);
-                this.props.onClose();
-                return true;
+            const bulletListItem = formatting_1.default(state, false, dictionary).filter(item => item.name === "bullet_list")[0];
+            if (bulletListItem === null || bulletListItem === void 0 ? void 0 : bulletListItem.name) {
+                (_a = toolbarMenuRef === null || toolbarMenuRef === void 0 ? void 0 : toolbarMenuRef.current) === null || _a === void 0 ? void 0 : _a.call(bulletListItem, "");
             }
+            this.props.onClose();
+            return;
         }
         const command = this.props.commands[item.name];
         if (command) {

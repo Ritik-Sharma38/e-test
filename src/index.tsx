@@ -90,6 +90,7 @@ export type Props = {
   id?: string;
   passRef?: any;
   linkToolBarRef: any;
+  toolbarMenuRef: any;
   styledEditor: any;
   value?: string;
   defaultValue: string;
@@ -178,14 +179,17 @@ type Step = {
 class RichMarkdownEditor extends React.PureComponent<Props, State> {
   public myRef;
   public linkToolBarRef;
+  public toolbarMenuRef;
   constructor(props: Props) {
     super(props);
     this.myRef = React.createRef();
     this.linkToolBarRef = React.createRef();
+    this.toolbarMenuRef = React.createRef();
   }
   static defaultProps = {
     myRef: React.createRef(),
     linkToolBarRef: React.createRef(),
+    toolbarMenuRef: React.createRef(),
     defaultValue: "",
     dir: "auto",
     placeholder: "Write something nice…",
@@ -809,6 +813,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   value={this.value()}
                   onCloseLink={this.handleCloseLinkMenu}
                   rootState={this.state}
+                  toolbarMenuRef={this.toolbarMenuRef}
                 />
                 <LinkToolbar
                   view={this.view}
@@ -846,6 +851,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   onImageUploadStop={this.props.onImageUploadStop}
                   onShowToast={this.props.onShowToast}
                   embeds={this.props.embeds}
+                  toolbarMenuRef={this.toolbarMenuRef}
                 />
               </React.Fragment>
             )}

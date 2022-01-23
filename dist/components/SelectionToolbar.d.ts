@@ -8,6 +8,7 @@ declare type Props = {
     rtl: boolean;
     commandRef: any;
     linkToolBarRef: any;
+    toolbarMenuRef: any;
     value: any;
     isTemplate: boolean;
     commands: Record<string, any>;

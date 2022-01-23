@@ -31,7 +31,7 @@ class BlockMenu extends React.Component<BlockMenuProps> {
   };
 
   render() {
-    const { passRef, view, dictionary } = this.props;
+    const { passRef, view, dictionary, toolbarMenuRef } = this.props;
     return (
       <CommandMenu
         {...this.props}
@@ -40,6 +40,7 @@ class BlockMenu extends React.Component<BlockMenuProps> {
         filterable={true}
         onClearSearch={this.clearSearch}
         dictionary={dictionary}
+        toolbarMenuRef={toolbarMenuRef}
         renderMenuItem={(item, _index, options) => {
           return (
             <BlockMenuItem

@@ -25,6 +25,7 @@ export declare type Props<T extends MenuItem = MenuItem> = {
     items: T[];
     id?: string;
     passRef: any;
+    toolbarMenuRef: any;
 };
 declare type State = {
     insertItem?: EmbedDescriptor;
@@ -51,7 +52,7 @@ declare class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State>
     triggerLinkInput: (item: any) => void;
     handleImagePicked: (event: any) => void;
     clearSearch: (type: string) => void;
-    insertBlock(item: any): true | undefined;
+    insertBlock(item: any): void;
     get caretPosition(): {
         top: number;
         left: number;

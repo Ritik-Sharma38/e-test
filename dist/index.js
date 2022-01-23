@@ -204,6 +204,7 @@ class RichMarkdownEditor extends react_1.default.PureComponent {
         });
         this.myRef = react_1.default.createRef();
         this.linkToolBarRef = react_1.default.createRef();
+        this.toolbarMenuRef = react_1.default.createRef();
     }
     componentDidMount() {
         this.init();
@@ -515,14 +516,15 @@ class RichMarkdownEditor extends react_1.default.PureComponent {
                 react_1.default.createElement(react_1.default.Fragment, null,
                     react_1.default.createElement(editor_1.StyledEditor, { id: "styledEditor", dir: dir, rtl: isRTL, readOnly: readOnly, readOnlyWriteCheckboxes: readOnlyWriteCheckboxes, ref: ref => (this.element = ref), style: styledEditor }),
                     !readOnly && this.view && (react_1.default.createElement(react_1.default.Fragment, null,
-                        react_1.default.createElement(SelectionToolbar_1.default, { view: this.view, dictionary: dictionary, commands: this.commands, rtl: isRTL, commandRef: this.myRef, linkToolBarRef: this.linkToolBarRef, isTemplate: this.props.template === true, onOpen: this.handleOpenSelectionMenu, onClose: this.handleCloseSelectionMenu, onSearchLink: this.props.onSearchLink, onClickLink: this.props.onClickLink, onCreateLink: this.props.onCreateLink, tooltip: tooltip, value: this.value(), onCloseLink: this.handleCloseLinkMenu, rootState: this.state }),
+                        react_1.default.createElement(SelectionToolbar_1.default, { view: this.view, dictionary: dictionary, commands: this.commands, rtl: isRTL, commandRef: this.myRef, linkToolBarRef: this.linkToolBarRef, isTemplate: this.props.template === true, onOpen: this.handleOpenSelectionMenu, onClose: this.handleCloseSelectionMenu, onSearchLink: this.props.onSearchLink, onClickLink: this.props.onClickLink, onCreateLink: this.props.onCreateLink, tooltip: tooltip, value: this.value(), onCloseLink: this.handleCloseLinkMenu, rootState: this.state, toolbarMenuRef: this.toolbarMenuRef }),
                         react_1.default.createElement(LinkToolbar_1.default, { view: this.view, linkToolBarRef: this.linkToolBarRef, dictionary: dictionary, isActive: this.state.linkMenuOpen, onCreateLink: this.props.onCreateLink, onSearchLink: this.props.onSearchLink, onClickLink: this.props.onClickLink, onShowToast: this.props.onShowToast, onClose: this.handleCloseLinkMenu, tooltip: tooltip }),
-                        react_1.default.createElement(BlockMenu_1.default, { view: this.view, commands: this.commands, dictionary: dictionary, rtl: isRTL, passRef: this.myRef, isActive: this.state.blockMenuOpen, search: this.state.blockMenuSearch, onClose: this.handleCloseBlockMenu, uploadImage: this.props.uploadImage, onLinkToolbarOpen: this.handleOpenLinkMenu, onImageUploadStart: this.props.onImageUploadStart, onImageUploadStop: this.props.onImageUploadStop, onShowToast: this.props.onShowToast, embeds: this.props.embeds })))))));
+                        react_1.default.createElement(BlockMenu_1.default, { view: this.view, commands: this.commands, dictionary: dictionary, rtl: isRTL, passRef: this.myRef, isActive: this.state.blockMenuOpen, search: this.state.blockMenuSearch, onClose: this.handleCloseBlockMenu, uploadImage: this.props.uploadImage, onLinkToolbarOpen: this.handleOpenLinkMenu, onImageUploadStart: this.props.onImageUploadStart, onImageUploadStop: this.props.onImageUploadStop, onShowToast: this.props.onShowToast, embeds: this.props.embeds, toolbarMenuRef: this.toolbarMenuRef })))))));
     }
 }
 RichMarkdownEditor.defaultProps = {
     myRef: react_1.default.createRef(),
     linkToolBarRef: react_1.default.createRef(),
+    toolbarMenuRef: react_1.default.createRef(),
     defaultValue: "",
     dir: "auto",
     placeholder: "Write something nice…",

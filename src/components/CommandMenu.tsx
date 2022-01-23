@@ -51,6 +51,7 @@ export type Props<T extends MenuItem = MenuItem> = {
   items: T[];
   id?: string;
   passRef: any;
+  toolbarMenuRef: any;
 };
 
 type State = {
@@ -306,20 +307,19 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
     this.clearSearch("");
 
     if (item?.name === "bullet_list") {
-      const { dictionary, view } = this.props;
+      const { toolbarMenuRef, view, dictionary } = this.props;
       const { state } = view;
-      const bulletItem = getFormattingMenuItems(
+      const bulletListItem = getFormattingMenuItems(
         state,
         false,
         dictionary
       ).filter(item => item.name === "bullet_list")[0];
-      if (bulletItem?.name) {
-        this.props.commands[bulletItem.name](bulletItem.attrs);
-        this.props.onClose();
-        return true;
+      if (bulletListItem?.name) {
+        toolbarMenuRef?.current?.call(bulletListItem, "");
       }
+      this.props.onClose();
+      return;
     }
-
     const command = this.props.commands[item.name];
 
     if (command) {

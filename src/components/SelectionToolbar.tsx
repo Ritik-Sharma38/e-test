@@ -28,6 +28,7 @@ type Props = {
   rtl: boolean;
   commandRef: any;
   linkToolBarRef: any;
+  toolbarMenuRef: any;
   value: any;
   isTemplate: boolean;
   commands: Record<string, any>;
@@ -175,6 +176,7 @@ export default class SelectionToolbar extends React.Component<Props> {
       linkToolBarRef,
       onCloseLink,
       rootState,
+      toolbarMenuRef,
       ...rest
     } = this.props;
     const { view } = rest;
@@ -261,6 +263,7 @@ export default class SelectionToolbar extends React.Component<Props> {
             ref={this.menuRef}
           >
             <ToolbarMenu
+              ref={toolbarMenuRef}
               items={items}
               {...rest}
               commandRef={commandRef}

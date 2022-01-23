@@ -113,6 +113,7 @@ export declare type Props = {
     id?: string;
     passRef?: any;
     linkToolBarRef: any;
+    toolbarMenuRef: any;
     styledEditor: any;
     value?: string;
     defaultValue: string;
@@ -168,10 +169,12 @@ declare type State = {
 declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
     myRef: any;
     linkToolBarRef: any;
+    toolbarMenuRef: any;
     constructor(props: Props);
     static defaultProps: {
         myRef: React.RefObject<unknown>;
         linkToolBarRef: React.RefObject<unknown>;
+        toolbarMenuRef: React.RefObject<unknown>;
         defaultValue: string;
         dir: string;
         placeholder: string;
