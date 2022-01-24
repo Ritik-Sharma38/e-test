@@ -389,6 +389,7 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
         h1: string;
         h2: string;
         h3: string;
+        h4: string;
         heading: string;
         hr: string;
         image: string;
@@ -451,6 +452,7 @@ declare class RichMarkdownEditor extends React.PureComponent<Props, State> {
         h1: string;
         h2: string;
         h3: string;
+        h4: string;
         heading: string;
         hr: string;
         image: string;

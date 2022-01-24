@@ -52,9 +52,17 @@ export default function blockMenuItems(
       attrs: { level: 3 },
     },
     {
-      name: "separator",
+      name: "heading",
+      title: dictionary.h4,
+      keywords: "h4 heading4",
+      icon: Heading3Icon,
+      shortcut: "^ ⇧ 4",
+      attrs: { level: 4 },
     },
     {
+      name: "separator",
+    },
+    /*  {
       name: "checkbox_list",
       title: dictionary.checkboxList,
       icon: TodoListIcon,
@@ -75,7 +83,7 @@ export default function blockMenuItems(
     },
     {
       name: "separator",
-    },
+    }, */
     {
       name: "table",
       title: dictionary.table,

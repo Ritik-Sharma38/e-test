@@ -31,26 +31,12 @@ function blockMenuItems(dictionary) {
             attrs: { level: 3 },
         },
         {
-            name: "separator",
-        },
-        {
-            name: "checkbox_list",
-            title: dictionary.checkboxList,
-            icon: outline_icons_1.TodoListIcon,
-            keywords: "checklist checkbox task",
-            shortcut: "^ ⇧ 7",
-        },
-        {
-            name: "bullet_list",
-            title: dictionary.bulletList,
-            icon: outline_icons_1.BulletedListIcon,
-            shortcut: "^ ⇧ 8",
-        },
-        {
-            name: "ordered_list",
-            title: dictionary.orderedList,
-            icon: outline_icons_1.OrderedListIcon,
-            shortcut: "^ ⇧ 9",
+            name: "heading",
+            title: dictionary.h4,
+            keywords: "h4 heading4",
+            icon: outline_icons_1.Heading3Icon,
+            shortcut: "^ ⇧ 4",
+            attrs: { level: 4 },
         },
         {
             name: "separator",

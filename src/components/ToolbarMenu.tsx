@@ -7,7 +7,7 @@ import theme from "../styles/theme";
 import { MenuItem } from "../types";
 import ToolbarHeadingMenu from "./ToolbarHeadingMenu";
 import Select from "react-select";
-import getHeadings from '../lib/getHeadings';
+import getHeadings from "../lib/getHeadings";
 
 type Props = {
   tooltip: typeof React.Component | React.FC<any>;
@@ -539,7 +539,9 @@ class ToolbarMenu extends React.Component<Props> {
                   </ToolbarButton>
                 );
               })}
-              <ToolbarButton onClick={() => this.handleRemoveAllMark(active_heading)}>
+              <ToolbarButton
+                onClick={() => this.handleRemoveAllMark(active_heading)}
+              >
                 <Tooltip tooltip={"Remove formatting"} placement="top">
                   {Icons["removeFormat"]}
                 </Tooltip>
