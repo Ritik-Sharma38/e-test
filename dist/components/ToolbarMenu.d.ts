@@ -18,6 +18,7 @@ declare type Props = {
 declare class ToolbarMenu extends React.Component<Props> {
     pickImage: (action: string, type: string) => void;
     call: (item: any, active_heading: any) => void;
+    handleRemoveAllMark: (item: any) => void;
     render(): JSX.Element;
 }
 declare const _default: React.ForwardRefExoticComponent<Pick<Props & React.RefAttributes<ToolbarMenu>, "view" | "ref" | "key" | "tooltip" | "commands" | "commandRef" | "items" | "isImageSelection" | "linkEditorRef" | "linkToolBarRef" | "onCloseLink" | "rootState"> & {

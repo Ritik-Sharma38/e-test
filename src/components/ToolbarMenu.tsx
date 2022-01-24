@@ -7,6 +7,7 @@ import theme from "../styles/theme";
 import { MenuItem } from "../types";
 import ToolbarHeadingMenu from "./ToolbarHeadingMenu";
 import Select from "react-select";
+import getHeadings from '../lib/getHeadings';
 
 type Props = {
   tooltip: typeof React.Component | React.FC<any>;
@@ -24,6 +25,7 @@ type Props = {
 
 const FlexibleWrapper = styled.div`
   display: flex;
+  width: 100%;
   align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
@@ -290,6 +292,20 @@ const Icons = {
       />
     </svg>
   ),
+  removeFormat: (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3.27 5L2 6.27L8.97 13.24L6.5 19H9.5L11.07 15.34L16.73 21L18 19.73L3.55 5.27L3.27 5ZM6 5V5.18L8.82 8H11.22L10.5 9.68L12.6 11.78L14.21 8H20V5H6Z"
+        fill="#929292"
+      />
+    </svg>
+  ),
 };
 
 class ToolbarMenu extends React.Component<Props> {
@@ -325,6 +341,13 @@ class ToolbarMenu extends React.Component<Props> {
     } else if (item === "Text" && active_heading?.name) {
       this.props.commands[active_heading.name](active_heading.attrs);
     }
+  };
+
+  handleRemoveAllMark = (item: any) => {
+    if (item) this.call(item, "");
+    const { view } = this.props;
+    const { state, dispatch } = view;
+    dispatch(state.tr.removeMark(state.selection.from, state.selection.to));
   };
 
   render() {
@@ -386,7 +409,7 @@ class ToolbarMenu extends React.Component<Props> {
         return item;
       } else return false;
     });
-    
+
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
         {isImageSelection ? (
@@ -458,6 +481,7 @@ class ToolbarMenu extends React.Component<Props> {
                     key={index}
                     onClick={() => this.call(item, "")}
                     active={isActive}
+                    style={{ paddingTop: "1px" }}
                   >
                     <Tooltip tooltip={item.tooltip} placement="top">
                       {Icons[item?.name ? item.name : "none"]}
@@ -515,6 +539,11 @@ class ToolbarMenu extends React.Component<Props> {
                   </ToolbarButton>
                 );
               })}
+              <ToolbarButton onClick={() => this.handleRemoveAllMark(active_heading)}>
+                <Tooltip tooltip={"Remove formatting"} placement="top">
+                  {Icons["removeFormat"]}
+                </Tooltip>
+              </ToolbarButton>
             </FlexibleWrapper>
           </>
         )}

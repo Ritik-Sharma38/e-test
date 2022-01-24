@@ -7,11 +7,11 @@ const styled_components_1 = __importDefault(require("styled-components"));
 exports.default = styled_components_1.default.button `
   display: inline-block;
   flex: 0;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   cursor: pointer;
   margin-left: 30px;
-  border: ${props => props.active ? "1px solid #BF9B9B" : "1px solid transparent"};
+  border: ${props => props.active ? "2px solid #BF9B9B" : "2px solid transparent"};
   border-radius: 3px;
   background: none;
   transition: opacity 100ms ease-in-out;

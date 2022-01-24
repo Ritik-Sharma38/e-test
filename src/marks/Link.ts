@@ -111,8 +111,8 @@ export default class Link extends Mark {
               }
               return false;
             },
-            click: (_view, event: MouseEvent) => {
-              if (event.target instanceof HTMLAnchorElement) {
+            click: () => {
+              /* if (event.target instanceof HTMLAnchorElement) {
                 const href =
                   event.target.href ||
                   (event.target.parentNode instanceof HTMLAnchorElement
@@ -133,7 +133,7 @@ export default class Link extends Mark {
                   this.options.onClickLink(href, event);
                   return true;
                 }
-              }
+              } */
 
               return false;
             },

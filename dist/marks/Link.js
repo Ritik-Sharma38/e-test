@@ -91,26 +91,7 @@ class Link extends Mark_1.default {
                             }
                             return false;
                         },
-                        click: (_view, event) => {
-                            if (event.target instanceof HTMLAnchorElement) {
-                                const href = event.target.href ||
-                                    (event.target.parentNode instanceof HTMLAnchorElement
-                                        ? event.target.parentNode.href
-                                        : "");
-                                const isHashtag = href.startsWith("#");
-                                if (isHashtag && this.options.onClickHashtag) {
-                                    event.stopPropagation();
-                                    event.preventDefault();
-                                    this.options.onClickHashtag(href, event);
-                                    return true;
-                                }
-                                if (this.options.onClickLink) {
-                                    event.stopPropagation();
-                                    event.preventDefault();
-                                    this.options.onClickLink(href, event);
-                                    return true;
-                                }
-                            }
+                        click: () => {
                             return false;
                         },
                     },

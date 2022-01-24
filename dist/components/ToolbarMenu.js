@@ -30,6 +30,7 @@ const ToolbarHeadingMenu_1 = __importDefault(require("./ToolbarHeadingMenu"));
 const react_select_1 = __importDefault(require("react-select"));
 const FlexibleWrapper = styled_components_1.default.div `
   display: flex;
+  width: 100%;
   align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
@@ -78,6 +79,8 @@ const Icons = {
         React.createElement("path", { d: "M12 6V9L16 5L12 1V4C7.58 4 4 7.58 4 12C4 13.57 4.46 15.03 5.24 16.26L6.7 14.8C6.25 13.97 6 13.01 6 12C6 8.69 8.69 6 12 6ZM18.76 7.74L17.3 9.2C17.74 10.04 18 10.99 18 12C18 15.31 15.31 18 12 18V15L8 19L12 23V20C16.42 20 20 16.42 20 12C20 10.43 19.54 8.97 18.76 7.74Z", fill: "#929292" }))),
     deleteImage: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
         React.createElement("path", { d: "M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM8 9H16V19H8V9ZM15.5 4L14.5 3H9.5L8.5 4H5V6H19V4H15.5Z", fill: "#929292" }))),
+    removeFormat: (React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+        React.createElement("path", { d: "M3.27 5L2 6.27L8.97 13.24L6.5 19H9.5L11.07 15.34L16.73 21L18 19.73L3.55 5.27L3.27 5ZM6 5V5.18L8.82 8H11.22L10.5 9.68L12.6 11.78L14.21 8H20V5H6Z", fill: "#929292" }))),
 };
 class ToolbarMenu extends React.Component {
     constructor() {
@@ -109,6 +112,13 @@ class ToolbarMenu extends React.Component {
             else if (item === "Text" && (active_heading === null || active_heading === void 0 ? void 0 : active_heading.name)) {
                 this.props.commands[active_heading.name](active_heading.attrs);
             }
+        };
+        this.handleRemoveAllMark = (item) => {
+            if (item)
+                this.call(item, "");
+            const { view } = this.props;
+            const { state, dispatch } = view;
+            dispatch(state.tr.removeMark(state.selection.from, state.selection.to));
         };
     }
     render() {
@@ -183,7 +193,7 @@ class ToolbarMenu extends React.Component {
                         return null;
                     }
                     const isActive = (item === null || item === void 0 ? void 0 : item.active) ? item.active(state) : false;
-                    return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item, ""), active: isActive },
+                    return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item, ""), active: isActive, style: { paddingTop: "1px" } },
                         React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item.name : "none"])));
                 }),
                 React.createElement(ToolbarButton_1.default, { onClick: () => this.pickImage("image", "") },
@@ -220,7 +230,9 @@ class ToolbarMenu extends React.Component {
                     }
                     return (React.createElement(ToolbarButton_1.default, { key: index, onClick: () => this.call(item, ""), active: isActive, disabled: isDisabled },
                         React.createElement(Tooltip, { tooltip: item.tooltip, placement: "top" }, Icons[(item === null || item === void 0 ? void 0 : item.name) ? item === null || item === void 0 ? void 0 : item.name : "none"])));
-                }))))));
+                }),
+                React.createElement(ToolbarButton_1.default, { onClick: () => this.handleRemoveAllMark(active_heading) },
+                    React.createElement(Tooltip, { tooltip: "Remove formatting", placement: "top" }, Icons["removeFormat"])))))));
     }
 }
 exports.default = styled_components_1.withTheme(ToolbarMenu);

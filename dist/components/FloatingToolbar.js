@@ -110,7 +110,7 @@ function FloatingToolbar(props) {
     var _a;
     const menuRef = props.forwardedRef || React.createRef();
     const [isSelectingText, setSelectingText] = React.useState(false);
-    const width = (_a = document === null || document === void 0 ? void 0 : document.getElementById("styledEditor")) === null || _a === void 0 ? void 0 : _a.clientWidth;
+    const [width, setWidth] = React.useState((_a = document === null || document === void 0 ? void 0 : document.getElementById("styledEditor")) === null || _a === void 0 ? void 0 : _a.clientWidth);
     const position = usePosition({
         menuRef,
         isSelectingText,
@@ -132,13 +132,23 @@ function FloatingToolbar(props) {
             window.removeEventListener("mouseup", handleMouseUp);
         };
     }, [props.active]);
+    React.useEffect(() => {
+        const handleResize = () => {
+            var _a;
+            setWidth((_a = document === null || document === void 0 ? void 0 : document.getElementById("styledEditor")) === null || _a === void 0 ? void 0 : _a.clientWidth);
+        };
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
     return (React.createElement(Wrapper, { active: props.active && position.visible, width: width, ref: menuRef, style: {
             position: "absolute",
             top: 10,
         } }, position.visible && props.children));
 }
 const Wrapper = styled_components_1.default.div `
-  width: ${props => ((props === null || props === void 0 ? void 0 : props.width) && (props === null || props === void 0 ? void 0 : props.width) < 685 ? props.width : 685)}px;
+  width: ${props => ((props === null || props === void 0 ? void 0 : props.width) && (props === null || props === void 0 ? void 0 : props.width) < 900 ? props.width : 900)}px;
   will-change: opacity, transform;
   padding: 8px 1px;
   position: absolute;

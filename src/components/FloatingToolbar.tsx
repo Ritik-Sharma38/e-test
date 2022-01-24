@@ -132,7 +132,9 @@ function usePosition({ menuRef, isSelectingText, props }) {
 function FloatingToolbar(props) {
   const menuRef = props.forwardedRef || React.createRef<HTMLDivElement>();
   const [isSelectingText, setSelectingText] = React.useState(false);
-  const width = document?.getElementById("styledEditor")?.clientWidth;
+  const [width, setWidth] = React.useState(
+    document?.getElementById("styledEditor")?.clientWidth
+  );
 
   const position = usePosition({
     menuRef,
@@ -160,6 +162,17 @@ function FloatingToolbar(props) {
     };
   }, [props.active]);
 
+  React.useEffect(() => {
+    const handleResize = () => {
+      setWidth(document?.getElementById("styledEditor")?.clientWidth);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   // only render children when state is updated to visible
   // to prevent gaining input focus before calculatePosition runs
 
@@ -182,7 +195,7 @@ const Wrapper = styled.div<{
   active?: boolean;
   width?: number;
 }>`
-  width: ${props => (props?.width && props?.width < 685 ? props.width : 685)}px;
+  width: ${props => (props?.width && props?.width < 900 ? props.width : 900)}px;
   will-change: opacity, transform;
   padding: 8px 1px;
   position: absolute;
