@@ -198,12 +198,19 @@ class LinkEditor extends React.Component {
         };
         this.handleRemoveLink = () => {
             this.discardInputValue = true;
-            const { from, to, mark, view, onRemoveLink } = this.props;
+            const { from, to, mark, view } = this.props;
+            const { state, dispatch } = this.props.view;
+            if (mark && false) {
+                dispatch(state.tr.removeMark(from, to, mark));
+            }
+            view.focus();
+        };
+        this.tempRemoveLink = () => {
+            this.discardInputValue = true;
+            const { from, to, mark, view } = this.props;
             const { state, dispatch } = this.props.view;
             if (mark) {
                 dispatch(state.tr.removeMark(from, to, mark));
-            }
-            if (onRemoveLink) {
             }
             view.focus();
         };
@@ -222,9 +229,9 @@ class LinkEditor extends React.Component {
         };
         this.handleRemoveLinkViaProp = () => {
             const { onRemoveLink } = this.props;
+            this.tempRemoveLink();
             if (onRemoveLink) {
                 onRemoveLink();
-                this.handleRemoveLink();
             }
         };
         this.wrapperRef = React.createRef();
@@ -289,7 +296,7 @@ class LinkEditor extends React.Component {
                         outline: "none",
                         border: "none",
                         height: "30px",
-                    }, onClick: () => this.props.onRemoveLink && this.props.onRemoveLink() }, "Cancel"),
+                    }, onClick: () => this.handleRemoveLinkViaProp() }, "Cancel"),
                 React.createElement("button", { onClick: () => {
                         this.handleEnterKey();
                     }, style: {
@@ -310,7 +317,7 @@ class LinkEditor extends React.Component {
             React.createElement(ToolbarButton_1.default, { onClick: this.handleOpenLink, disabled: !value },
                 React.createElement(Tooltip, { tooltip: dictionary.openLink, placement: "top" },
                     React.createElement(outline_icons_1.OpenIcon, { color: theme.iconDefault }))),
-            React.createElement(ToolbarButton_1.default, { onClick: this.handleRemoveLink },
+            React.createElement(ToolbarButton_1.default, { onClick: this.handleRemoveLinkViaProp },
                 React.createElement(Tooltip, { tooltip: dictionary.removeLink, placement: "top" }, this.initialValue ? (React.createElement(outline_icons_1.TrashIcon, { color: theme.iconDefault })) : (React.createElement(outline_icons_1.CloseIcon, { color: theme.iconDefault })))),
             showResults && false && (React.createElement(SearchResults, { id: "link-search-results" },
                 results.map((result, index) => (React.createElement(LinkSearchResult_1.default, { key: result.url, title: result.title, subtitle: result.subtitle, icon: React.createElement(outline_icons_1.DocumentIcon, { color: theme.toolbarItem }), onMouseOver: () => this.handleFocusLink(index), onClick: this.handleSelectLink(result.url, result.title), selected: index === selectedIndex }))),

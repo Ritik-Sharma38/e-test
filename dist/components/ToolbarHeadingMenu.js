@@ -11,7 +11,6 @@ exports.default = styled_components_1.default.button `
   margin-right: 15px;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   margin-left: 30px;
   border: none;
   border-radius: 3px;
@@ -34,15 +33,6 @@ exports.default = styled_components_1.default.button `
   &:disabled {
     opacity: 0.3;
     cursor: default;
-  }
-
-  &:before {
-    position: absolute;
-    content: "";
-    top: -4px;
-    right: -4px;
-    left: -4px;
-    bottom: -4px;
   }
 
   ${props => props.active && "opacity: 1;"};

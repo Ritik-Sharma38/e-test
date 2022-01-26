@@ -287,15 +287,28 @@ class LinkEditor extends React.Component<Props, State> {
   handleRemoveLink = (): void => {
     this.discardInputValue = true;
 
-    const { from, to, mark, view, onRemoveLink } = this.props;
+    const { from, to, mark, view } = this.props;
+    const { state, dispatch } = this.props.view;
+
+    if (mark && false) {
+      dispatch(state.tr.removeMark(from, to, mark));
+    }
+
+    /* if (onRemoveLink) {
+        onRemoveLink();
+    } */
+
+    view.focus();
+  };
+
+  tempRemoveLink = (): void => {
+    this.discardInputValue = true;
+
+    const { from, to, mark, view } = this.props;
     const { state, dispatch } = this.props.view;
 
     if (mark) {
       dispatch(state.tr.removeMark(from, to, mark));
-    }
-
-    if (onRemoveLink) {
-      //onRemoveLink();
     }
 
     view.focus();
@@ -319,9 +332,9 @@ class LinkEditor extends React.Component<Props, State> {
 
   handleRemoveLinkViaProp = () => {
     const { onRemoveLink } = this.props;
+    this.tempRemoveLink();
     if (onRemoveLink) {
       onRemoveLink();
-      this.handleRemoveLink();
     }
   };
 
@@ -436,9 +449,7 @@ class LinkEditor extends React.Component<Props, State> {
                   border: "none",
                   height: "30px",
                 }}
-                onClick={() =>
-                  this.props.onRemoveLink && this.props.onRemoveLink()
-                }
+                onClick={() => this.handleRemoveLinkViaProp()}
               >
                 Cancel
               </button>
@@ -513,7 +524,7 @@ class LinkEditor extends React.Component<Props, State> {
                 <OpenIcon color={theme.iconDefault} />
               </Tooltip>
             </ToolbarButton>
-            <ToolbarButton onClick={this.handleRemoveLink}>
+            <ToolbarButton onClick={this.handleRemoveLinkViaProp}>
               <Tooltip tooltip={dictionary.removeLink} placement="top">
                 {this.initialValue ? (
                   <TrashIcon color={theme.iconDefault} />

@@ -63,6 +63,7 @@ declare class LinkEditor extends React.Component<Props, State> {
     handleOpenLink: (event: any) => void;
     handleCreateLink: (value: string) => Promise<void> | undefined;
     handleRemoveLink: () => void;
+    tempRemoveLink: () => void;
     handleSelectLink: (url: string, title: string) => (event: any) => void;
     moveSelectionToEnd: () => void;
     handleRemoveLinkViaProp: () => void;

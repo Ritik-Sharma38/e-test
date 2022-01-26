@@ -105,6 +105,7 @@ class ToolbarMenu extends React.Component {
                     const selectionText = state.doc.cut(state.selection.from, state.selection.to).textContent;
                     if (!selectionText) {
                         this.pickImage("link", "middle");
+                        return;
                     }
                 }
                 this.props.commands[item.name](item.attrs);
@@ -131,9 +132,11 @@ class ToolbarMenu extends React.Component {
             control: () => ({
                 width: "120px",
                 display: "flex",
+                height: "40px",
             }),
             option: (provided, { isSelected }) => (Object.assign(Object.assign({}, provided), { color: theme.color, height: "30px", display: "flex", alignItems: "center", "&:hover": {
                     background: isSelected ? theme.e200 : theme.hover20,
+                    cursor: "pointer",
                 }, backgroundColor: isSelected ? theme.e200 : "transparent" })),
             menuPortal: provided => (Object.assign(Object.assign({}, provided), { margintTop: 0 })),
             menuList: provided => (Object.assign(Object.assign({}, provided), { margintTop: 0 })),

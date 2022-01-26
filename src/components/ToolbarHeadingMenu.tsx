@@ -9,7 +9,6 @@ export default styled.button<Props>`
   margin-right: 15px;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   margin-left: 30px;
   border: none;
   border-radius: 3px;
@@ -32,15 +31,6 @@ export default styled.button<Props>`
   &:disabled {
     opacity: 0.3;
     cursor: default;
-  }
-
-  &:before {
-    position: absolute;
-    content: "";
-    top: -4px;
-    right: -4px;
-    left: -4px;
-    bottom: -4px;
   }
 
   ${props => props.active && "opacity: 1;"};

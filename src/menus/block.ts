@@ -51,14 +51,14 @@ export default function blockMenuItems(
       shortcut: "^ ⇧ 3",
       attrs: { level: 3 },
     },
-    {
+    /* {
       name: "heading",
       title: dictionary.h4,
       keywords: "h4 heading4",
       icon: Heading3Icon,
       shortcut: "^ ⇧ 4",
       attrs: { level: 4 },
-    },
+    }, */
     {
       name: "separator",
     },

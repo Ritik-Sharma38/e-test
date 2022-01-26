@@ -31,14 +31,6 @@ function blockMenuItems(dictionary) {
             attrs: { level: 3 },
         },
         {
-            name: "heading",
-            title: dictionary.h4,
-            keywords: "h4 heading4",
-            icon: outline_icons_1.Heading3Icon,
-            shortcut: "^ ⇧ 4",
-            attrs: { level: 4 },
-        },
-        {
             name: "separator",
         },
         {

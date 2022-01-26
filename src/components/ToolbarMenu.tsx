@@ -335,6 +335,7 @@ class ToolbarMenu extends React.Component<Props> {
 
         if (!selectionText) {
           this.pickImage("link", "middle");
+          return;
         }
       }
       this.props.commands[item.name](item.attrs);
@@ -365,6 +366,7 @@ class ToolbarMenu extends React.Component<Props> {
       control: () => ({
         width: "120px",
         display: "flex",
+        height: "40px",
       }),
 
       option: (provided, { isSelected }) => ({
@@ -375,6 +377,7 @@ class ToolbarMenu extends React.Component<Props> {
         alignItems: "center",
         "&:hover": {
           background: isSelected ? theme.e200 : theme.hover20,
+          cursor: "pointer",
         },
         backgroundColor: isSelected ? theme.e200 : "transparent",
       }),
