@@ -271,7 +271,7 @@ class LinkEditor extends React.Component<Props, State> {
 
   handleOpenLink = (event): void => {
     event.preventDefault();
-    this.props.onClickLink(this.href, event);
+    this.props.onClickLink(this.state.value, event);
   };
 
   handleCreateLink = (value: string) => {
@@ -370,9 +370,9 @@ class LinkEditor extends React.Component<Props, State> {
         style={
           fromCommandMenu
             ? {
-                padding: "29px 20px",
-                borderRadius: "20px",
-              }
+              padding: "29px 20px",
+              borderRadius: "20px",
+            }
             : {}
         }
       >
@@ -471,10 +471,7 @@ class LinkEditor extends React.Component<Props, State> {
             </div>
           </div>
         ) : (
-          <div
-            style={{ display: "flex", alignItems: "center" }}
-            ref={this.wrapperRef}
-          >
+          <DivWrapper ref={this.wrapperRef}>
             <EInput
               ref={this.inputSubmit}
               type={"url"}
@@ -502,37 +499,40 @@ class LinkEditor extends React.Component<Props, State> {
               isFullWidth={undefined}
               isAutoFocus={true}
             />
-
-            <ToolbarButton onClick={this.handleEnterKey} disabled={!value}>
-              <Tooltip tooltip={dictionary.openLink} placement="top">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M5 7V11H18.17L14.59 7.41L16 6L22 12L16 18L14.59 16.59L18.17 13H3V7H5Z"
-                    fill={`${theme.iconDefault}`}
-                  />
-                </svg>
-              </Tooltip>
-            </ToolbarButton>
-            <ToolbarButton onClick={this.handleOpenLink} disabled={!value}>
-              <Tooltip tooltip={dictionary.openLink} placement="top">
-                <OpenIcon color={theme.iconDefault} />
-              </Tooltip>
-            </ToolbarButton>
-            <ToolbarButton onClick={this.handleRemoveLinkViaProp}>
-              <Tooltip tooltip={dictionary.removeLink} placement="top">
-                {this.initialValue ? (
-                  <TrashIcon color={theme.iconDefault} />
-                ) : (
-                  <CloseIcon color={theme.iconDefault} />
-                )}
-              </Tooltip>
-            </ToolbarButton>
+            <DivWrapper2>
+              <ToolbarButton onClick={this.handleEnterKey} disabled={!value}>
+                <Tooltip tooltip={dictionary.openLink} placement="top">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5 7V11H18.17L14.59 7.41L16 6L22 12L16 18L14.59 16.59L18.17 13H3V7H5Z"
+                      fill={`${theme.iconDefault}`}
+                    />
+                  </svg>
+                </Tooltip>
+              </ToolbarButton>
+              {this.href && (
+                <ToolbarButton onClick={this.handleOpenLink} disabled={!value}>
+                  <Tooltip tooltip={dictionary.openLink} placement="top">
+                    <OpenIcon color={theme.iconDefault} />
+                  </Tooltip>
+                </ToolbarButton>
+              )}
+              <ToolbarButton onClick={this.handleRemoveLinkViaProp}>
+                <Tooltip tooltip={dictionary.removeLink} placement="top">
+                  {this.initialValue ? (
+                    <TrashIcon color={theme.iconDefault} />
+                  ) : (
+                    <CloseIcon color={theme.iconDefault} />
+                  )}
+                </Tooltip>
+              </ToolbarButton>
+            </DivWrapper2>
 
             {showResults && false && (
               <SearchResults id="link-search-results">
@@ -567,7 +567,7 @@ class LinkEditor extends React.Component<Props, State> {
                 )}
               </SearchResults>
             )}
-          </div>
+          </DivWrapper>
         )}
       </Wrapper>
     );
@@ -583,6 +583,30 @@ const Wrapper = styled(Flex)`
   padding: 10px 20px;
   border-radius: 10px;
   box-shadow: ${props => props.theme.ModalBoxShadow};
+  @media (hover: none) and (pointer: coarse) {
+    &:before {
+      display: none;
+    }
+    min-width: unset;
+  }
+`;
+
+const DivWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  @media (hover: none) and (pointer: coarse) {
+    flex-direction: column;
+  }
+`;
+
+const DivWrapper2 = styled.div`
+  height: 52px;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  @media (hover: none) and (pointer: coarse) {
+    margin-left: 0;
+  }
 `;
 
 const SearchResults = styled.ol`

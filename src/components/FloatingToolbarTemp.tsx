@@ -167,6 +167,7 @@ function FloatingToolbar(props) {
     <Portal>
       <Wrapper
         active={props.active && position.visible}
+        fromCommandMenu={props.fromCommandMenu}
         ref={menuRef}
         offset={position.offset}
         style={
@@ -193,6 +194,7 @@ function FloatingToolbar(props) {
 const Wrapper = styled.div<{
   active?: boolean;
   offset: number;
+  fromCommandMenu?: boolean;
 }>`
   will-change: opacity, transform;
   padding: 8px 16px;
@@ -231,10 +233,13 @@ const Wrapper = styled.div<{
     }
 
     transition: opacity 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: scale(1);
     border-radius: 0;
     width: 100vw;
     position: fixed;
+
+    top: 50% !important;
+    transform: translate(0%, -50%)
+      ${props => (props.fromCommandMenu ? "" : "!important")};
   }
 `;
 

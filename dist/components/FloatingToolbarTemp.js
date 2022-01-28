@@ -132,7 +132,7 @@ function FloatingToolbar(props) {
         };
     }, [props.active]);
     return (React.createElement(react_portal_1.Portal, null,
-        React.createElement(Wrapper, { active: props.active && position.visible, ref: menuRef, offset: position.offset, style: props.fromCommandMenu
+        React.createElement(Wrapper, { active: props.active && position.visible, fromCommandMenu: props.fromCommandMenu, ref: menuRef, offset: position.offset, style: props.fromCommandMenu
                 ? {
                     position: "fixed",
                     minHeight: "240px",
@@ -182,10 +182,13 @@ const Wrapper = styled_components_1.default.div `
     }
 
     transition: opacity 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: scale(1);
     border-radius: 0;
     width: 100vw;
     position: fixed;
+
+    top: 50% !important;
+    transform: translate(0%, -50%)
+      ${props => (props.fromCommandMenu ? "" : "!important")};
   }
 `;
 exports.default = React.forwardRef(function FloatingToolbarWithForwardedRef(props, ref) {

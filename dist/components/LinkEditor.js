@@ -185,7 +185,7 @@ class LinkEditor extends React.Component {
         };
         this.handleOpenLink = (event) => {
             event.preventDefault();
-            this.props.onClickLink(this.href, event);
+            this.props.onClickLink(this.state.value, event);
         };
         this.handleCreateLink = (value) => {
             this.discardInputValue = true;
@@ -306,19 +306,20 @@ class LinkEditor extends React.Component {
                         outline: "none",
                         border: "none",
                         height: "30px",
-                    } }, "Save")))) : (React.createElement("div", { style: { display: "flex", alignItems: "center" }, ref: this.wrapperRef },
+                    } }, "Save")))) : (React.createElement(DivWrapper, { ref: this.wrapperRef },
             React.createElement(EInputField_1.default, { ref: this.inputSubmit, type: "url", label: "URL", inputMode: "url", isDisabled: false, placeholder: showCreateLink
                     ? dictionary.findOrCreateDoc
                     : dictionary.searchOrPasteLink, autoComplete: undefined, name: "Url", leftIcon: undefined, value: value, onChange: this.handleChange, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste, rightIcon: undefined, error: undefined, isInvalid: undefined, isReadOnly: undefined, isRequired: undefined, maxCharacters: "100", isFullWidth: undefined, isAutoFocus: true }),
-            React.createElement(ToolbarButton_1.default, { onClick: this.handleEnterKey, disabled: !value },
-                React.createElement(Tooltip, { tooltip: dictionary.openLink, placement: "top" },
-                    React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
-                        React.createElement("path", { d: "M5 7V11H18.17L14.59 7.41L16 6L22 12L16 18L14.59 16.59L18.17 13H3V7H5Z", fill: `${theme.iconDefault}` })))),
-            React.createElement(ToolbarButton_1.default, { onClick: this.handleOpenLink, disabled: !value },
-                React.createElement(Tooltip, { tooltip: dictionary.openLink, placement: "top" },
-                    React.createElement(outline_icons_1.OpenIcon, { color: theme.iconDefault }))),
-            React.createElement(ToolbarButton_1.default, { onClick: this.handleRemoveLinkViaProp },
-                React.createElement(Tooltip, { tooltip: dictionary.removeLink, placement: "top" }, this.initialValue ? (React.createElement(outline_icons_1.TrashIcon, { color: theme.iconDefault })) : (React.createElement(outline_icons_1.CloseIcon, { color: theme.iconDefault })))),
+            React.createElement(DivWrapper2, null,
+                React.createElement(ToolbarButton_1.default, { onClick: this.handleEnterKey, disabled: !value },
+                    React.createElement(Tooltip, { tooltip: dictionary.openLink, placement: "top" },
+                        React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
+                            React.createElement("path", { d: "M5 7V11H18.17L14.59 7.41L16 6L22 12L16 18L14.59 16.59L18.17 13H3V7H5Z", fill: `${theme.iconDefault}` })))),
+                this.href && (React.createElement(ToolbarButton_1.default, { onClick: this.handleOpenLink, disabled: !value },
+                    React.createElement(Tooltip, { tooltip: dictionary.openLink, placement: "top" },
+                        React.createElement(outline_icons_1.OpenIcon, { color: theme.iconDefault })))),
+                React.createElement(ToolbarButton_1.default, { onClick: this.handleRemoveLinkViaProp },
+                    React.createElement(Tooltip, { tooltip: dictionary.removeLink, placement: "top" }, this.initialValue ? (React.createElement(outline_icons_1.TrashIcon, { color: theme.iconDefault })) : (React.createElement(outline_icons_1.CloseIcon, { color: theme.iconDefault }))))),
             showResults && false && (React.createElement(SearchResults, { id: "link-search-results" },
                 results.map((result, index) => (React.createElement(LinkSearchResult_1.default, { key: result.url, title: result.title, subtitle: result.subtitle, icon: React.createElement(outline_icons_1.DocumentIcon, { color: theme.toolbarItem }), onMouseOver: () => this.handleFocusLink(index), onClick: this.handleSelectLink(result.url, result.title), selected: index === selectedIndex }))),
                 showCreateLink && (React.createElement(LinkSearchResult_1.default, { key: "create", title: suggestedLinkTitle, subtitle: dictionary.createNewDoc, icon: React.createElement(outline_icons_1.PlusIcon, { color: theme.toolbarItem }), onMouseOver: () => this.handleFocusLink(results.length), onClick: () => {
@@ -338,6 +339,28 @@ const Wrapper = styled_components_1.default(Flex_1.default) `
   padding: 10px 20px;
   border-radius: 10px;
   box-shadow: ${props => props.theme.ModalBoxShadow};
+  @media (hover: none) and (pointer: coarse) {
+    &:before {
+      display: none;
+    }
+    min-width: unset;
+  }
+`;
+const DivWrapper = styled_components_1.default.div `
+  display: flex;
+  align-items: center;
+  @media (hover: none) and (pointer: coarse) {
+    flex-direction: column;
+  }
+`;
+const DivWrapper2 = styled_components_1.default.div `
+  height: 52px;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  @media (hover: none) and (pointer: coarse) {
+    margin-left: 0;
+  }
 `;
 const SearchResults = styled_components_1.default.ol `
   background: ${props => props.theme.linkToolbarBackground};

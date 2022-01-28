@@ -62,7 +62,7 @@ export default function blockMenuItems(
     {
       name: "separator",
     },
-    /*  {
+     {
       name: "checkbox_list",
       title: dictionary.checkboxList,
       icon: TodoListIcon,
@@ -83,7 +83,7 @@ export default function blockMenuItems(
     },
     {
       name: "separator",
-    }, */
+    },
     {
       name: "table",
       title: dictionary.table,
