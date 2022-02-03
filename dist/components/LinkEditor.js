@@ -63,7 +63,7 @@ class LinkEditor extends React.Component {
             if (this.wrapperRef && !((_b = (_a = this.wrapperRef) === null || _a === void 0 ? void 0 : _a.current) === null || _b === void 0 ? void 0 : _b.contains(event.target))) {
                 const { value } = this.state;
                 if (!value.trim()) {
-                    this.handleRemoveLink();
+                    this.tempRemoveLink();
                 }
             }
         };

@@ -79,6 +79,7 @@ class EmojiMenu extends React.Component<
               itemName={item.name}
               title={item.description}
               emoji={item.emoji}
+              level={item?.attrs}
               containerId="emoji-menu-container"
             />
           );

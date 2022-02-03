@@ -55,18 +55,6 @@ export const base = {
   codeInserted: "#202746",
   codeImportant: "#c94922",
 
-  blockToolbarBackground: colors.white,
-  blockToolbarTrigger: colors.greyMid,
-  blockToolbarTriggerIcon: colors.white,
-  blockToolbarItem: colors.almostBlack,
-  blockToolbarIcon: undefined,
-  blockToolbarIconSelected: colors.black,
-  blockToolbarText: colors.almostBlack,
-  blockToolbarTextSelected: colors.black,
-  blockToolbarSelectedBackground: colors.greyMid,
-  blockToolbarHoverBackground: colors.greyLight,
-  blockToolbarDivider: colors.greyMid,
-
   noticeInfoBackground: "#F5BE31",
   noticeInfoText: colors.almostBlack,
   noticeTipBackground: "#9E5CF7",
@@ -110,6 +98,19 @@ export const light = {
   inputBorder: colors.f0f0f0,
   iconDefault: colors.iconDefault,
   ModalBoxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+
+  blockToolbarBackground: colors.white,
+  blockToolbarTrigger: colors.greyMid,
+  blockToolbarTriggerIcon: colors.white,
+  blockToolbarItem: colors.almostBlack,
+  blockToolbarIcon: colors.black,
+  blockToolbarIconSelected: colors.black,
+  blockToolbarText: colors.almostBlack,
+  blockToolbarTextSelected: colors.black,
+  blockToolbarSelectedBackground: colors.el200,
+  blockToolbarHoverBackground: colors.hel200,
+  blockToolbarDivider: colors.greyMid,
+  blockTextSecondary: colors.black,
 };
 
 export const dark = {
@@ -149,6 +150,19 @@ export const dark = {
   inputBorder: colors.f0f0f0,
   iconDefault: colors.iconDefaultDark,
   ModalBoxShadow: "0px 0px 10px rgba(255, 255, 255, 0.2)",
+
+  blockToolbarBackground: colors.black,
+  blockToolbarTrigger: colors.greyMid,
+  blockToolbarTriggerIcon: colors.black,
+  blockToolbarItem: colors.almostWhite,
+  blockToolbarIcon: colors.white,
+  blockToolbarIconSelected: colors.white,
+  blockToolbarText: colors.almostWhite,
+  blockToolbarTextSelected: colors.white,
+  blockToolbarSelectedBackground: colors.ed200,
+  blockToolbarHoverBackground: colors.hed200,
+  blockToolbarDivider: colors.greyMid,
+  blockTextSecondary: colors.white,
 };
 
 export default light;

@@ -25,7 +25,8 @@ class BlockMenu extends react_1.default.Component {
     render() {
         const { passRef, view, dictionary, toolbarMenuRef } = this.props;
         return (react_1.default.createElement(CommandMenu_1.default, Object.assign({}, this.props, { ref: passRef, view: view, filterable: true, onClearSearch: this.clearSearch, dictionary: dictionary, toolbarMenuRef: toolbarMenuRef, renderMenuItem: (item, _index, options) => {
-                return (react_1.default.createElement(BlockMenuItem_1.default, { onClick: options.onClick, selected: options.selected, icon: item.icon, title: item.title, itemName: (item === null || item === void 0 ? void 0 : item.name) ? item.name : "", shortcut: item.shortcut }));
+                var _a;
+                return (react_1.default.createElement(BlockMenuItem_1.default, { onClick: options.onClick, selected: options.selected, icon: item.icon, title: item.title, level: (_a = item === null || item === void 0 ? void 0 : item.attrs) === null || _a === void 0 ? void 0 : _a.level, itemName: (item === null || item === void 0 ? void 0 : item.name) ? item.name : "", shortcut: item.shortcut }));
             }, items: this.items })));
     }
 }

@@ -33,7 +33,7 @@ class EmojiMenu extends react_1.default.Component {
     }
     render() {
         return (react_1.default.createElement(CommandMenu_1.default, Object.assign({}, this.props, { id: "emoji-menu-container", filterable: false, onClearSearch: this.clearSearch, renderMenuItem: (item, _index, options) => {
-                return (react_1.default.createElement(EmojiMenuItem_1.default, { onClick: options.onClick, selected: options.selected, itemName: item.name, title: item.description, emoji: item.emoji, containerId: "emoji-menu-container" }));
+                return (react_1.default.createElement(EmojiMenuItem_1.default, { onClick: options.onClick, selected: options.selected, itemName: item.name, title: item.description, emoji: item.emoji, level: item === null || item === void 0 ? void 0 : item.attrs, containerId: "emoji-menu-container" }));
             }, items: this.items })));
     }
 }

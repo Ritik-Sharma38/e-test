@@ -49,7 +49,6 @@ export default function Example() {
   if (body) body.style.backgroundColor = d ? dark.background : light.background;
   return (
     <ChakraProvider theme={chakraTheme}>
-
       <Editor
         disableExtensions={["table", "container_notice", "hr", "highlight"]}
         uploadImage={file => {
@@ -60,16 +59,14 @@ export default function Example() {
           });
         }}
         dark={d}
-        defaultValue="# Welcome
-        Just an easy to use **Markdown** editor with `slash command`"
         embeds={embeds}
+        onChange={e => console.log(e())}
         styledEditor={{
           padding: "10px 20px 150px 30px",
           height: "calc(100vh - 140px)",
           overflowWrap: "break-word",
         }}
       />
-
     </ChakraProvider>
   );
 }
