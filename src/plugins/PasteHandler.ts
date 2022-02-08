@@ -14,7 +14,6 @@ import { LANGUAGES } from "./Prism";
  * @param text The incoming pasted plain text
  */
 function normalizePastedMarkdown(text: string): string {
-  text = text.replace(new RegExp(/\\n/gm), "\n");
   // find checkboxes not contained in a list and wrap them in list items
   const CHECKBOX_REGEX = /^\s?(\[(X|\s|_|-)\]\s(.*)?)/gim;
 
