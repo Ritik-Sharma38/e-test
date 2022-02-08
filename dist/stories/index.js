@@ -57,7 +57,7 @@ function Example() {
                 return new Promise(resolve => {
                     setTimeout(() => resolve(URL.createObjectURL(file)), 1500);
                 });
-            }, dark: d, embeds: embeds, onChange: e => console.log(e()), styledEditor: {
+            }, dark: d, embeds: embeds, onChange: e => { }, defaultValue: "Strike\n\n\\\nhmm\n\nout", styledEditor: {
                 padding: "10px 20px 150px 30px",
                 height: "calc(100vh - 140px)",
                 overflowWrap: "break-word",

@@ -12,6 +12,7 @@ const isMarkdown_1 = __importDefault(require("../lib/isMarkdown"));
 const isInCode_1 = __importDefault(require("../queries/isInCode"));
 const Prism_1 = require("./Prism");
 function normalizePastedMarkdown(text) {
+    text.trim();
     const CHECKBOX_REGEX = /^\s?(\[(X|\s|_|-)\]\s(.*)?)/gim;
     while (text.match(CHECKBOX_REGEX)) {
         text = text.replace(CHECKBOX_REGEX, match => `- ${match.trim()}`);

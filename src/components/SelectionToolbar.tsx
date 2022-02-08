@@ -236,6 +236,7 @@ export default class SelectionToolbar extends React.Component<Props> {
       return null;
     }
 
+    //console.log(state.doc.cut(state.selection.from, state.selection.to));
     return (
       <>
         {link && range ? (

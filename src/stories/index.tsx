@@ -60,7 +60,8 @@ export default function Example() {
         }}
         dark={d}
         embeds={embeds}
-        onChange={e => console.log(e())}
+        onChange={e => {}}
+        defaultValue={"Strike\n\n\\\nhmm\n\nout"}
         styledEditor={{
           padding: "10px 20px 150px 30px",
           height: "calc(100vh - 140px)",
