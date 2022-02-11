@@ -123,6 +123,12 @@ class LinkEditor extends React.Component<Props, State> {
     document.removeEventListener("mousedown", this.handleClickOutside);
   };
 
+  componentDidUpdate = (prevProps: any) => {
+    if (prevProps?.mark?.attrs?.href !== this.props.mark?.attrs?.href) {
+      this.setState({ value: this.props.mark?.attrs?.href });
+    }
+  };
+
   handleClickOutside = event => {
     if (this.wrapperRef && !this.wrapperRef?.current?.contains(event.target)) {
       const { value } = this.state;
@@ -370,9 +376,9 @@ class LinkEditor extends React.Component<Props, State> {
         style={
           fromCommandMenu
             ? {
-              padding: "29px 20px",
-              borderRadius: "20px",
-            }
+                padding: "29px 20px",
+                borderRadius: "20px",
+              }
             : {}
         }
       >

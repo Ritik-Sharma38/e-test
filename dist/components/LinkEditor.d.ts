@@ -53,6 +53,7 @@ declare class LinkEditor extends React.Component<Props, State> {
     get suggestedLinkTitle(): string;
     componentDidMount(): void;
     componentWillUnmount: () => void;
+    componentDidUpdate: (prevProps: any) => void;
     handleClickOutside: (event: any) => void;
     save: (href: string, title?: string | undefined) => void;
     handleKeyDown: (event: React.KeyboardEvent) => void;

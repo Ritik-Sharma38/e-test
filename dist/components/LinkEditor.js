@@ -58,6 +58,12 @@ class LinkEditor extends React.Component {
             this.save(href, href);
             document.removeEventListener("mousedown", this.handleClickOutside);
         };
+        this.componentDidUpdate = (prevProps) => {
+            var _a, _b, _c, _d, _e, _f;
+            if (((_b = (_a = prevProps === null || prevProps === void 0 ? void 0 : prevProps.mark) === null || _a === void 0 ? void 0 : _a.attrs) === null || _b === void 0 ? void 0 : _b.href) !== ((_d = (_c = this.props.mark) === null || _c === void 0 ? void 0 : _c.attrs) === null || _d === void 0 ? void 0 : _d.href)) {
+                this.setState({ value: (_f = (_e = this.props.mark) === null || _e === void 0 ? void 0 : _e.attrs) === null || _f === void 0 ? void 0 : _f.href });
+            }
+        };
         this.handleClickOutside = event => {
             var _a, _b;
             if (this.wrapperRef && !((_b = (_a = this.wrapperRef) === null || _a === void 0 ? void 0 : _a.current) === null || _b === void 0 ? void 0 : _b.contains(event.target))) {

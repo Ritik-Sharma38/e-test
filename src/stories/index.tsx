@@ -61,7 +61,7 @@ export default function Example() {
         dark={d}
         embeds={embeds}
         onChange={e => {}}
-        defaultValue={"Strike\n\n\\\nhmm\n\nout"}
+        defaultValue={"d\n\n\\\n[first](https://ritiksharma.in) [second](https://google.com)"}
         styledEditor={{
           padding: "10px 20px 150px 30px",
           height: "calc(100vh - 140px)",
