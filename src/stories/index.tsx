@@ -50,7 +50,13 @@ export default function Example() {
   return (
     <ChakraProvider theme={chakraTheme}>
       <Editor
-        disableExtensions={["table", "container_notice", "hr", "highlight"]}
+        disableExtensions={[
+          "table",
+          "container_notice",
+          "hr",
+          "highlight",
+          "image",
+        ]}
         uploadImage={file => {
           console.log("File upload triggered: ", file);
           // Delay to simulate time taken to upload

@@ -110,10 +110,10 @@ function formattingMenuItems(state, isTemplate, dictionary) {
             visible: allowBlocks || isList,
         },
         {
-            name: "code_inline",
-            tooltip: dictionary.codeInline,
+            name: "code_block",
+            tooltip: dictionary.codeBlock,
             icon: outline_icons_1.CodeIcon,
-            active: isMarkActive_1.default(schema.marks.code_inline),
+            active: isMarkActive_1.default(schema.marks.code_block),
         },
         {
             name: "blockquote",

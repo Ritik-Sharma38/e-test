@@ -127,10 +127,10 @@ export default function formattingMenuItems(
       visible: allowBlocks || isList,
     },
     {
-      name: "code_inline",
-      tooltip: dictionary.codeInline,
+      name: "code_block",
+      tooltip: dictionary.codeBlock,
       icon: CodeIcon,
-      active: isMarkActive(schema.marks.code_inline),
+      active: isMarkActive(schema.marks.code_block),
     },
     {
       name: "blockquote",

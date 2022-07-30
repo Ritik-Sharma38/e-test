@@ -52,7 +52,13 @@ function Example() {
     if (body)
         body.style.backgroundColor = d ? theme_1.dark.background : theme_1.light.background;
     return (React.createElement(react_1.ChakraProvider, { theme: customTheme_1.default },
-        React.createElement(__1.default, { disableExtensions: ["table", "container_notice", "hr", "highlight"], uploadImage: file => {
+        React.createElement(__1.default, { disableExtensions: [
+                "table",
+                "container_notice",
+                "hr",
+                "highlight",
+                "image",
+            ], uploadImage: file => {
                 console.log("File upload triggered: ", file);
                 return new Promise(resolve => {
                     setTimeout(() => resolve(URL.createObjectURL(file)), 1500);

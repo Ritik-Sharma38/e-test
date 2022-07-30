@@ -180,6 +180,32 @@ const Icons = {
       />
     </svg>
   ),
+  code_block: (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M15.8926 15.8467L19.668 12.0631L15.8926 8.27948L17.0549 7.11719L22.0008 12.0631L17.0549 17.009L15.8926 15.8467Z"
+        fill="#929292"
+      />
+      <path
+        d="M8.10742 8.28023L4.33204 12.0639L8.10742 15.8475L6.94513 17.0098L1.99922 12.0639L6.94513 7.11794L8.10742 8.28023Z"
+        fill="#929292"
+      />
+      <line
+        x1="13.7869"
+        y1="5.0885"
+        x2="9.94663"
+        y2="19.4206"
+        stroke="#929292"
+        strokeWidth="1.48377"
+      />
+    </svg>
+  ),
   blockquote: (
     <svg
       width="24"
@@ -364,7 +390,7 @@ class ToolbarMenu extends React.Component<Props> {
       }),
 
       control: () => ({
-        width: "120px",
+        width: "124px",
         display: "flex",
         height: "40px",
       }),
@@ -412,7 +438,7 @@ class ToolbarMenu extends React.Component<Props> {
         return item;
       } else return false;
     });
-
+    console.log(items)
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
         {isImageSelection ? (
@@ -492,11 +518,11 @@ class ToolbarMenu extends React.Component<Props> {
                   </ToolbarButton>
                 );
               })}
-              <ToolbarButton onClick={() => this.pickImage("image", "")}>
+              {/* <ToolbarButton onClick={() => this.pickImage("image", "")}>
                 <Tooltip tooltip={"Add a image"} placement="top">
                   {Icons["image"]}
                 </Tooltip>
-              </ToolbarButton>
+              </ToolbarButton> */}
               {[
                 items[9],
                 items[10],
