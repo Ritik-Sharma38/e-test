@@ -1,7 +1,7 @@
 {
   "name": "edvoramark",
   "description": "A rich text editor with Markdown shortcuts",
-  "version": "11.21.31",
+  "version": "11.21.32",
   "files": [
     "dist"
   ],
