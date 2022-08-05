@@ -22,6 +22,7 @@ const colors = {
   eae3e3: "#EAE3E3",
   hel200: "rgba(242, 216, 213, 0.4)",
   hed200: "rgba(191, 155, 155, 0.3)",
+  textLight: "#111",
 };
 
 export const base = {
@@ -81,6 +82,8 @@ export const light = {
   toolbarHoverBackground: colors.black,
   toolbarInput: colors.white10,
   toolbarItem: colors.black,
+  linkEditorBoarderColor: colors.el100,
+  linkEditorTextColor: colors.textLight,
 
   tableDivider: colors.greyMid,
   tableSelected: colors.primary,
@@ -132,6 +135,8 @@ export const dark = {
   toolbarHoverBackground: colors.greyMid,
   toolbarInput: colors.black10,
   toolbarItem: colors.lightBlack,
+  linkEditorBoarderColor: colors.ed200,
+  linkEditorTextColor: colors.white,
 
   tableDivider: colors.lightBlack,
   tableSelected: colors.primary,

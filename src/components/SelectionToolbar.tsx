@@ -235,7 +235,7 @@ export default class SelectionToolbar extends React.Component<Props> {
     if (isTextSelection && !selectionText && false) {
       return null;
     }
-console.log('tool', items)
+
     return (
       <>
         {link && range ? (

@@ -391,53 +391,45 @@ class LinkEditor extends React.Component<Props, State> {
               width: "100%",
             }}
           >
-            <EInput
-              type={"text"}
-              label={"Title"}
-              inputMode={"text"}
-              isDisabled={false}
-              placeholder={"Title"}
-              autoComplete={undefined}
-              name={"Title"}
-              leftIcon={undefined}
-              value={title}
+            <input
               onChange={e => this.setState({ title: e.target.value })}
-              rightIcon={undefined}
-              error={undefined}
-              isInvalid={undefined}
-              isReadOnly={undefined}
-              isRequired={undefined}
-              maxCharacters={"100"}
-              isFullWidth={undefined}
-              isAutoFocus
+              type="text"
+              placeholder="Title"
+              value={title}
+              style={{
+                height: "52px",
+                border: "1.5px solid",
+                borderColor: this.props.theme.linkEditorBoarderColor,
+                paddingLeft: "12px",
+                fontSize: "16px",
+                color: this.props.theme.linkEditorTextColor,
+                borderRadius: "10px",
+                backgroundColor: "transparent",
+              }}
             />
             <div style={{ marginTop: "20px" }} />
-            <EInput
+            <input
               ref={this.inputSubmit}
-              type={"url"}
-              label={"URL"}
-              inputMode={"url"}
-              isDisabled={false}
+              type="url"
               placeholder={
                 showCreateLink
                   ? dictionary.findOrCreateDoc
                   : dictionary.searchOrPasteLink
               }
-              autoComplete={undefined}
-              name={"Url"}
-              leftIcon={undefined}
               value={value}
+              style={{
+                height: "52px",
+                border: "1.5px solid",
+                borderColor: this.props.theme.linkEditorBoarderColor,
+                paddingLeft: "12px",
+                fontSize: "16px",
+                color: this.props.theme.linkEditorTextColor,
+                borderRadius: "10px",
+                backgroundColor: "transparent",
+              }}
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
               onPaste={this.handlePaste}
-              rightIcon={undefined}
-              error={undefined}
-              isInvalid={undefined}
-              isReadOnly={undefined}
-              isRequired={undefined}
-              maxCharacters={"100"}
-              isFullWidth={undefined}
-              isAutoFocus={false}
             />
             <div
               style={{
@@ -454,6 +446,7 @@ class LinkEditor extends React.Component<Props, State> {
                   outline: "none",
                   border: "none",
                   height: "30px",
+                  color: this.props.theme.color,
                 }}
                 onClick={() => this.handleRemoveLinkViaProp()}
               >
@@ -470,6 +463,7 @@ class LinkEditor extends React.Component<Props, State> {
                   outline: "none",
                   border: "none",
                   height: "30px",
+                  color: this.props.theme.color,
                 }}
               >
                 Save
@@ -478,32 +472,28 @@ class LinkEditor extends React.Component<Props, State> {
           </div>
         ) : (
           <DivWrapper ref={this.wrapperRef}>
-            <EInput
+            <input
               ref={this.inputSubmit}
-              type={"url"}
-              label={"URL"}
-              inputMode={"url"}
-              isDisabled={false}
+              type="url"
               placeholder={
                 showCreateLink
                   ? dictionary.findOrCreateDoc
                   : dictionary.searchOrPasteLink
               }
-              autoComplete={undefined}
-              name={"Url"}
-              leftIcon={undefined}
               value={value}
+              style={{
+                height: "52px",
+                border: "1.5px solid",
+                borderColor: this.props.theme.linkEditorBoarderColor,
+                paddingLeft: "12px",
+                fontSize: "16px",
+                color: this.props.theme.linkEditorTextColor,
+                borderRadius: "10px",
+                backgroundColor: "transparent",
+              }}
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
               onPaste={this.handlePaste}
-              rightIcon={undefined}
-              error={undefined}
-              isInvalid={undefined}
-              isReadOnly={undefined}
-              isRequired={undefined}
-              maxCharacters={"100"}
-              isFullWidth={undefined}
-              isAutoFocus={true}
             />
             <DivWrapper2>
               <ToolbarButton onClick={this.handleEnterKey} disabled={!value}>

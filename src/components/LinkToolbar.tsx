@@ -6,7 +6,6 @@ import LinkEditor, { SearchResult } from "./LinkEditor";
 import createAndInsertLink from "../commands/createAndInsertLink";
 import baseDictionary from "../dictionary";
 import FloatingToolbarTemp from "./FloatingToolbarTemp";
-import { EditorState, Selection, Plugin } from "prosemirror-state";
 
 type Props = {
   isActive: boolean;
