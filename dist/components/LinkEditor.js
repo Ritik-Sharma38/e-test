@@ -30,7 +30,6 @@ const isUrl_1 = __importDefault(require("../lib/isUrl"));
 const Flex_1 = __importDefault(require("./Flex"));
 const ToolbarButton_1 = __importDefault(require("./ToolbarButton"));
 const LinkSearchResult_1 = __importDefault(require("./LinkSearchResult"));
-const EInputField_1 = __importDefault(require("./EInputField"));
 class LinkEditor extends React.Component {
     constructor(props) {
         super(props);
@@ -285,11 +284,29 @@ class LinkEditor extends React.Component {
                 flexDirection: "column",
                 width: "100%",
             } },
-            React.createElement(EInputField_1.default, { type: "text", label: "Title", inputMode: "text", isDisabled: false, placeholder: "Title", autoComplete: undefined, name: "Title", leftIcon: undefined, value: title, onChange: e => this.setState({ title: e.target.value }), rightIcon: undefined, error: undefined, isInvalid: undefined, isReadOnly: undefined, isRequired: undefined, maxCharacters: "100", isFullWidth: undefined, isAutoFocus: true }),
+            React.createElement("input", { onChange: e => this.setState({ title: e.target.value }), type: "text", placeholder: "Title", value: title, style: {
+                    height: "52px",
+                    border: "1.5px solid",
+                    borderColor: this.props.theme.linkEditorBoarderColor,
+                    paddingLeft: "12px",
+                    fontSize: "16px",
+                    color: this.props.theme.linkEditorTextColor,
+                    borderRadius: "10px",
+                    backgroundColor: "transparent",
+                } }),
             React.createElement("div", { style: { marginTop: "20px" } }),
-            React.createElement(EInputField_1.default, { ref: this.inputSubmit, type: "url", label: "URL", inputMode: "url", isDisabled: false, placeholder: showCreateLink
+            React.createElement("input", { ref: this.inputSubmit, type: "url", placeholder: showCreateLink
                     ? dictionary.findOrCreateDoc
-                    : dictionary.searchOrPasteLink, autoComplete: undefined, name: "Url", leftIcon: undefined, value: value, onChange: this.handleChange, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste, rightIcon: undefined, error: undefined, isInvalid: undefined, isReadOnly: undefined, isRequired: undefined, maxCharacters: "100", isFullWidth: undefined, isAutoFocus: false }),
+                    : dictionary.searchOrPasteLink, value: value, style: {
+                    height: "52px",
+                    border: "1.5px solid",
+                    borderColor: this.props.theme.linkEditorBoarderColor,
+                    paddingLeft: "12px",
+                    fontSize: "16px",
+                    color: this.props.theme.linkEditorTextColor,
+                    borderRadius: "10px",
+                    backgroundColor: "transparent",
+                }, onChange: this.handleChange, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste }),
             React.createElement("div", { style: {
                     display: "flex",
                     justifyContent: "space-between",
@@ -302,6 +319,7 @@ class LinkEditor extends React.Component {
                         outline: "none",
                         border: "none",
                         height: "30px",
+                        color: this.props.theme.color,
                     }, onClick: () => this.handleRemoveLinkViaProp() }, "Cancel"),
                 React.createElement("button", { onClick: () => {
                         this.handleEnterKey();
@@ -312,10 +330,20 @@ class LinkEditor extends React.Component {
                         outline: "none",
                         border: "none",
                         height: "30px",
+                        color: this.props.theme.color,
                     } }, "Save")))) : (React.createElement(DivWrapper, { ref: this.wrapperRef },
-            React.createElement(EInputField_1.default, { ref: this.inputSubmit, type: "url", label: "URL", inputMode: "url", isDisabled: false, placeholder: showCreateLink
+            React.createElement("input", { ref: this.inputSubmit, type: "url", placeholder: showCreateLink
                     ? dictionary.findOrCreateDoc
-                    : dictionary.searchOrPasteLink, autoComplete: undefined, name: "Url", leftIcon: undefined, value: value, onChange: this.handleChange, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste, rightIcon: undefined, error: undefined, isInvalid: undefined, isReadOnly: undefined, isRequired: undefined, maxCharacters: "100", isFullWidth: undefined, isAutoFocus: true }),
+                    : dictionary.searchOrPasteLink, value: value, style: {
+                    height: "52px",
+                    border: "1.5px solid",
+                    borderColor: this.props.theme.linkEditorBoarderColor,
+                    paddingLeft: "12px",
+                    fontSize: "16px",
+                    color: this.props.theme.linkEditorTextColor,
+                    borderRadius: "10px",
+                    backgroundColor: "transparent",
+                }, onChange: this.handleChange, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste }),
             React.createElement(DivWrapper2, null,
                 React.createElement(ToolbarButton_1.default, { onClick: this.handleEnterKey, disabled: !value },
                     React.createElement(Tooltip, { tooltip: dictionary.openLink, placement: "top" },

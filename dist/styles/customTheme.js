@@ -4,7 +4,7 @@ const react_1 = require("@chakra-ui/react");
 const theme_tools_1 = require("@chakra-ui/theme-tools");
 const config = {
     initialColorMode: "light",
-    useSystemColorMode: false,
+    useSystemColorMode: true,
 };
 const breakpoints = theme_tools_1.createBreakpoints({
     sm: "360px",

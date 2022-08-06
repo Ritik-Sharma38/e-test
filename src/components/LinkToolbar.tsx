@@ -18,6 +18,7 @@ type Props = {
   onShowToast?: (msg: string, code: string) => void;
   onClose: () => void;
   linkToolBarRef: any;
+  mobile: boolean;
 };
 
 function isActive(props: Props) {
@@ -155,7 +156,14 @@ export default class LinkToolbar extends React.Component<Props> {
   };
 
   render() {
-    const { onCreateLink, onClose, view, linkToolBarRef, ...rest } = this.props;
+    const {
+      onCreateLink,
+      onClose,
+      view,
+      linkToolBarRef,
+      mobile,
+      ...rest
+    } = this.props;
     const { selection } = this.props.view.state;
     const active = isActive(this.props);
     return (
@@ -176,6 +184,7 @@ export default class LinkToolbar extends React.Component<Props> {
             onSelectLink={this.handleOnSelectLink}
             onRemoveLink={onClose}
             fromCommandMenu={true}
+            mobile={mobile}
             {...rest}
           />
         )}

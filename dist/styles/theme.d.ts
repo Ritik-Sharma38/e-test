@@ -71,6 +71,8 @@ export declare const light: {
     toolbarHoverBackground: string;
     toolbarInput: string;
     toolbarItem: string;
+    linkEditorBoarderColor: string;
+    linkEditorTextColor: string;
     tableDivider: string;
     tableSelected: string;
     tableSelectedBackground: string;
@@ -168,6 +170,8 @@ export declare const dark: {
     toolbarHoverBackground: string;
     toolbarInput: string;
     toolbarItem: string;
+    linkEditorBoarderColor: string;
+    linkEditorTextColor: string;
     tableDivider: string;
     tableSelected: string;
     tableSelectedBackground: string;

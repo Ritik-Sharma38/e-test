@@ -41,6 +41,7 @@ type Props = {
   view: EditorView;
   onCloseLink: () => void;
   rootState: any;
+  mobile: boolean;
 };
 
 function isVisible(props) {
@@ -177,6 +178,7 @@ export default class SelectionToolbar extends React.Component<Props> {
       onCloseLink,
       rootState,
       toolbarMenuRef,
+      mobile,
       ...rest
     } = this.props;
     const { view } = rest;
@@ -253,6 +255,7 @@ export default class SelectionToolbar extends React.Component<Props> {
               to={range.to}
               onCreateLink={onCreateLink ? this.handleOnCreateLink : undefined}
               onSelectLink={this.handleOnSelectLink}
+              mobile={mobile}
               {...rest}
             />
           </FloatingToolbarTemp>

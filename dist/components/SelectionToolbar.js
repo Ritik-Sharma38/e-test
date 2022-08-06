@@ -194,7 +194,6 @@ class SelectionToolbar extends React.Component {
         if (isTextSelection && !selectionText && false) {
             return null;
         }
-        console.log('tool', items);
         return (React.createElement(React.Fragment, null, link && range ? (React.createElement(FloatingToolbarTemp_1.default, { view: view, active: isVisible(this.props) || true, ref: this.menuRef, fromCommandMenu: false },
             React.createElement(LinkEditor_1.default, Object.assign({ ref: this.linkEditorRef, dictionary: dictionary, mark: range.mark, from: range.from, to: range.to, onCreateLink: onCreateLink ? this.handleOnCreateLink : undefined, onSelectLink: this.handleOnSelectLink }, rest)))) : (React.createElement(FloatingToolbar_1.default, { view: view, active: isVisible(this.props) || true, ref: this.menuRef },
             React.createElement(ToolbarMenu_1.default, Object.assign({ ref: toolbarMenuRef, items: items }, rest, { commandRef: commandRef, linkEditorRef: this.linkEditorRef, isImageSelection: isImageSelection, linkToolBarRef: linkToolBarRef, onCloseLink: onCloseLink, rootState: rootState }))))));

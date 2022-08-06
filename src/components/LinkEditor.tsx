@@ -44,6 +44,7 @@ type Props = {
   view: EditorView;
   theme: typeof theme;
   fromCommandMenu: boolean;
+  mobile: boolean;
 };
 
 type State = {
@@ -345,7 +346,7 @@ class LinkEditor extends React.Component<Props, State> {
   };
 
   render() {
-    const { dictionary, theme, fromCommandMenu, from, to } = this.props;
+    const { dictionary, theme, fromCommandMenu, from, to, mobile } = this.props;
     const { value, selectedIndex, title } = this.state;
     const results =
       this.state.results[value.trim()] ||
@@ -370,15 +371,15 @@ class LinkEditor extends React.Component<Props, State> {
       this.from = from;
       this.to = to;
     }
-
+    console.log('mobile', mobile)
     return (
       <Wrapper
         style={
           fromCommandMenu
             ? {
-                padding: "29px 20px",
-                borderRadius: "20px",
-              }
+              padding: "29px 20px",
+              borderRadius: "20px",
+            }
             : {}
         }
       >
@@ -405,6 +406,7 @@ class LinkEditor extends React.Component<Props, State> {
                 color: this.props.theme.linkEditorTextColor,
                 borderRadius: "10px",
                 backgroundColor: "transparent",
+                width: "100%",
               }}
             />
             <div style={{ marginTop: "20px" }} />
@@ -426,6 +428,7 @@ class LinkEditor extends React.Component<Props, State> {
                 color: this.props.theme.linkEditorTextColor,
                 borderRadius: "10px",
                 backgroundColor: "transparent",
+                width: "100%",
               }}
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
@@ -471,7 +474,10 @@ class LinkEditor extends React.Component<Props, State> {
             </div>
           </div>
         ) : (
-          <DivWrapper ref={this.wrapperRef}>
+          <DivWrapper
+            ref={this.wrapperRef}
+            style={mobile ? { flexDirection: "column" } : {}}
+          >
             <input
               ref={this.inputSubmit}
               type="url"
@@ -490,6 +496,7 @@ class LinkEditor extends React.Component<Props, State> {
                 color: this.props.theme.linkEditorTextColor,
                 borderRadius: "10px",
                 backgroundColor: "transparent",
+                width: "100%",
               }}
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
@@ -592,6 +599,7 @@ const DivWrapper = styled.div`
   align-items: center;
   @media (hover: none) and (pointer: coarse) {
     flex-direction: column;
+    width: 100%;
   }
 `;
 
