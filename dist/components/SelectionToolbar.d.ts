@@ -21,6 +21,7 @@ declare type Props = {
     view: EditorView;
     onCloseLink: () => void;
     rootState: any;
+    mobile: any;
 };
 export default class SelectionToolbar extends React.Component<Props> {
     isActive: boolean;

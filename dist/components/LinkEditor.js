@@ -257,7 +257,7 @@ class LinkEditor extends React.Component {
         document.addEventListener("mousedown", this.handleClickOutside);
     }
     render() {
-        const { dictionary, theme, fromCommandMenu, from, to } = this.props;
+        const { dictionary, theme, fromCommandMenu, from, to, mobile } = this.props;
         const { value, selectedIndex, title } = this.state;
         const results = this.state.results[value.trim()] ||
             this.state.results[this.state.previousValue] ||
@@ -274,6 +274,7 @@ class LinkEditor extends React.Component {
             this.from = from;
             this.to = to;
         }
+        console.log('mobile', mobile);
         return (React.createElement(Wrapper, { style: fromCommandMenu
                 ? {
                     padding: "29px 20px",
@@ -293,6 +294,7 @@ class LinkEditor extends React.Component {
                     color: this.props.theme.linkEditorTextColor,
                     borderRadius: "10px",
                     backgroundColor: "transparent",
+                    width: "100%",
                 } }),
             React.createElement("div", { style: { marginTop: "20px" } }),
             React.createElement("input", { ref: this.inputSubmit, type: "url", placeholder: showCreateLink
@@ -306,6 +308,7 @@ class LinkEditor extends React.Component {
                     color: this.props.theme.linkEditorTextColor,
                     borderRadius: "10px",
                     backgroundColor: "transparent",
+                    width: "100%",
                 }, onChange: this.handleChange, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste }),
             React.createElement("div", { style: {
                     display: "flex",
@@ -331,7 +334,7 @@ class LinkEditor extends React.Component {
                         border: "none",
                         height: "30px",
                         color: this.props.theme.color,
-                    } }, "Save")))) : (React.createElement(DivWrapper, { ref: this.wrapperRef },
+                    } }, "Save")))) : (React.createElement(DivWrapper, { ref: this.wrapperRef, style: mobile ? { flexDirection: "column" } : {} },
             React.createElement("input", { ref: this.inputSubmit, type: "url", placeholder: showCreateLink
                     ? dictionary.findOrCreateDoc
                     : dictionary.searchOrPasteLink, value: value, style: {
@@ -343,6 +346,7 @@ class LinkEditor extends React.Component {
                     color: this.props.theme.linkEditorTextColor,
                     borderRadius: "10px",
                     backgroundColor: "transparent",
+                    width: "100%",
                 }, onChange: this.handleChange, onKeyDown: this.handleKeyDown, onPaste: this.handlePaste }),
             React.createElement(DivWrapper2, null,
                 React.createElement(ToolbarButton_1.default, { onClick: this.handleEnterKey, disabled: !value },
@@ -385,6 +389,7 @@ const DivWrapper = styled_components_1.default.div `
   align-items: center;
   @media (hover: none) and (pointer: coarse) {
     flex-direction: column;
+    width: 100%;
   }
 `;
 const DivWrapper2 = styled_components_1.default.div `

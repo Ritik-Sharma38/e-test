@@ -18,7 +18,7 @@ type Props = {
   onShowToast?: (msg: string, code: string) => void;
   onClose: () => void;
   linkToolBarRef: any;
-  mobile: boolean;
+  mobile: any;
 };
 
 function isActive(props: Props) {

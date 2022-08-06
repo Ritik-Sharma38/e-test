@@ -13,6 +13,7 @@ declare type Props = {
     onShowToast?: (msg: string, code: string) => void;
     onClose: () => void;
     linkToolBarRef: any;
+    mobile: any;
 };
 export default class LinkToolbar extends React.Component<Props> {
     menuRef: React.RefObject<HTMLDivElement>;

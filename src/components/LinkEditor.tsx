@@ -44,7 +44,7 @@ type Props = {
   view: EditorView;
   theme: typeof theme;
   fromCommandMenu: boolean;
-  mobile: boolean;
+  mobile: any;
 };
 
 type State = {

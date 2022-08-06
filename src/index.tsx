@@ -131,7 +131,7 @@ export type Props = {
   readOnlyWriteCheckboxes?: boolean;
   dictionary?: Partial<typeof baseDictionary>;
   dark?: boolean;
-  mobile?: boolean;
+  mobile?: any;
   dir?: string;
   theme?: typeof theme;
   template?: boolean;

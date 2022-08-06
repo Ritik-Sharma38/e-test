@@ -28,6 +28,7 @@ declare type Props = {
     view: EditorView;
     theme: typeof theme;
     fromCommandMenu: boolean;
+    mobile: any;
 };
 declare type State = {
     results: {

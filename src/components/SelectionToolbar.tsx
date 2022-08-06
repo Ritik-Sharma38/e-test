@@ -41,7 +41,7 @@ type Props = {
   view: EditorView;
   onCloseLink: () => void;
   rootState: any;
-  mobile: boolean;
+  mobile: any;
 };
 
 function isVisible(props) {
