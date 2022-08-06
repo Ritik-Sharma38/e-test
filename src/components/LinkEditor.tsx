@@ -476,7 +476,7 @@ class LinkEditor extends React.Component<Props, State> {
         ) : (
           <DivWrapper
             ref={this.wrapperRef}
-            style={mobile ? { flexDirection: "column" } : {}}
+            style={mobile ? { flexDirection: "column", width: "100%" } : {}}
           >
             <input
               ref={this.inputSubmit}

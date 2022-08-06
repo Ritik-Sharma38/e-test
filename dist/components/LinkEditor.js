@@ -334,7 +334,7 @@ class LinkEditor extends React.Component {
                         border: "none",
                         height: "30px",
                         color: this.props.theme.color,
-                    } }, "Save")))) : (React.createElement(DivWrapper, { ref: this.wrapperRef, style: mobile ? { flexDirection: "column" } : {} },
+                    } }, "Save")))) : (React.createElement(DivWrapper, { ref: this.wrapperRef, style: mobile ? { flexDirection: "column", width: "100%" } : {} },
             React.createElement("input", { ref: this.inputSubmit, type: "url", placeholder: showCreateLink
                     ? dictionary.findOrCreateDoc
                     : dictionary.searchOrPasteLink, value: value, style: {
