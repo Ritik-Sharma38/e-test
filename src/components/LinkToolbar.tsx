@@ -19,6 +19,7 @@ type Props = {
   onClose: () => void;
   linkToolBarRef: any;
   mobile: any;
+  isios: any;
 };
 
 function isActive(props: Props) {
@@ -162,6 +163,7 @@ export default class LinkToolbar extends React.Component<Props> {
       view,
       linkToolBarRef,
       mobile,
+      isios,
       ...rest
     } = this.props;
     const { selection } = this.props.view.state;
@@ -185,6 +187,7 @@ export default class LinkToolbar extends React.Component<Props> {
             onRemoveLink={onClose}
             fromCommandMenu={true}
             mobile={mobile}
+            isios={isios}
             {...rest}
           />
         )}

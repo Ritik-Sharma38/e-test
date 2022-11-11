@@ -45,6 +45,7 @@ type Props = {
   theme: typeof theme;
   fromCommandMenu: boolean;
   mobile: any;
+  isios: boolean;
 };
 
 type State = {
@@ -276,8 +277,17 @@ class LinkEditor extends React.Component<Props, State> {
     setTimeout(() => this.save(this.state.value, this.state.value), 0);
   };
 
-  handleOpenLink = (event): void => {
+  handleOpenLink = (event, isios): void => {
     event.preventDefault();
+    try {
+      if (isios) {
+        window?.webkit?.messageHandlers.onClickLink.postMessage(
+          this.state.value
+        );
+      }
+    } catch (e) {
+      console.log("Error");
+    }
     this.props.onClickLink(this.state.value, event);
   };
 
@@ -346,7 +356,7 @@ class LinkEditor extends React.Component<Props, State> {
   };
 
   render() {
-    const { dictionary, theme, fromCommandMenu, from, to, mobile } = this.props;
+    const { dictionary, theme, fromCommandMenu, from, to, mobile, isios } = this.props;
     const { value, selectedIndex, title } = this.state;
     const results =
       this.state.results[value.trim()] ||
@@ -520,7 +530,10 @@ class LinkEditor extends React.Component<Props, State> {
                 </Tooltip>
               </ToolbarButton>
               {this.href && (
-                <ToolbarButton onClick={this.handleOpenLink} disabled={!value}>
+                <ToolbarButton
+                  onClick={(e: any) => this.handleOpenLink(e, isios)}
+                  disabled={!value}
+                >
                   <Tooltip tooltip={dictionary.openLink} placement="top">
                     <OpenIcon color={theme.iconDefault} />
                   </Tooltip>

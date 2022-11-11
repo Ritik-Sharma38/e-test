@@ -132,6 +132,7 @@ export type Props = {
   dictionary?: Partial<typeof baseDictionary>;
   dark?: boolean;
   mobile?: any;
+  isios?: boolean;
   dir?: string;
   theme?: typeof theme;
   template?: boolean;
@@ -771,6 +772,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
       onKeyDown,
       styledEditor,
       mobile,
+      isios,
     } = this.props;
     const { isRTL } = this.state;
     const dictionary = this.dictionary(this.props.dictionary);
@@ -817,6 +819,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   rootState={this.state}
                   toolbarMenuRef={this.toolbarMenuRef}
                   mobile={mobile}
+                  isios={isios}
                 />
                 <LinkToolbar
                   view={this.view}
@@ -830,6 +833,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                   onClose={this.handleCloseLinkMenu}
                   tooltip={tooltip}
                   mobile={mobile}
+                  isios={isios}
                 />
                 {/* <EmojiMenu
                   view={this.view}

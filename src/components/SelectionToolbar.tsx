@@ -42,6 +42,7 @@ type Props = {
   onCloseLink: () => void;
   rootState: any;
   mobile: any;
+  isios: any;
 };
 
 function isVisible(props) {
@@ -179,6 +180,7 @@ export default class SelectionToolbar extends React.Component<Props> {
       rootState,
       toolbarMenuRef,
       mobile,
+      isios,
       ...rest
     } = this.props;
     const { view } = rest;
@@ -256,6 +258,7 @@ export default class SelectionToolbar extends React.Component<Props> {
               onCreateLink={onCreateLink ? this.handleOnCreateLink : undefined}
               onSelectLink={this.handleOnSelectLink}
               mobile={mobile}
+              isios={isios}
               {...rest}
             />
           </FloatingToolbarTemp>

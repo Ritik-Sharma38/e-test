@@ -66,6 +66,7 @@ export default function Example() {
         }}
         dark={d}
         mobile={false}
+        isios={false}
         embeds={embeds}
         onChange={e => {}}
         defaultValue={
