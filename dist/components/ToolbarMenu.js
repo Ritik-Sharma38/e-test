@@ -161,7 +161,7 @@ class ToolbarMenu extends React.Component {
             else
                 return false;
         });
-        console.log(items);
+        
         return (React.createElement("div", { style: { display: "flex", flexDirection: "row" } }, isImageSelection ? (React.createElement(FlexibleWrapper, null, items.map((item, index) => {
             if (!item)
                 return;

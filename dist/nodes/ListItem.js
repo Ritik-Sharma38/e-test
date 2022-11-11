@@ -156,7 +156,7 @@ class ListItem extends Node_1.default {
                 const $pos = state.doc.resolve(pos);
                 if (!$pos.nodeBefore ||
                     !["list_item", "checkbox_item"].includes($pos.nodeBefore.type.name)) {
-                    console.log("Node before not a list item");
+                    
                     return false;
                 }
                 const { tr } = state;
@@ -177,7 +177,7 @@ class ListItem extends Node_1.default {
                 const $pos = state.doc.resolve(pos + li.nodeSize);
                 if (!$pos.nodeAfter ||
                     !["list_item", "checkbox_item"].includes($pos.nodeAfter.type.name)) {
-                    console.log("Node after not a list item");
+                    
                     return false;
                 }
                 const { tr } = state;

@@ -371,14 +371,14 @@ class LinkEditor extends React.Component<Props, State> {
       this.from = from;
       this.to = to;
     }
-    console.log('mobile', mobile)
+
     return (
       <Wrapper
         style={
           fromCommandMenu
             ? {
-              padding: "29px 20px",
-              borderRadius: "20px",
+                padding: "29px 20px",
+                borderRadius: "20px",
             }
             : {}
         }

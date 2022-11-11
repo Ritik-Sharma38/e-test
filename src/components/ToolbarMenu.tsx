@@ -438,7 +438,7 @@ class ToolbarMenu extends React.Component<Props> {
         return item;
       } else return false;
     });
-    console.log(items)
+    
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
         {isImageSelection ? (

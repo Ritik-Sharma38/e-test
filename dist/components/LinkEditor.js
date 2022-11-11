@@ -274,7 +274,6 @@ class LinkEditor extends React.Component {
             this.from = from;
             this.to = to;
         }
-        console.log('mobile', mobile);
         return (React.createElement(Wrapper, { style: fromCommandMenu
                 ? {
                     padding: "29px 20px",
