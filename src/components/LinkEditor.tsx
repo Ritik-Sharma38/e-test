@@ -281,9 +281,9 @@ class LinkEditor extends React.Component<Props, State> {
     event.preventDefault();
     try {
       if (isios) {
-        window?.webkit?.messageHandlers.onClickLink.postMessage(
-          this.state.value
-        );
+        // window?.webkit?.messageHandlers.onClickLink.postMessage(
+        //   this.state.value
+        // );
       }
     } catch (e) {
       console.log("Error");
